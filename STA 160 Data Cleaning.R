@@ -7,15 +7,16 @@ df$Date <- as.POSIXct(df$V1, format='%d/%m/%Y %H:%M:%S')
 ##subset df into 3PM-8PM only
 df <- setDT(df)[,time:=as.ITime(time)][time>=as.ITime('15:00:00') & time<=as.ITime('20:00:00')]
 
+df.1 <- df[df$V2 %in% c("314025"),]
 
-cars1=df$V3 ##isolate vehicle counts from df
-cars2=df$V6
-cars3=df$V9
+cars1=df.1$V3 ##isolate vehicle counts from df
+cars2=df.1$V6
+cars3=df.1$V9
 carsdf=data.frame(cars1,cars2,cars3)
-df$sums=rowSums(carsdf) ##find sum for all 3 lanes by time
+df.1$sums=rowSums(carsdf) ##find sum for all 3 lanes by time
 
 ##create cumulative frequency plot according to time
-ggplot(df, aes(x=strptime(time, "%H:%M:%S"), y=cumsum(sums))) + geom_line() +
+ggplot(df.1, aes(x=strptime(time, "%H:%M:%S"), y=cumsum(sums))) + geom_line() +
   theme_bw() + xlab("Time") + ylab("Activity (Vehicle Counts per 30 seconds)") +
   scale_x_datetime(breaks=date_breaks("30 min"), labels = date_format("%H:%M"))
 
