@@ -2,12 +2,14 @@ df<- read.csv("/Users/evanschulze/Desktop/d03_text_station_raw_2018_04_25.txt", 
 df$V2<-as.factor(df$V2) 
 df<-df[df$V2 %in% c("314025","318076","318067","318113","316803"),] ##only keep sensors where bottlenecks exist
 
-df$Date <- as.POSIXct(df$V1, format='%d/%m/%Y %H:%M:%S')
+df$V1 <- as.POSIXct(df$V1, format='%m/%d/%Y %H:%M:%S')
 
 ##subset df into 3PM-8PM only
-df <- setDT(df)[,time:=as.ITime(time)][time>=as.ITime('15:00:00') & time<=as.ITime('20:00:00')]
+df <- subset(df, V1 >= as.POSIXct('2018-04-25 15:00:00') &
+               V1 <= as.POSIXct('2018-04-25 20:00:00'))
 
-df.1 <- df[df$V2 %in% c("314025"),]
+
+df.1 <- df[df$V2 %in% c("314025"),] ##analyze only one station
 
 cars1=df.1$V3 ##isolate vehicle counts from df
 cars2=df.1$V6
