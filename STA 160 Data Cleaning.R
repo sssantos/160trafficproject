@@ -16,19 +16,21 @@ cars2=df.1$V6
 cars3=df.1$V9
 carsdf=data.frame(cars1,cars2,cars3)
 df.1$sums=rowSums(carsdf) ##find sum for all 3 lanes by time
+sum(df.1$sums)
 
+strt<-as.POSIXct('2018-04-25 15:00:00')
+end<-as.POSIXct('2018-04-25 20:00:00')
 ##create cumulative frequency plot according to time
-ggplot(df.1, aes(x=V1, y=cumsum(sums))) + geom_line() +
+ggplot(df.1, aes(x=V1, y=cumsum(sums))) + geom_line() + geom_segment(aes(x=strt,y=0,xend=end,yend=sum(sums)), lty="dashed")+
   theme_bw() + xlab("Time") + ylab("Activity (Vehicle Counts per 30 seconds)") +
-  scale_x_datetime(breaks=date_breaks("30 min"), labels = date_format("%H:%M"))
+  scale_x_datetime(breaks=seq(strt,end,"30 min"), labels = strftime(seq(strt,end,"30 min"), "%H:%M"))
 
 
-occ1=df$V4 ##isolate occupancy percentages from df
-occ2=df$V7
-occ3=df$V10
+occ1=df.1$V4 ##isolate occupancy percentages from df
+occ2=df.1$V7
+occ3=df.1$V10
 occdf=data.frame(occ1,occ2,occ3)
-df$occ_sums=rowSums(occdf) ##find sum for all 3 lanes
-ggplot(df, aes(x= V1, y=cumsum(occ_sums))) + geom_line() +
-  theme_bw() + xlab("Time") + ylab("Activity (Lane Occupancy per 30 seconds)") +
-  scale_x_datetime(breaks=date_breaks("30 min"), labels = date_format("%H:%M"))
-sum(df$occ_sums)
+df.1$occ_sums=rowSums(occdf) ##find sum for all 3 lanes
+ggplot(df.1, aes(x=V1, y=cumsum(occ_sums))) + geom_line() + geom_segment(aes(x=strt,y=0,xend=end,yend=sum(occ_sums)), lty="dashed")+
+  theme_bw() + xlab("Time") + ylab("Activity (lane Occupancy Percentage per 30 seconds)") +
+  scale_x_datetime(breaks=seq(strt,end,"30 min"), labels = strftime(seq(strt,end,"30 min"), "%H:%M"))
