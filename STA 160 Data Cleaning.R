@@ -1,4 +1,16 @@
-df<- read.csv("/Users/evanschulze/Desktop/d03_text_station_raw_2018_04_25.txt", header=F)
+# TO MAKE FUTURE USAGE EASIER WHEN UPDATED FROM GITHUB, PLEASE YOUR DATA ADD FILE LOCATION HERE
+
+evan   <- ""
+yimeng <- ""
+colin  <- "/Users/sssantos/Documents/STA160/non_git/d03_text_station_raw_2018_04_25.txt"
+# Switch name here
+file <- colin
+
+# PLEASE NOTE ANY REQUIRED PACKAGES TO RUN, THIS CODE NEEDS TO BE ABLE TO BE RUN FROM A CLEARED WORKSPACE
+require(ggplot2)
+
+
+df<- read.csv(file, header=F)
 df$V2<-as.factor(df$V2) 
 df<-df[df$V2 %in% c("314025","318076","318067","318113","316803"),] ##only keep sensors where bottlenecks exist
 
@@ -34,3 +46,4 @@ df.1$occ_sums=rowSums(occdf) ##find sum for all 3 lanes
 ggplot(df.1, aes(x=V1, y=cumsum(occ_sums))) + geom_line() + geom_segment(aes(x=strt,y=0,xend=end,yend=sum(occ_sums)), lty="dashed")+
   theme_bw() + xlab("Time") + ylab("Activity (lane Occupancy Percentage per 30 seconds)") +
   scale_x_datetime(breaks=seq(strt,end,"30 min"), labels = strftime(seq(strt,end,"30 min"), "%H:%M"))
+
