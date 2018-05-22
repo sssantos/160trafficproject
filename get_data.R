@@ -108,7 +108,7 @@ getStationIDs <- function(freeway, direction, search.date.str,
   if (! file.exists(output.filename)) {
     tryCatch({
       # Get TSV file for the detector_health for chosen freeway and date
-      r.url <- paste(base.url, '/?', page, '&_time_id=', 
+      r.url <- paste(base.url, '/?', page, '&fwy=', freeway, '&dir=', direction, '&_time_id=', 
                      s.time.id, '&_time_id_f=', sdate, '&pagenum_all=1', sep='')
       
       # Get TSV data file from website and store as a string in memory
@@ -125,6 +125,7 @@ getStationIDs <- function(freeway, direction, search.date.str,
       cat("ERROR :",conditionMessage(e), "\n")
       return(data.frame(NULL))
     })
+    return(freeway_data$ID)
   } else {
     # Read from file
     freeway_data <- read.table(output.filename, sep='\t', header=T, fill=T, 
@@ -183,7 +184,7 @@ getStationValues <- function(station_id, quantity, search.date.str, s.time.id, c
   
   # Combine variables into a "output filename" (output.filename) string
   output.filename <- paste(data.folder, '/', node.name, '-', 
-                           content, '-', freeway, '-', direction, '-', fdate, 
+                           content, '-', station_id, '-', fdate, 
                            '.tsv', sep='')
   
   # If the data filehas alread been saved, load the file, or get from web
@@ -307,7 +308,7 @@ search.date <- as.character(search.date)
 search.date <- search.date[grep('^\\d{4}-\\d{2}-\\d{2}$', search.date)]
 
 
-### TESTING ###
+### TESTING SECTION 1###
 
 
 freeway <- freeways$freeway[1]
@@ -316,12 +317,26 @@ s.time.id <- as.character(as.integer(as.POSIXct(search.date,
                                                 origin="1970-01-01",
                                                 tz = "GMT")))
 
-args(getStationIDs)
+
 getStationIDs(freeway, direction, search.date, s.time.id, curl, base.url, data.folder)
 
-getStationValues(402814,'speed',search.date, s.time.id, curl, base.url, data.folder)
+getStationValues('402814','speed',search.date, s.time.id, curl, base.url, data.folder)
 
-### END TESTING ####
+### TESTING SECTION 2 ####
+df <- data.frame()
+
+freeway <- freeways$freeway[1]
+direction <- freeways$direction[1]
+s.time.id <- as.character(as.integer(as.POSIXct(search.date,
+                                                origin="1970-01-01",
+                                                tz = "GMT")))
+stations <- getStationIDs(freeway, direction, search.date, s.time.id, curl, base.url, data.folder)
+stations[1:3]
+sapply(stations[1:3], getStationValues, 
+       station_id = '402814','speed',search.date, s.time.id, curl, base.url, data.folder)
+args(getStationValues)
+##########################
+
 
 # Clean up. Cookies file will be written to disk. Memory will be freed.
 rm(curl)

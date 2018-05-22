@@ -1,0 +1,467 @@
+Fwy	District	County	City	CA PM	Abs PM	Length	ID	Name	Lanes	Type	Sensor Type	HOV	MS ID	IRM
+I80-E	4	San Francisco	San Francisco	6.33	2.79	2.755	402814		5	Mainline	magnetometers	No	DSB01	N5-E-34-080-00633
+I80-E	4	San Francisco	San Francisco	6.84	3.3	.5	402815		5	Mainline	magnetometers	No	DSB02	N5-E-34-080-00684
+I80-E	4	San Francisco	San Francisco	7.33	3.79	.395	402816		5	Mainline	magnetometers	No	DSB03	N5-E-34-080-00733
+I80-E	4	San Francisco	San Francisco	7.63	4.09	.325	402817		5	Mainline	magnetometers	No	DSB04	N5-E-34-080-00763
+I80-E	4	San Francisco	San Francisco	7.98	4.44	.235	420340	YBI Hillcrest Rd rm-e-diag	5	Mainline	loops	No	DTD40	L5-E-34-080-00798
+I80-E	4	San Francisco	San Francisco	8	4.46		420341	YBI Hillcrest Rd on	1	On Ramp	loops	No	DTD40	a1-E-34-080-00800
+I80-E	4	San Francisco	San Francisco	8.1	4.56	.13	404896	SFOBB East Span	5	Mainline	loops	No	DTD42	L5-E-34-080-00810
+I80-E	4	San Francisco	San Francisco	8.24	4.7	.11	404921	SFOBB East Span	5	Mainline	radars	No	DTD63	U5-E-34-080-00824
+I80-E	4	San Francisco	San Francisco	8.32	4.78	.095	404886	SFOBB East Span	5	Mainline	radars	No	DTD44	U5-E-34-080-00832
+I80-E	4	San Francisco	San Francisco	8.43	4.89	.155	404923	SFOBB East Span	5	Mainline	radars	No	DTD65	U5-E-34-080-00843
+I80-E	4	San Francisco	San Francisco	8.63	5.09	.15	404885	SFOBB East Span	5	Mainline	loops	No	DTD46	L5-E-34-080-00863
+I80-E	4	San Francisco	San Francisco	8.73	5.19	.1	404906	SFOBB East Span	5	Mainline	radars	No	DTD67	U5-E-34-080-00873
+I80-E	4	San Francisco	San Francisco	8.83	5.29	.16	404891	SFOBB East Span	5	Mainline	loops	No	DTD48	L5-E-34-080-00883
+I80-E	4	Alameda	San Francisco	.07	5.38	.07	404908	SFOBB East Span	5	Mainline	radars	No	DTD69	U5-E-33-080-00007
+I80-E	4	Alameda	San Francisco	.17	5.48	.175	404889	SFOBB East Span	5	Mainline	loops	No	DTD50	L5-E-33-080-00017
+I80-E	4	Alameda	Oakland	.36	5.67	.145	404910	SFOBB East Span	5	Mainline	radars	No	DTD71	U5-E-33-080-00036
+I80-E	4	Alameda	Oakland	.46	5.77	.1	404892	SFOBB East Span	5	Mainline	loops	No	DTD52	L5-E-33-080-00046
+I80-E	4	Alameda	Oakland	.56	5.87	.1	404912	SFOBB East Span	5	Mainline	radars	No	DTD73	U5-E-33-080-00056
+I80-E	4	Alameda	Oakland	.66	5.97	.14	404894	SFOBB East Span	5	Mainline	loops	No	DTD54	L5-E-33-080-00066
+I80-E	4	Alameda	Oakland	.84	6.15	.125	404914	SFOBB East Span	5	Mainline	radars	No	DTD75	U5-E-33-080-00084
+I80-E	4	Alameda	Oakland	.91	6.22	.11	404897	SFOBB East Span	5	Mainline	loops	No	DTD56	L5-E-33-080-00091
+I80-E	4	Alameda	Oakland	1.06	6.37	.12	404898	SFOBB East Span	5	Mainline	loops	No	DTD57	L5-E-33-080-00106
+I80-E	4	Alameda	Oakland	1.15	6.46	.08	404899	SFOBB East Span	5	Mainline	loops	No	DTD58	L5-E-33-080-00115
+I80-E	4	Alameda	Oakland	1.22	6.53	.14	401546	Base of the Bay Bridge	5	Mainline	loops	No	DT648	L5-E-33-080-00122
+I80-E	4	Alameda	Oakland	1.43	6.74	.55	404400	1400' E of Bay Bridge	6	Mainline	loops	No	DT349	L6-E-33-080-00143
+I80-E	4	Alameda	Oakland	2.32	7.63		401893	West Grand Ave & Maritime St	2	Fwy-Fwy	loops	No	DT100	C2-E-33-080-00232
+I80-E	4	Alameda	Oakland	2.32	7.63	.595	401892	WEST GRAND AVE/MARITIME ST	6	Mainline	loops	No	DT100	L6-E-33-080-00232
+I80-E	4	Alameda	Oakland	2.62	7.93	.425	401657	80 / 580 SPLIT	4	Mainline	loops	No	DT651	L4-E-33-080-00262
+I80-E	4	Alameda	Oakland	2.62	7.93		401435	80 / 580 split	3	Fwy-Fwy	loops	No	DT651	C3-E-33-080-00262
+I80-E	4	Alameda	Oakland	3.17	8.48	.34	401671	BERKELEY CURVE	3	Mainline	loops	No	DT310	L3-E-33-080-00317
+I80-E	4	Alameda	Oakland	3.3	8.61	.255	405450	EB 80 hovl split	3	Mainline	loops	No	DT000	L3-E-33-080-00330
+I80-E	4	Alameda	Oakland	3.3	8.61		405451	wb 580 conn	2	Fwy-Fwy	loops	No	DT000	C2-E-33-080-00330
+I80-E	4	Alameda	Emeryville	3.68	8.99	.295	403430	W of Powell St	4	Mainline	loops	No	DT077	L4-E-33-080-00368
+I80-E	4	Alameda	Emeryville	3.68	8.99		405590	NB 880 conn-e-fly	4	Fwy-Fwy	loops	No	DT077	C4-E-33-080-00368
+I80-E	4	Alameda	Emeryville	3.89	9.2	.353	401513	Powell St rm-e-diag	6	Mainline	loops	No	DT091	L6-E-33-080-00389
+I80-E	4	Alameda	Emeryville	3.89	9.2		407259	Powell st on	2	On Ramp	loops	No	DT091	a2-E-33-080-00389
+I80-E	4	Alameda	Emeryville	4.387	9.697	.354	403998	ashby ave off-e-diag	5	Mainline	loops	No	DT317	L5-E-33-080-00439
+I80-E	4	Alameda	Emeryville	4.42	9.73		407857	Ashby Ave off	1	Off Ramp	loops	No	DT317	z1-E-33-080-00442
+I80-E	4	Alameda	Berkeley	4.6	9.91		408783	Ashby Ave on	2	On Ramp	loops	No	DT318	a2-E-33-080-00460
+I80-E	4	Alameda	Berkeley	4.6	9.91	.261	405589	Ashby Ave rm-e-diag	5	Mainline	loops	No	DT318	L5-E-33-080-00460
+I80-E	4	Alameda	Berkeley	4.91	10.22	.325	400679	S AQUATIC PARK	5	Mainline	loops	No	DT319	L5-E-33-080-00491
+I80-E	4	Alameda	Berkeley	5.25	10.56	.395	401198	N aquatic park	5	Mainline	loops	No	DT320	L5-E-33-080-00525
+I80-E	4	Alameda	Berkeley	5.7	11.01	.285	400432	University Ave off-e-diag	5	Mainline	loops	No	DT321	L5-E-33-080-00570
+I80-E	4	Alameda	Berkeley	5.7	11.01		407257	University Ave off	1	Off Ramp	loops	No	DT321	z1-E-33-080-00570
+I80-E	4	Alameda	Berkeley	5.82	11.13	.25	400728	UNIVERSITY AVE  ON-E-DIAG	5	Mainline	loops	No	DT678	L5-E-33-080-00585
+I80-E	4	Alameda	Berkeley	5.85	11.16		407265	University Ave on	2	On Ramp	loops	No	DT678	a2-E-33-080-00585
+I80-E	4	Alameda	Berkeley	6.2	11.51	.39	400612	N OF UNIVERSITY AVE	5	Mainline	loops	No	DT322	L5-E-33-080-00620
+I80-E	4	Alameda	Berkeley	6.6	11.91		408633	Gilman St off	1	Off Ramp	loops	No	DT323	z1-E-33-080-00660
+I80-E	4	Alameda	Berkeley	6.6	11.91	.22	408632	Gilman St off-e-diag	5	Mainline	loops	No	DT0F6	L5-E-33-080-00660
+I80-E	4	Alameda	Berkeley	6.64	11.95		408466	Gilman St on	2	On Ramp	loops	No	DT642	a2-E-33-080-00664
+I80-E	4	Alameda	Berkeley	6.64	11.95	.19	401079	Gilman St rm-e-diag	5	Mainline	loops	No	DT642	L5-E-33-080-00664
+I80-E	4	Alameda	Berkeley	6.98	12.29	.171	415253	W of Buchanan St	5	Mainline	loops	No	DT1D3	L5-E-33-080-00698
+I80-E	4	Alameda	Berkeley	R6.983	12.293	.184	401901	Buchanan St off-e-diag	5	Mainline	loops	No	DT6A4	L5-E-33-080-R0698
+I80-E	4	Alameda	Albany	7.27	12.58		407244	Buchanan St off	1	Off Ramp	loops	No	DT640	z1-E-33-080-00727
+I80-E	4	Alameda	Albany	7.27	12.58		407258	Buchanan St off-e-diag	2	Fwy-Fwy	loops	No	DT6A4	C2-E-33-080-00727
+I80-E	4	Alameda	Albany	7.35	12.66	.923	401239	Buchanan St rm-e-diag	4	Mainline	loops	No	DT638	L4-E-33-080-00735
+I80-E	4	Alameda	Albany	7.35	12.66		408467	Buchanan St on	1	On Ramp	loops	No	DT638	a1-E-33-080-00735
+I80-E	4	Contra Costa	Richmond	.06	13.393	.197	402062	W of Central Ave	4	Mainline	loops	No	DT460	L4-E-28-080-00006
+I80-E	4	Contra Costa	Richmond	.23	13.563		409569	Central Ave off	1	Off Ramp	loops	No	DT461	z1-E-28-080-00023
+I80-E	4	Contra Costa	Richmond	.44	13.773	.408	400329	Central Ave rm-e-diag	4	Mainline	loops	No	DT110	L4-E-28-080-00044
+I80-E	4	Contra Costa	Richmond	.44	13.773		407260	Central Ave on	2	On Ramp	loops	No	DT110	a2-E-28-080-00044
+I80-E	4	Contra Costa	Richmond	.51	13.843	.235	401509	W of Panama Ave	4	Mainline	loops	No	DT111	L4-E-28-080-00051
+I80-E	4	Contra Costa	Richmond	.91	14.243	.305	401575	Carlson Blvd rm-w-diag	4	Mainline	loops	No	DT112	L4-E-28-080-00091
+I80-E	4	Contra Costa	Richmond	.91	14.243		407245	Carlson Blvd off	1	Off Ramp	loops	No	DT112	z1-E-28-080-00091
+I80-E	4	Contra Costa	Richmond	1.12	14.453	.165	401195	CARLSON AVE	4	Mainline	loops	No	DT113	L4-E-28-080-00112
+I80-E	4	Contra Costa	Richmond	1.12	14.453		407246	Carlson Ave on	2	On Ramp	loops	No	DT113	a2-E-28-080-00112
+I80-E	4	Contra Costa	Richmond	1.24	14.573	.21	400027	E of Carlson Blvd	4	Mainline	loops	No	DTA13	L4-E-28-080-00124
+I80-E	4	Contra Costa	Richmond	1.54	14.873		407271	Potrero Ave off	1	Off Ramp	loops	No	DT462	z1-E-28-080-00154
+I80-E	4	Contra Costa	Richmond	1.54	14.873	.38	401558	Potrero Ave rm-w-diag	4	Mainline	loops	No	DT462	L4-E-28-080-00154
+I80-E	4	Contra Costa	Richmond	2	15.333	.255	401045	Cutting Blvd rm-e-loop	4	Mainline	loops	No	DT165	L4-E-28-080-00200
+I80-E	4	Contra Costa	Richmond	2	15.333		407248	Cutting Blvd on loop	1	On Ramp	loops	No	DT165	a1-E-28-080-00200
+I80-E	4	Contra Costa	Richmond	2.05	15.383	.31	400182	E of Cutting Blvd	6	Mainline	loops	No	DT166	L6-E-28-080-00205
+I80-E	4	Contra Costa	Richmond	2.12	15.453		407862	Cutting Blvd on diag	2	On Ramp	loops	No	DT166	a2-E-28-080-00212
+I80-E	4	Contra Costa	Richmond	2.62	15.953		407270	San Pablo Ave off	1	Off Ramp	loops	No	DT463	z1-E-28-080-00262
+I80-E	4	Contra Costa	Richmond	2.62	15.953	.46	400445	oppo Barrett Ave rm-w-diag	4	Mainline	loops	No	DT463	L4-E-28-080-00262
+I80-E	4	Contra Costa	Richmond	2.97	16.303	.395	400443	San Pablo Ave rm-e-diag	4	Mainline	loops	No	DT114	L4-E-28-080-00297
+I80-E	4	Contra Costa	Richmond	2.97	16.303		407247	San Pablo Ave on	2	On Ramp	loops	No	DT114	a2-E-28-080-00297
+I80-E	4	Contra Costa	Richmond	3.41	16.743		407242	Solano Ave off	1	Off Ramp	loops	No	DTA11	z1-E-28-080-00341
+I80-E	4	Contra Costa	Richmond	3.41	16.743	.39	401221	Solano Ave rm-w-diag	4	Mainline	loops	No	DTA11	L4-E-28-080-00341
+I80-E	4	Contra Costa	Richmond	3.75	17.083	.325	405754	McBryde Ave OC	4	Mainline	loops	No	DT115	L4-E-28-080-00375
+I80-E	4	Contra Costa	Richmond	4.06	17.393	.225	401228	SAN PABLO DAM RD	4	Mainline	loops	No	DT464	L4-E-28-080-00406
+I80-E	4	Contra Costa	Richmond	4.14	17.473		408013	San Pablo Dam Rd off	1	Off Ramp	loops	No	DT464	z1-E-28-080-00414
+I80-E	4	Contra Costa	Richmond	4.2	17.533	.12	406652	oppo San Pablo Dam Rd	4	Mainline	loops	No	DT167	L4-E-28-080-00420
+I80-E	4	Contra Costa	Richmond	4.2	17.533		407249	San Pablo Dam Rd off	1	Off Ramp	loops	No	DT167	z1-E-28-080-00420
+I80-E	4	Contra Costa	Richmond	4.3	17.633	.173	400770	San Pablo Dam Rd rm-e-diag	4	Mainline	loops	No	DT168	L4-E-28-080-00430
+I80-E	4	Contra Costa	Richmond	4.3	17.633		407251	San Pablo Dam Rd on	1	On Ramp	loops	No	DT168	a1-E-28-080-00430
+I80-E	4	Contra Costa	San Pablo	4.547	17.88	.349	401895	800' E of San Pablo Dam Rd	4	Mainline	loops	No	DT098	L4-E-28-080-00455
+I80-E	4	Contra Costa		5	18.333	.311	417277	oppo El Portal Dr	4	Mainline	loops	No	DT868	L4-E-28-080-00500
+I80-E	4	Contra Costa		5.17	18.503	.25	416790	oppo El Portal Dr rm-w-diag	4	Mainline	loops	No	DT466	L4-E-28-080-00517
+I80-E	4	Contra Costa		5.17	18.503		416970	El Portal Dr off	1	Off Ramp	loops	No	DT466	z1-E-28-080-00517
+I80-E	4	Contra Costa	Richmond	5.5	18.833	.26	401243	El Portal Dr rm-e-diag	4	Mainline	loops	No	DT861	L4-E-28-080-00550
+I80-E	4	Contra Costa	Richmond	5.5	18.833		407274	El Portal Dr on	2	On Ramp	loops	No	DT861	a2-E-28-080-00550
+I80-E	4	Contra Costa	Richmond	5.69	19.023	.215	401551	Hilltop Dr off-e-diag	5	Mainline	loops	No	DT467	L5-E-28-080-00569
+I80-E	4	Contra Costa	Richmond	5.92	19.253		411102	Hilltop Dr. rm-e-loop	1	On Ramp	loops	No	DT8A6	a1-E-28-080-00592
+I80-E	4	Contra Costa	Richmond	5.92	19.253		407275	Hilltop Dr off	1	Off Ramp	loops	No	DT8A6	z1-E-28-080-00592
+I80-E	4	Contra Costa	Richmond	5.93	19.263	.255	401209	Hilltop Dr. rm-e-loop	4	Mainline	loops	No	DT8A6	L4-E-28-080-00593
+I80-E	4	Contra Costa	Richmond	6.2	19.533	.17	401260	Hilltop Dr rm-e-diag	4	Mainline	loops	No	DT870	L4-E-28-080-00620
+I80-E	4	Contra Costa	Richmond	6.2	19.533		404392	Hilltop Dr on diag	2	On Ramp	loops	No	DT870	a2-E-28-080-00620
+I80-E	4	Contra Costa	Richmond	6.27	19.603	.258	400082	1000' W of Richmond Pkwy	4	Mainline	loops	No	DT169	L4-E-28-080-00627
+I80-E	4	Contra Costa	Richmond	6.56	19.893		407252	Richmond Pkwy HOV off	1	Off Ramp	loops	No	DT170	z1-E-28-080-00656
+I80-E	4	Contra Costa	Richmond	6.57	19.903		407253	Richmond Pkwy off	1	Off Ramp	loops	No	DT170	z1-E-28-080-00657
+I80-E	4	Contra Costa	Richmond	6.57	19.903		407254	Richmond Pkwy on loop	2	On Ramp	loops	No	DT170	a2-E-28-080-00657
+I80-E	4	Contra Costa	Richmond	6.716	20.049	.328	400976	Richmond Pkwy rm-e-loop	4	Mainline	loops	No	DT170	L4-E-28-080-00672
+I80-E	4	Contra Costa	Pinole	6.89	20.223		407255	Richmond Pkwy on diag	1	On Ramp	loops	No	DT172	a1-E-28-080-00689
+I80-E	4	Contra Costa	Pinole	6.926	20.259	.256	400838	Richmond Pkwy rm-e-diag	5	Mainline	loops	No	DT172	L5-E-28-080-00693
+I80-E	4	Contra Costa	Pinole	7.227	20.56	.342	400430	1000' W of Appian Way	5	Mainline	loops	No	DT468	L5-E-28-080-00723
+I80-E	4	Contra Costa	Pinole	7.61	20.943		407262	Appian Way on loop	1	On Ramp	loops	No	DT872	a1-E-28-080-00761
+I80-E	4	Contra Costa	Pinole	7.61	20.943		407263	Appian Way off	1	Off Ramp	loops	No	DT872	z1-E-28-080-00761
+I80-E	4	Contra Costa	Pinole	7.61	20.943	.236	400865	APPIAN WAY	4	Mainline	loops	No	DT872	L4-E-28-080-00761
+I80-E	4	Contra Costa	Pinole	7.62	20.953		420689	Appian Way on	2	On Ramp	loops	No	DT873	a2-E-28-080-00762
+I80-E	4	Contra Costa	Pinole	7.7	21.033	.43	400902	Appian Way rm-e-diag	4	Mainline	loops	No	DT873	L4-E-28-080-00770
+I80-E	4	Contra Costa	Pinole	8.47	21.803	.445	401269	Pinole Valley Rd rm-w-diag	4	Mainline	loops	No	DT874	L4-E-28-080-00847
+I80-E	4	Contra Costa	Pinole	8.47	21.803		407261	Pinole Valley Rd off	1	Off Ramp	loops	No	DT874	z1-E-28-080-00847
+I80-E	4	Contra Costa	Pinole	8.59	21.923		407268	Pinole Valley Rd on	1	On Ramp	loops	No	DT469	a1-E-28-080-00859
+I80-E	4	Contra Costa	Pinole	8.59	21.923	.305	400660	Pinole Valley Rd rm-e-diag	4	Mainline	loops	No	DT469	L4-E-28-080-00859
+I80-E	4	Contra Costa	Pinole	9.08	22.413	.41	401070	1200' E of Pinole Valley Rd	4	Mainline	loops	No	DT470	L4-E-28-080-00908
+I80-E	4	Contra Costa	Hercules	9.41	22.743	.384	401058	3000' W of SR4	4	Mainline	loops	No	DT071	L4-E-28-080-00941
+I80-E	4	Contra Costa	Hercules	9.847	23.18	.25	415255	SR4 on	5	Mainline	loops	No	DT1D6	L5-E-28-080-00985
+I80-E	4	Contra Costa	Hercules	9.91	23.243	.171	401090	Sycamore Ave OC	5	Mainline	loops	No	DT783	L5-E-28-080-00991
+I80-E	4	Contra Costa	Hercules	10.19	23.523	.143	415254	oppo Hercules off	4	Mainline	loops	No	DT1D5	L4-E-28-080-01019
+I80-E	4	Contra Costa	Hercules	10.195	23.528	.308	400478	SR4 rm-e-fly/diag	4	Mainline	loops	No	DT020	L4-E-28-080-01020
+I80-E	4	Contra Costa	Hercules	10.2	23.533		403273	SR4 on fly/diag	2	On Ramp	loops	No	DT020	a2-E-28-080-01020
+I80-E	4	Contra Costa		10.79	24.123		404402	Willow Ave on	1	On Ramp	loops	No	DT022	a1-E-28-080-01079
+I80-E	4	Contra Costa		10.79	24.123		404403	Willow Ave off	1	Off Ramp	loops	No	DT022	z1-E-28-080-01079
+I80-E	4	Contra Costa		10.806	24.139	.539	403946	Willow Ave rm-e-diag	4	Mainline	loops	No	DT022	L4-E-28-080-01081
+I80-E	4	Contra Costa		11.273	24.606	.431	403276	California St	4	Mainline	loops	No	DT023	L4-E-28-080-01127
+I80-E	4	Contra Costa		11.669	25.002	.32	403458	1800' E of Calfiornia St OC	4	Mainline	loops	No	DTB41	L4-E-28-080-01167
+I80-E	4	Contra Costa		11.914	25.247	.38	400124	600' W of Refinery Rd UC	4	Mainline	loops	No	DT024	L4-E-28-080-01191
+I80-E	4	Contra Costa		12.43	25.763	.377	403460	W of Cummings Skywy	4	Mainline	loops	No	DTB42	L4-E-28-080-01243
+I80-E	4	Contra Costa		12.66	25.993		403305	Cummings Skywy off	1	Off Ramp	loops	No	DT972	z1-E-28-080-01266
+I80-E	4	Contra Costa		12.668	26.001	.202	408634	oppo Cummings Skywy rm-w-diag	4	Mainline	loops	No	DT972	L4-E-28-080-01267
+I80-E	4	Contra Costa		12.76	26.093		403278	Cummings Skywy on	2	On Ramp	loops	No	DT026	a2-E-28-080-01276
+I80-E	4	Contra Costa		12.833	26.166	.417	401793	Cummings Skywy rm-e-diag	4	Mainline	loops	No	DT026	L4-E-28-080-01283
+I80-E	4	Contra Costa		13.48	26.813		407243	Pomona St off	1	Off Ramp	loops	No	DT971	z1-E-28-080-01348
+I80-E	4	Contra Costa		13.502	26.835	.999	404401	oppo Pomona St on-w-diag	3	Mainline	radars	No	DT971	U3-E-28-080-01350
+I80-E	4	Solano	Vallejo	.99	28.462		407864	Sonoma Blvd off	1	Off Ramp	loops	No	DT3A2	z1-E-23-080-00099
+I80-E	4	Solano	Vallejo	.99	28.462	1.012	407865	Sonoma Blvd off-e-fly	3	Mainline	loops	No	DT3A2	L3-E-23-080-00099
+I80-E	4	Solano	Vallejo	1.09	28.562	.365	400829	oppo Sonoma Blvd on-w-diag	3	Mainline	loops	No	DT055	L3-E-23-080-00109
+I80-E	4	Solano	Vallejo	1.71	29.182		419192	Magazine St off	1	Off Ramp	loops	No	DT056	z1-E-23-080-00171
+I80-E	4	Solano	Vallejo	1.72	29.192	.5	400622	Magazine St  on-e-hook	3	Mainline	loops	No	DT056	L3-E-23-080-00172
+I80-E	4	Solano	Vallejo	1.73	29.202		419193	Magazine St on	1	On Ramp	loops	No	DT056	a1-E-23-080-00173
+I80-E	4	Solano	Vallejo	2.09	29.562	.35	402174	4A5344 LOC 2	3	Mainline	magnetometers	No	DS902	N3-E-23-080-00209
+I80-E	4	Solano		2.29	29.762		408179	WB 780 off loop	1	Off Ramp	loops	No	DT058	z1-E-23-080-00229
+I80-E	4	Solano		2.31	29.782		408182	I-780 on coll	1	On Ramp	loops	No	DT058	a1-E-23-080-00231
+I80-E	4	Solano		2.32	29.792		408181	WB 780 on diag	1	On Ramp	loops	No	DT058	a1-E-23-080-00232
+I80-E	4	Solano		2.32	29.792		408180	Benicia Rd off slip	1	Off Ramp	loops	No	DT058	z1-E-23-080-00232
+I80-E	4	Solano		2.42	29.892	.43	408178	WB 780	3	Mainline	loops	No	DT058	L3-E-23-080-00242
+I80-E	4	Solano		2.46	29.932		408183	I-780 on / Benicia Rd off	2	On Ramp	loops	No	DT058	a2-E-23-080-00246
+I80-E	4	Solano	Vallejo	2.92	30.392		419479	Georgia St off	1	Off Ramp	loops	No	DT059	z1-E-23-080-00292
+I80-E	4	Solano	Vallejo	2.95	30.422	.36	404388	oppo Georgia St on-w-diag	3	Mainline	loops	No	DT059	L3-E-23-080-00295
+I80-E	4	Solano	Vallejo	2.96	30.432		419480	Georgia St on	1	On Ramp	loops	No	DT059	a1-E-23-080-00296
+I80-E	4	Solano	Vallejo	3.14	30.612	.515	409100	Solano Ave / Springs Rd OC	3	Mainline	loops	No	DT804	L3-E-23-080-00314
+I80-E	4	Solano	Vallejo	3.14	30.612		409102	Solano Ave / Springs Rd OC off	1	Off Ramp	loops	No	DT804	z1-E-23-080-00314
+I80-E	4	Solano	Vallejo	3.16	30.632		409101	Solano Ave / Springs Rd OC on	1	On Ramp	loops	No	DT804	a1-E-23-080-00316
+I80-E	4	Solano	Vallejo	3.98	31.452	.71	404390	Between Redwood Rd/Tennesse St	3	Mainline	loops	No	DT061	L3-E-23-080-00398
+I80-E	4	Solano	Vallejo	4.35	31.822		409226	Redwood St off	1	Off Ramp	loops	No	DT062	z1-E-23-080-00435
+I80-E	4	Solano	Vallejo	4.53	32.002		407868	Redwood Rd off	1	Off Ramp	loops	No	DT8B2	z1-E-23-080-00453
+I80-E	4	Solano	Vallejo	4.56	32.032	.74	407869	Redwood Rd on-e-hook	3	Mainline	loops	No	DT8B2	L3-E-23-080-00456
+I80-E	4	Solano	Vallejo	4.57	32.042		407870	Redwood Rd on	1	On Ramp	loops	No	DT8B2	a1-E-23-080-00457
+I80-E	4	Solano	Vallejo	5.46	32.932		404002	SR 37 conn-e-fly/diag	3	Fwy-Fwy	loops	No	DT735	C3-E-23-080-00546
+I80-E	4	Solano	Vallejo	5.46	32.932	.585	402079	SR 37 conn-e-fly/diag	3	Mainline	loops	No	DT735	L3-E-23-080-00546
+I80-E	4	Solano	Vallejo	5.73	33.202	.31	407866	Columbus Pkwy rm-e-diag	5	Mainline	loops	No	DT8B6	L5-E-23-080-00573
+I80-E	4	Solano	Vallejo	5.74	33.212		407867	Columbus Pkwy on	1	On Ramp	loops	No	DT8B6	a1-E-23-080-00574
+I80-E	4	Solano	Vallejo	6.07	33.542		410773	EB 37 on	2	On Ramp	loops	No	DT8B9	a2-E-23-080-00607
+I80-E	4	Solano	Vallejo	6.08	33.552	.385	410772	EB 37 rm-e-fly	5	Mainline	loops	No	DT8B9	L5-E-23-080-00608
+I80-E	4	Solano	Vallejo	6.5	33.972	.98	402239	4A5344 loc 8	5	Mainline	magnetometers	No	DS908	N5-E-23-080-00650
+I80-E	4	Napa		7.01	34.482	.427	411793	oppo 800' E of WB 37 Connector	4	Mainline	loops	No	DT8C0	L4-E-21-080-00701
+I80-E	4	Napa		7.5	34.972	.773	402235	4A5344 loc 10	4	Mainline	magnetometers	No	DS401	N4-E-21-080-00750
+I80-E	4	Solano		8.01	35.482		408190	American Canyon Rd off	1	Off Ramp	loops	No	DT143	z1-E-23-080-00801
+I80-E	4	Solano		8.04	35.512	.835	410778	oppo American Canyon Rd	4	Mainline	loops	No	DT8C1	L4-E-23-080-00804
+I80-E	4	Solano		8.17	35.642	.25	402002	American Canyon Rd	4	Mainline	loops	No	DT143	L4-E-23-080-00817
+I80-E	4	Solano		8.25	35.722		408177	American Canyon Rd on	1	On Ramp	loops	No	DT143	a1-E-23-080-00825
+I80-E	4	Solano		8.54	36.012	.42	410774	oppo 1/2 m. E of American Can	4	Mainline	loops	No	DT8C3	L4-E-23-080-00854
+I80-E	4	Solano		9.01	36.482	.54	410775	oppo 5000' E of American Cany	4	Mainline	loops	No	DT8C4	L4-E-23-080-00901
+I80-E	4	Solano		9.62	37.092	.5	410776	oppo Lynch Rd UC	4	Mainline	loops	No	DT8C5	L4-E-23-080-00962
+I80-E	4	Solano		10.01	37.482	.375	413094	1200' E of Lynch Rd	4	Mainline	loops	No	DT8C6	L4-E-23-080-01001
+I80-E	4	Solano	Fairfield	10.37	37.842	.485	410741	oppo 1 m. W of Red Top Rd	4	Mainline	loops	No	DT8C7	L4-E-23-080-01037
+I80-E	4	Solano	Fairfield	10.98	38.452	.56	413371	1/2 mi. W of Red Top Rd	4	Mainline	loops	No	DT8C8	L4-E-23-080-01098
+I80-E	4	Solano	Fairfield	11.49	38.962	.44	401318	Red Top rd  rm-e-diag	4	Mainline	loops	No	DT807	L4-E-23-080-01149
+I80-E	4	Solano	Fairfield	11.49	38.962		417720	Red Top rd on	1	On Ramp	loops	No	DT807	a1-E-23-080-01149
+I80-E	4	Solano	Fairfield	11.86	39.332	.751	410756	EB 12 OC	5	Mainline	loops	No	DTB68	L5-E-23-080-01186
+I80-E	4	Solano	Fairfield	12.96	40.443		417722	NB 680 on	3	On Ramp	loops	No	DT777	a3-E-23-080-01296
+I80-E	4	Solano	Fairfield	12.98	40.463	.86	401781	NB 680 rm-e-diag	5	Mainline	loops	No	DT777	L5-E-23-080-01298
+I80-E	4	Solano	Fairfield	13.44	40.923		408004	Suisun Valley Rd off	2	Off Ramp	loops	No	DT779	z2-E-23-080-01344
+I80-E	4	Solano	Fairfield	13.57	41.053	.505	401784	Suisun Valley Rd on-e-diag	6	Mainline	loops	No	DT779	L6-E-23-080-01357
+I80-E	4	Solano	Fairfield	13.59	41.073		408005	Suisun Valley Rd on	3	On Ramp	loops	No	DT779	a3-E-23-080-01359
+I80-E	4	Solano		13.99	41.473	.47	401787	2500' E of Suisun Valley Rd oc	5	Mainline	loops	No	DT780	L5-E-23-080-01399
+I80-E	4	Solano		14.51	41.993	.395	401789	E OF CORDELIA TRUCK INSPECTION	5	Mainline	loops	No	DT782	L5-E-23-080-01451
+I80-E	4	Solano		14.78	42.263	.23	413372	oppo 1/4 m E of WB truck scale	6	Mainline	loops	No	DT8D1	L6-E-23-080-01478
+I80-E	4	Solano		14.97	42.453	.74	401791	5000' E OF CORDELIA TRUCK INSP	5	Mainline	loops	No	DT784	L5-E-23-080-01497
+I80-E	4	Solano		16.11	43.593		410747	Abernathy Rd off	2	Off Ramp	loops	No	DTC59	z2-E-23-080-01611
+I80-E	4	Solano		16.26	43.743		410746	Abernathy Rd on	2	On Ramp	loops	No	DTC59	a2-E-23-080-01626
+I80-E	4	Solano		16.26	43.743	.965	410745	Abernathy Rd rm-e-diag	5	Mainline	loops	No	DTC59	L5-E-23-080-01626
+I80-E	4	Solano	Fairfield	16.9	44.383	.56	404391	Auto Mall Pkwy rm-e-diag	5	Mainline	loops	No	DTC60	L5-E-23-080-01690
+I80-E	4	Solano	Fairfield	16.9	44.383		417721	Auto Mall Pkwy on	1	On Ramp	loops	No	DTC60	a1-E-23-080-01690
+I80-E	4	Solano	Fairfield	17.38	44.863	.295	401151	W Texas St/Beck Rd rm-e-diag	5	Mainline	loops	No	DT075	L5-E-23-080-01738
+I80-E	4	Solano	Fairfield	17.49	44.973	.325	402004	Oliver Rd	4	Mainline	loops	No	DT146	L4-E-23-080-01749
+I80-E	4	Solano	Fairfield	17.51	44.993		417723	W Texas St/Beck Rd on	2	On Ramp	loops	No	DT075	a2-E-23-080-01751
+I80-E	4	Solano	Fairfield	17.89	45.373		408006	Travis Blvd off loop	1	Off Ramp	loops	No	DT079	z1-E-23-080-01789
+I80-E	4	Solano	Fairfield	17.9	45.383		408007	Travis Blvd off diag	1	Off Ramp	loops	No	DT079	z1-E-23-080-01790
+I80-E	4	Solano	Fairfield	18.01	45.493		408008	Travis Blvd off loop down	1	Off Ramp	loops	No	DT079	z1-E-23-080-01801
+I80-E	4	Solano	Fairfield	18.03	45.513		408009	Travis Blvd on	2	On Ramp	loops	No	DT079	a2-E-23-080-01803
+I80-E	4	Solano	Fairfield	18.03	45.513	.505	401879	Travis Blvd rm-e-diag	5	Mainline	loops	No	DT079	L5-E-23-080-01803
+I80-E	4	Solano	Fairfield	18.5	45.983	.61	412683	4A5344 loc 21	4	Mainline	magnetometers	No	DS917	N4-E-23-080-01850
+I80-E	4	Solano	Fairfield	19.06	46.543		410744	Airbase Pkwy off	2	Off Ramp	loops	No	DTC62	z2-E-23-080-01906
+I80-E	4	Solano	Fairfield	19.25	46.733	.605	410742	Airbase Pkwy rm-e-diag	5	Mainline	loops	No	DTC62	L5-E-23-080-01925
+I80-E	4	Solano	Fairfield	19.25	46.733		410743	Airbase Pkwy on	2	On Ramp	loops	No	DTC62	a2-E-23-080-01925
+I80-E	4	Solano	Fairfield	19.71	47.193	.46	411792	4A5344 loc 25	4	Mainline	magnetometers	No	DS921	N4-E-23-080-01971
+I80-E	4	Solano	Fairfield	20.17	47.653	.39	411111	4A5344 loc 27	4	Mainline	magnetometers	No	DS923	N4-E-23-080-02017
+I80-E	4	Solano	Fairfield	20.49	47.973	.42	413373	2500' W of Manuel Campos Pkwy	4	Mainline	loops	No	DT8D2	L4-E-23-080-02049
+I80-E	4	Solano	Fairfield	21.01	48.493	.445	403455	Manuel Campos pkwy/N Texas st	4	Mainline	loops	No	DTB18	L4-E-23-080-02101
+I80-E	4	Solano	Fairfield	21.01	48.493		403454	Manuel Campos pkwy/N Texas st	2	On Ramp	loops	No	DTB18	a2-E-23-080-02101
+I80-E	4	Solano	Fairfield	21.1	48.583		403453	Manuel Campos pkwy/N Texas st	2	Off Ramp	loops	No	DTB18	z2-E-23-080-02084
+I80-E	4	Solano	Fairfield	21.38	48.863	.315	413374	2500' E of Manuel Campos Pkwy	4	Mainline	loops	No	DT8D4	L4-E-23-080-02138
+I80-E	4	Solano		21.64	49.123	.355	413375	1 m E of Manuel Campos Pkwy	4	Mainline	loops	No	DT8D5	L4-E-23-080-02164
+I80-E	4	Solano		22.09	49.573	.43	412684	1 m W of Lagoon Valley Rd	4	Mainline	loops	No	DT8D6	L4-E-23-080-02209
+I80-E	4	Solano		22.5	49.983	.555	411113	4A5344 loc 33	4	Mainline	magnetometers	No	DS928	N4-E-23-080-02250
+I80-E	4	Solano		23.02	50.503		410766	Lagoon Valley Rd off	1	Off Ramp	loops	No	DT8D9	z1-E-23-080-02302
+I80-E	4	Solano		23.2	50.683	.524	410764	Lagoon Valley Rd rm-e-diag	4	Mainline	loops	No	DT8D9	L4-E-23-080-02320
+I80-E	4	Solano		23.22	50.703		410765	Lagoon Valley Rd on	1	On Ramp	loops	No	DT8D9	a1-E-23-080-02322
+I80-E	4	Solano		23.55	51.031	.329	413380	1/2 m E of Lagoon Valley Rd OC	4	Mainline	loops	No	DT8E0	L4-E-23-080-02355
+I80-E	4	Solano		23.76	51.241		413378	Rivera Rd off	1	Off Ramp	loops	No	DT8E2	z1-E-23-080-02376
+I80-E	4	Solano		23.86	51.341	.205	413377	Rivera Rd rm-e-loop	4	Mainline	loops	No	DT8E2	L4-E-23-080-02386
+I80-E	4	Solano		23.87	51.351		413379	Rivera Rd on	1	On Ramp	loops	No	DT8E2	a1-E-23-080-02387
+I80-E	4	Solano		23.96	51.441	.345	401878	E of Pleasant Valley OC	4	Mainline	loops	No	DT433	L4-E-23-080-02396
+I80-E	4	Solano		24.55	52.031	.7	413376	oppo 3/4 mi. W of Alamo Dr OC	4	Mainline	loops	No	DT8E3	L4-E-23-080-02455
+I80-E	4	Solano	Vacaville	25.12	52.601		410002	Alamo Dr off coll	1	Off Ramp	loops	No	DT8E5	z1-E-23-080-02512
+I80-E	4	Solano	Vacaville	25.22	52.701		410001	Alamo Dr off diag	1	Off Ramp	loops	No	DT8E5	z1-E-23-080-02522
+I80-E	4	Solano	Vacaville	25.23	52.711		410000	Alamo Dr off loop	1	Off Ramp	loops	No	DT8E5	z1-E-23-080-02523
+I80-E	4	Solano	Vacaville	25.36	52.841	.41	411118	4A5344 loc 38	4	Mainline	magnetometers	No	DS933	N4-E-23-080-02536
+I80-E	4	Solano	Vacaville	25.37	52.851	.245	409998	Alamo Dr rm-e-diag	4	Mainline	loops	No	DT8E5	L4-E-23-080-02537
+I80-E	4	Solano	Vacaville	25.37	52.851		409999	Alamo Dr on	1	On Ramp	loops	No	DT8E5	a1-E-23-080-02537
+I80-E	4	Solano	Vacaville	25.85	53.331		410763	Bella Vista Rd off	1	Off Ramp	loops	No	DT8E8	z1-E-23-080-02577
+I80-E	4	Solano	Vacaville	25.85	53.331		410762	1	1	On Ramp	loops	No	DT8E8	a1-E-23-080-02585
+I80-E	4	Solano	Vacaville	25.85	53.331	.49	410761	Bella Vista Rd rm-e-hook	4	Mainline	loops	No	DT8E8	L4-E-23-080-02585
+I80-E	4	Solano	Vacaville	26.25	53.731		413093	Cliffside Dr off	1	Off Ramp	loops	No	DT8F0	z1-E-23-080-02625
+I80-E	4	Solano	Vacaville	26.34	53.821		413092	Cliffside Dr on	2	On Ramp	loops	No	DT8F0	a2-E-23-080-02634
+I80-E	4	Solano	Vacaville	26.35	53.831	.455	413091	Cliffside Dr rm-e-hook	4	Mainline	loops	No	DT8F0	L4-E-23-080-02635
+I80-E	4	Solano	Vacaville	26.76	54.241	.485	408464	1200' W of Allison Dr	4	Mainline	loops	No	DT8F1	L4-E-23-080-02676
+I80-E	4	Solano	Vacaville	26.91	54.391		408465	Allison Dr off	1	Off Ramp	loops	No	DT8F1	z1-E-23-080-02691
+I80-E	4	Solano	Vacaville	27.11	54.591		410769	Allison Dr off	3	Off Ramp	loops	No	DT8F2	z3-E-23-080-02711
+I80-E	4	Solano	Vacaville	27.11	54.591		410768	Allison Dr rm-on	2	On Ramp	loops	No	DT8F2	a2-E-23-080-02711
+I80-E	4	Solano	Vacaville	27.32	54.801	.29	410752	Allison Dr rm-e-diag	4	Mainline	loops	No	DT8F4	L4-E-23-080-02732
+I80-E	4	Solano	Vacaville	27.32	54.801		410753	Allison Dr on	2	On Ramp	loops	No	DT8F4	a2-E-23-080-02732
+I80-E	4	Solano	Vacaville	27.34	54.821	.335	410767	Allison Dr rm-e-loop	4	Mainline	loops	No	DT8F2	L4-E-23-080-02734
+I80-E	4	Solano	Vacaville	27.99	55.471		408781	Nut Tree Rd off	2	Off Ramp	loops	No	DT8F6	z2-E-23-080-02799
+I80-E	4	Solano	Vacaville	27.99	55.471	.455	408784	500' W of Nut Tree Rd OC	4	Mainline	loops	No	DT8F6	L4-E-23-080-02799
+I80-E	4	Solano	Vacaville	28.13	55.611		408782	Nut Tree Rd off	3	Off Ramp	loops	No	DT8F6	z3-E-23-080-02813
+I80-E	4	Solano	Vacaville	28.25	55.731	.21	410750	E Monte Vista rm-e-fly	4	Mainline	loops	No	DT8F8	L4-E-23-080-02825
+I80-E	4	Solano	Vacaville	28.25	55.731		410751	E Monte Vista on	1	On Ramp	loops	No	DT8F8	a1-E-23-080-02825
+I80-E	4	Solano	Vacaville	28.41	55.891		410749	Orange Dr on	2	On Ramp	loops	No	DT8F9	a2-E-23-080-02841
+I80-E	4	Solano	Vacaville	28.41	55.891	.225	410755	Orange Dr rm-e-hook	4	Mainline	loops	No	DT8F9	L4-E-23-080-02841
+I80-E	4	Solano	Vacaville	28.7	56.181	1.403	411116	4A5344 loc 44	4	Mainline	magnetometers	No	DS938	N4-E-23-080-02870
+I80-E	4	Solano	Vacaville	31.23	58.697	1.643	402241	4A5344 loc 49	3	Mainline	magnetometers	No	DS941	N3-E-23-080-03123
+I80-E	4	Solano	Vacaville	32	59.467	.695	402243	4A5344 loc 50	3	Mainline	magnetometers	No	DS942	N3-E-23-080-03200
+I80-E	4	Solano	Vacaville	32.62	60.087	.5	402245	4A5344 loc 51	3	Mainline	magnetometers	No	DS943	N3-E-23-080-03262
+I80-E	4	Solano		33	60.467	.42	402246	4A5344 LOC 52	3	Mainline	magnetometers	No	DS944	N3-E-23-080-03300
+I80-E	4	Solano		33.46	60.927	.5	403425	1200' E of Midway Rd	3	Mainline	magnetometers	No	DS934	N3-E-23-080-03346
+I80-E	4	Solano		34	61.467	.77	402248	4A5344 loc 54	3	Mainline	magnetometers	No	DS945	N3-E-23-080-03400
+I80-E	4	Solano		35	62.467	.7	402250	4A5344 loc 55	3	Mainline	magnetometers	No	DS946	N3-E-23-080-03500
+I80-E	4	Solano		35.4	62.867	.75	402251	4A5344 LOC 56	3	Mainline	magnetometers	No	DS947	N3-E-23-080-03540
+I80-E	4	Solano		36.5	63.967	.815	402255	4A5344 loc 59	3	Mainline	magnetometers	No	DS950	N3-E-23-080-03650
+I80-E	4	Solano		37.03	64.497	.5	402257	4A5344 loc 61	3	Mainline	magnetometers	No	DS951	N3-E-23-080-03703
+I80-E	4	Solano		37.5	64.967	.585	402259	4A5344 loc 63	3	Mainline	magnetometers	No	DS952	N3-E-23-080-03750
+I80-E	4	Solano		38.2	65.667	.75	402261	4A5344 loc 66	3	Mainline	magnetometers	No	DS953	N3-E-23-080-03820
+I80-E	4	Solano		39	66.467	.7	402263	4A5344 loc 67	3	Mainline	magnetometers	No	DS954	N3-E-23-080-03900
+I80-E	4	Solano		39.6	67.067	.5	402264	4A5344 LOC 68	3	Mainline	magnetometers	No	DS955	N3-E-23-080-03960
+I80-E	4	Solano		40	67.467	.45	402266	4A5344 LOC 70	3	Mainline	magnetometers	No	DS957	N3-E-23-080-04000
+I80-E	4	Solano		40.5	67.967	.7	402268	4A5344 loc 72	3	Mainline	magnetometers	No	DS958	N3-E-23-080-04050
+I80-E	4	Solano		41.4	68.867	.7	402270	4A5344 loc 73	4	Mainline	magnetometers	No	DS959	N4-E-23-080-04140
+I80-E	4	Solano		41.9	69.367	.305	402272	4A5344 loc 76	5	Mainline	magnetometers	No	DS960	N5-E-23-080-04190
+I80-E	4	Solano		42.01	69.477	2.555	421492	N of university ave	5	Mainline	loops	No	DTEST	L5-E-23-080-04201
+I80-E	3	Yolo		.274	72.461		318114	NB Richards Blvd	1	Off Ramp		No		
+I80-E	3	Yolo		.323	72.51	.774	318113	Richards Blvd	3	Mainline	loops	No		
+I80-E	3	Yolo		.405	72.592		318115	NB Richards Blvd	1	On Ramp		No		
+I80-E	3	Yolo		1.25	73.437	.838	316773	E. of Pole Line Rd.	3	Mainline	magnetometers	No		
+I80-E	3	Yolo		2	74.187	.675	318017	West of Mace Blvd	3	Mainline	radars	No		
+I80-E	3	Yolo	Davis	2.447	74.634		314015	SB Mace Blvd.	2	Off Ramp	loops	No	R197	
+I80-E	3	Yolo	Davis	2.6	74.787		314014	SB Mace Blvd.	2	On Ramp	others	No	R197	
+I80-E	3	Yolo	Davis	2.6	74.787	.4	314013	SB Mace Blvd.	3	Mainline	loops	No	R197	
+I80-E	3	Yolo	Davis	2.8	74.987	.45	314025	NB Mace Blvd.	3	Mainline	loops	No	R198	
+I80-E	3	Yolo	Davis	2.8	74.987		314026	NB Mace Blvd.	2	On Ramp	others	No	R198	
+I80-E	3	Yolo		3.5	75.687	.6	316783	E. of Mace Blvd	3	Mainline	magnetometers	No		
+I80-E	3	Yolo		4	76.187	.501	318067	W of CR 105d	3	Mainline		No		
+I80-E	3	Yolo		4.501	76.688	.852	318076	E of CR 105d	3	Mainline	loops	No		
+I80-E	3	Yolo		5.645	77.832		318055	W of Webster UC	1	On Ramp	others	No		
+I80-E	3	Yolo		5.704	77.891	1.223	318053	W of Webster UC	3	Mainline	loops	No		
+I80-E	3	Yolo		6.947	79.134	1.62	316803	E. of Webster UC	3	Mainline	magnetometers	No		
+I80-E	3	Yolo	West Sacramento	8.946	81.133	1.079	317028	JWO Enterprise BL	3	Mainline	magnetometers	No		
+I80-E	3	Yolo	West Sacramento	9.105	81.292	.285	314548	Enterprise Blvd	5	Mainline	loops	No		
+I80-E	3	Yolo	West Sacramento	9.105	81.292		314549	Enterprise Blvd	2	On Ramp	others	No		
+I80-E	3	Yolo	West Sacramento	9.517	81.704		318736	50EB to 80EB	2	Fwy-Fwy	loops	No		
+I80-E	3	Yolo	West Sacramento	9.517	81.704	.697	318135	E of Enterprise BL	4	Mainline	loops	No		
+I80-E	3	Yolo	West Sacramento	R10.5	82.687	.741	316817	W. of Reed Ave.	3	Mainline	magnetometers	No		
+I80-E	3	Yolo	West Sacramento	R11	83.187	1.063	317884	Reed Ave	3	Mainline	loops	No		
+I80-E	3	Sacramento		M.4	84.305	.751	315804	Bryte Bend Bridge	3	Mainline	loops	No		
+I80-E	3	Sacramento		M1.1	85.005		320441	SB W. El Camino Ave	2	Off Ramp		No		
+I80-E	3	Sacramento		M1.291	85.196	.522	320442	SB W. El Camino Ave	4	Mainline		No		
+I80-E	3	Sacramento		M1.352	85.257		320440	SB W. El Camino Ave	1	On Ramp		No		
+I80-E	3	Sacramento		M1.445	85.35	.19	320457	NB W. El Camino Ave	4	Mainline		No		
+I80-E	3	Sacramento		M1.557	85.462		320458	NB W. El Camino Ave	1	On Ramp		No		
+I80-E	3	Sacramento		M1.671	85.576	.678	320628	E of West El Camino	4	Mainline		No		
+I80-E	3	Sacramento		M1.671	85.576	2.2	320629	E of West El Camino	1	HOV		24H		
+I80-E	3	Sacramento	Sacramento	M2.8	86.705	.954	316140	San Juan Rd OC	2	Mainline	loops	No		
+I80-E	3	Sacramento	Sacramento	M2.918	86.823	.954	320612	San Juan OC	1	HOV		24H		
+I80-E	3	Sacramento	Sacramento	M3.043	86.948		316143	FF 5NB->80EB	2	Fwy-Fwy	loops	No		
+I80-E	3	Sacramento	Sacramento	M3.58	87.485	.431	320501	SB Truxel Rd.	1	HOV		24H	TA-252	
+I80-E	3	Sacramento	Sacramento	M3.58	87.485		312345	SB Truxel Rd.	2	Off Ramp	loops	No	TA-252	
+I80-E	3	Sacramento	Sacramento	M3.58	87.485		312344	SB Truxel Rd.	2	On Ramp	others	No	TA-252	
+I80-E	3	Sacramento	Sacramento	M3.58	87.485	.49	312343	SB Truxel Rd.	3	Mainline	loops	No	TA-252	
+I80-E	3	Sacramento	Sacramento	3.78	87.685		312440	NB Truxel Rd	2	On Ramp	others	No	TA-253	
+I80-E	3	Sacramento	Sacramento	M3.78	87.685	.413	320492	NB Truxel Rd	1	HOV		24H	TA-253	
+I80-E	3	Sacramento	Sacramento	M3.78	87.685	.458	312439	NB Truxel Rd	4	Mainline	loops	No	TA-253	
+I80-E	3	Sacramento	Sacramento	M4.406	88.311	.56	320562	North Freeway	1	HOV		24H		
+I80-E	3	Sacramento	Sacramento	M4.496	88.401	.56	316166	North Freeway	4	Mainline		No		
+I80-E	3	Sacramento	Sacramento	M4.9	88.805	.297	320506	SB Northgate Blvd	1	HOV		24H	TA-256	
+I80-E	3	Sacramento	Sacramento	M4.9	88.805		313113	SB Northgate Blvd.	2	Off Ramp	loops	No	TA-256	
+I80-E	3	Sacramento	Sacramento	M4.9	88.805	.252	313111	SB Northgate Blvd	3	Mainline	loops	No	TA-256	
+I80-E	3	Sacramento	Sacramento	M4.9	88.805		313112	SB Northgate Blvd.	2	On Ramp	others	No	TA-256	
+I80-E	3	Sacramento	Sacramento	M5	88.905		313115	NB Northgate Blvd	2	On Ramp	others	No	TA-257	
+I80-E	3	Sacramento	Sacramento	M5	88.905	.425	313114	NB Northgate Blvd.	4	Mainline	loops	No	TA-257	
+I80-E	3	Sacramento	Sacramento	M5	88.905	.396	320504	NB Northgate Blvd	1	HOV		24H	TA-257	
+I80-E	3	Sacramento	Sacramento	M5.691	89.596	.64	320603	W of Norwood Ave	1	HOV		24H		
+I80-E	3	Sacramento	Sacramento	M5.75	89.655	.6	317853	W of Norwood Ave	4	Mainline	loops	No		
+I80-E	3	Sacramento	Sacramento	M6.029	89.934		320515	Norwood Ave	2	Off Ramp		No		
+I80-E	3	Sacramento	Sacramento	M6.2	90.105	.475	313132	NB Norwood Ave.	3	Mainline	loops	No	TA-258	
+I80-E	3	Sacramento	Sacramento	M6.2	90.105		313133	NB Norwood Ave.	2	On Ramp	others	No	TA-258	
+I80-E	3	Sacramento	Sacramento	M6.28	90.185	.596	320656	Norwood Ave	1	HOV		24H	TA-258	
+I80-E	3	Sacramento	Sacramento	M6.7	90.605	.664	316084	E of Rio Linda Blvd	3	Mainline	loops	No		
+I80-E	3	Sacramento	Sacramento	M6.883	90.788	.649	320596	E of Rio Linda Blvd	1	HOV		24H		
+I80-E	3	Sacramento	Sacramento	M7.361	91.266		315995	SB Marysville Blvd	2	Off Ramp	loops	No		
+I80-E	3	Sacramento	Sacramento	M7.527	91.432	.482	315993	SB Marysville Blvd	3	Mainline	loops	No		
+I80-E	3	Sacramento	Sacramento	M7.549	91.454		315994	SB Marysville Blvd	1	On Ramp	others	No		
+I80-E	3	Sacramento	Sacramento	M7.58	91.485	.435	320658	SB Marysville Blvd	1	HOV		24H		
+I80-E	3	Sacramento	Sacramento	M7.666	91.571	.324	316009	NB Raleys Blvd	3	Mainline	loops	No		
+I80-E	3	Sacramento	Sacramento	M7.699	91.604		316010	NB Raleys Blvd	1	On Ramp	others	No		
+I80-E	3	Sacramento	Sacramento	M7.755	91.66	.326	320660	NB Raleys Blvd	1	HOV		24H		
+I80-E	3	Sacramento	Sacramento	M8.175	92.08	.542	316018	Pinell Street OC	3	Mainline	loops	No		
+I80-E	3	Sacramento	Sacramento	M8.234	92.139	.867	320592	Pinell Street OC	1	HOV		24H		
+I80-E	3	Sacramento	Sacramento	M8.416	92.321		316047	Winter St to 80EB	2	Off Ramp	loops	No		
+I80-E	3	Sacramento	Sacramento	M8.752	92.657	.656	316045	Winter St to 80EB	3	Mainline	loops	No		
+I80-E	3	Sacramento	Sacramento	M8.871	92.776		316046	Winter St to 80EB	2	On Ramp	others	No		
+I80-E	3	Sacramento	Sacramento	M9.12	93.025		316066	Longview Dr to EB80	2	Off Ramp	loops	No		
+I80-E	3	Sacramento	Sacramento	M9.489	93.394	1.133	316064	Longview Dr	1	HOV	loops	24H		
+I80-E	3	Sacramento	Sacramento	M9.489	93.394	.874	316063	Longview Dr	4	Mainline	loops	No		
+I80-E	3	Sacramento	Sacramento	M9.489	93.394		316065	Longview Dr to EB80	2	On Ramp	others	No		
+I80-E	3	Sacramento		R10.78	94.405	.756	314514	Watt Ave	3	Mainline	radars	No		
+I80-E	3	Sacramento		R10.78	94.405	.756	315862	Watt Ave	1	HOV	radars	24H		
+I80-E	3	Sacramento		R10.866	94.491		314509	FF 80E/WB -> 244EB	2	Fwy-Fwy	radars	No		
+I80-E	3	Sacramento		R11.281	94.906		319812	Rte 244 to 80EB	1	Off Ramp		No		
+I80-E	3	Sacramento		R11.281	94.906	.493	316388	Rte 244 to 80EB	1	HOV	loops	24H		
+I80-E	3	Sacramento		R11.281	94.906	.493	316387	Rte 244 to 80EB	5	Mainline	loops	No		
+I80-E	3	Sacramento		R11.438	95.063		316386	Rte 244 to 80EB	2	On Ramp	others	No		
+I80-E	3	Sacramento		11.892	95.392	.508	315863	Myrtle Ave.	1	HOV	radars	24H	R108	
+I80-E	3	Sacramento		11.892	95.392	.508	313376	Myrtle Ave.	6	Mainline	radars	No	R108	
+I80-E	3	Sacramento		12.201	95.701		316330	EB Madison Ave	2	Off Ramp	loops	No		
+I80-E	3	Sacramento		12.422	95.922	.358	316328	EB Madison Ave	5	Mainline	loops	No		
+I80-E	3	Sacramento		12.422	95.922	.358	317168	EB Madison Ave	1	HOV	loops	24H		
+I80-E	3	Sacramento		12.547	96.047		316329	EB Madison Ave	2	On Ramp	others	No		
+I80-E	3	Sacramento		12.608	96.108	.289	316314	WB Madison Ave	5	Mainline	loops	No		
+I80-E	3	Sacramento		12.608	96.108	.289	317171	WB Madison Ave	1	HOV	loops	24H		
+I80-E	3	Sacramento		12.721	96.221		316315	WB Madison Ave	2	On Ramp	others	No		
+I80-E	3	Sacramento		13	96.5	.546	315864	E of Madison Ave	1	HOV	radars	24H	R110	
+I80-E	3	Sacramento		13	96.5	.546	313393	E of Madison Ave	5	Mainline	radars	No	R110	
+I80-E	3	Sacramento		13.7	97.2	.705	315865	Foothill Farm POC	1	HOV	radars	24H	R112	
+I80-E	3	Sacramento		13.7	97.2	.705	313406	Foothills Farm	5	Mainline	radars	No	R112	
+I80-E	3	Sacramento		14.41	97.91	.45	314460	EB Greenback Lane	4	Mainline	loops	No		
+I80-E	3	Sacramento		14.41	97.91		314462	EB Greenback Lane	1	Off Ramp	loops	No		
+I80-E	3	Sacramento		14.41	97.91	.45	315866	EB Greenback Lane	1	HOV	loops	24H		
+I80-E	3	Sacramento		14.41	97.91		314461	EB Greenback Lane	2	On Ramp	others	No		
+I80-E	3	Sacramento		14.599	98.099	.245	315867	WB Greenback Lane	1	HOV	loops	24H		
+I80-E	3	Sacramento		14.599	98.099	.245	314446	WB Greenback Lane	4	Mainline	loops	No		
+I80-E	3	Sacramento		14.599	98.099		314447	WB Greenback Lane	2	On Ramp	others	No		
+I80-E	3	Sacramento		14.9	98.4	.4	313420	Springwood Dr.	4	Mainline	radars	No	R114	
+I80-E	3	Sacramento		14.9	98.4	.4	315868	Springwood Dr.	1	HOV	radars	24H	R114	
+I80-E	3	Sacramento		15.4	98.9	.5	313432	Flaming Arrow Dr.	4	Mainline	radars	No	R116	
+I80-E	3	Sacramento		15.4	98.9	.5	315869	Flaming Arrow Dr.	1	HOV	radars	24H	R116	
+I80-E	3	Sacramento		15.9	99.4	.55	313567	Weigh Station	4	Mainline	radars	No	R118	
+I80-E	3	Sacramento		15.9	99.4	.55	315870	Weigh Station	1	HOV	radars	24H	R118	
+I80-E	3	Sacramento		16.5	100	.4	315871	Antelope Rd. Off	1	HOV	radars	24H	R120	
+I80-E	3	Sacramento		16.5	100	.4	313444	Antelope Rd. Off	4	Mainline	radars	No	R120	
+I80-E	3	Sacramento		16.7	100.2	.35	315876	JEO Antelope Rd	1	HOV		24H	R122	
+I80-E	3	Sacramento		16.7	100.2	.35	313456	JEO Antelope Rd	4	Mainline	radars	No	R122	
+I80-E	3	Sacramento		17.2	100.7	.5	315877	Westwood Park	1	HOV	radars	24H	R124	
+I80-E	3	Sacramento		17.2	100.7	.5	313469	Westwood Park	4	Mainline	radars	No	R124	
+I80-E	3	Sacramento		17.7	101.2	.65	313482	Auburn Oaks Ct.	4	Mainline	radars	No	R126	
+I80-E	3	Sacramento		17.7	101.2	.65	315878	Auburn Oaks Ct.	1	HOV	radars	24H	R126	
+I80-E	3	Placer		.094	101.594		319344	Auburn Blvd	1	Off Ramp		No	R127	
+I80-E	3	Placer		.095	101.595		316416	Riverside Ave	1	Off Ramp	loops	No	R127	
+I80-E	3	Placer	Roseville	.253	101.753	.176	319351	NB Auburn Blvd	4	Mainline		No		
+I80-E	3	Placer	Roseville	.253	101.753	.185	319350	NB Auburn Blvd	1	HOV		24H		
+I80-E	3	Placer	Roseville	.299	101.799		319447	Off to Riverside	1	Off Ramp		No		
+I80-E	3	Placer	Roseville	.299	101.799	.209	316414	Auburn Blvd	4	Mainline	loops	No		
+I80-E	3	Placer	Roseville	.316	101.816	.209	319355	NB Auburn Blvd	1	HOV		24H		
+I80-E	3	Placer	Roseville	.516	102.016		316415	Riverside Ave	3	On Ramp	others	No		
+I80-E	3	Placer	Roseville	.671	102.171	.49	318620	Cirby Way	4	Mainline	loops	No		
+I80-E	3	Placer	Roseville	.671	102.171	.481	318619	Cirby Way	1	HOV		24H		
+I80-E	3	Placer	Roseville	1.279	102.779	.592	318927	Darling Way	4	Mainline		No		
+I80-E	3	Placer	Roseville	1.279	102.779	.592	318926	Darling Way	1	HOV		24H		
+I80-E	3	Placer	Roseville	1.855	103.355	.419	318665	EB Douglas Ave	1	HOV	loops	24H		
+I80-E	3	Placer	Roseville	1.855	103.355	.419	318666	EB Douglas Ave	4	Mainline	loops	No		
+I80-E	3	Placer	Roseville	1.86	103.36		318658	EB Douglas Blvd	2	Off Ramp	loops	No		
+I80-E	3	Placer	Roseville	2.059	103.559		318653	WB Douglas Blvd	1	Off Ramp	loops	No		
+I80-E	3	Placer	Roseville	2.117	103.617	.342	318650	WB Douglas Blvd	4	Mainline	loops	No		
+I80-E	3	Placer	Roseville	2.117	103.617	.342	318649	WB Douglas Blvd	1	HOV	loops	24H		
+I80-E	3	Placer	Roseville	2.134	103.634		318651	Sunrise Blvd	1	On Ramp	others	No		
+I80-E	3	Placer	Roseville	2.138	103.638		318652	WB Douglas Blvd	1	On Ramp		No		
+I80-E	3	Placer	Roseville	2.538	104.038	.428	318942	Lead Hills Dr.	4	Mainline		No		
+I80-E	3	Placer	Roseville	2.538	104.038	.428	318941	Lead Hills Dr.	1	HOV		24H		
+I80-E	3	Placer	Roseville	2.924	104.424		318803	Atlantic St	1	Off Ramp	loops	No		
+I80-E	3	Placer	Roseville	2.973	104.473		318802	Atlantic St	1	On Ramp	others	No		
+I80-E	3	Placer	Roseville	2.974	104.474	.316	318800	Atlantic St	1	HOV	loops	24H		
+I80-E	3	Placer	Roseville	2.974	104.474	.316	318801	Atlantic St	4	Mainline	loops	No		
+I80-E	3	Placer	Roseville	3.17	104.67	.191	318832	Eureka Rd	1	HOV	loops	24H		
+I80-E	3	Placer	Roseville	3.17	104.67	.191	318844	Eureka Rd	4	Mainline	loops	No		
+I80-E	3	Placer	Roseville	3.171	104.671		318845	Eureka Rd	3	On Ramp	others	No		
+I80-E	3	Placer	Roseville	3.356	104.856	1.065	318764	Roseville Pkwy	5	Mainline	loops	No		
+I80-E	3	Placer	Roseville	3.356	104.856	1.065	318775	Roseville Pkwy	1	HOV	loops	24H		
+I80-E	3	Placer	Roseville	3.561	105.061		318790	Taylor Rd	1	Off Ramp	loops	No		
+I80-E	3	Placer	Roseville	R4.175	105.675		318755	80EB->65NB	2	Fwy-Fwy	loops	No		
+I80-E	3	Placer	Roseville	5.3	106.8	1.622	317002	W. of Rocklin Rd	2	Mainline	magnetometers	No		
+I80-E	3	Placer	Roseville	5.3	106.8	3.472	319386	W. of Rocklin Rd	1	HOV		24H		
+I80-E	3	Placer	Rocklin	6.6	108.1	1.16	317008	W. of Sierra College	3	Mainline	magnetometers	No		
+I80-E	3	Placer	Rocklin	7.62	109.12	.65	317752	NB SierraColgBlvd	3	Mainline	loops	No		
+I80-E	3	Placer	Rocklin	7.62	109.12		317751	NB SierraColgBlvd	1	On Ramp	others	No		
+I80-E	3	Placer	Rocklin	7.9	109.4	.59	317018	E. of Sierra College	3	Mainline	magnetometers	No		
+I80-E	3	Placer		8.8	110.3	.95	316733	Horseshoe Bar Rd.	3	Mainline	magnetometers	No		
+I80-E	3	Placer	Loomis	9.8	111.3	1	316743	W. of Penryn Rd.	3	Mainline	magnetometers	No		
+I80-E	3	Placer	Loomis	10.8	112.3	1.15	316760	E. of Penryn Rd.	3	Mainline	magnetometers	No		
+I80-E	3	Placer		12.1	113.6	2.43	316753	W. of Gilardi Rd.	3	Mainline	magnetometers	No		
+I80-E	3	Placer		15.66	117.16	2.21	316204	Hallbom Rd	3	Mainline	loops	No		
+I80-E	3	Placer		16.52	118.02	1.91	317500	W. of Maple St.	3	Mainline	others	No		
+I80-E	3	Placer		R19.48	120.98		316213	Auburn Ravine OC	1	On Ramp	others	No		
+I80-E	3	Placer		R19.48	120.98	2.53	316214	Auburn Ravine OC	3	Mainline	loops	No		
+I80-E	3	Placer		R21.58	123.08	1.49	316230	Bell Rd	3	Mainline	loops	No		
+I80-E	3	Placer		22.46	123.96	.805	317522	JEO Dry CreekRd	3	Mainline	others	No		
+I80-E	3	Placer		23.19	124.69	.775	317619	JWO PlacerHillsRd	3	Mainline	others	No		
+I80-E	3	Placer		24.08	125.509	1.469	317532	E of PlacerHills Rd	3	Mainline	others	No		
+I80-E	3	Placer		R26.2	127.629	3.56	316249	Applegate	3	Mainline	loops	No		
+I80-E	3	Placer		R26.218	127.647		316248	Applegate	1	Off Ramp	loops	No		
+I80-E	3	Placer		R26.38	127.809		316247	Applegate	1	On Ramp	others	No		
+I80-E	3	Placer		33.12	134.605	4.19	316261	Colfax	2	Mainline	loops	No		
+I80-E	3	Placer		33.14	134.625		316260	Colfax	1	Off Ramp	loops	No		
+I80-E	3	Placer		33.214	134.699		316259	Colfax	1	On Ramp	others	No		
+I80-E	3	Placer		36.5	137.985	4.19	314000	 Colfax Curve	2	Mainline	radars	No	R214	
+I80-E	3	Placer		44.439	145.924	5	318500	Alta Rd	2	Mainline	loops	No		
+I80-E	3	Placer		R55.62	157.105	5	319442	Carpenter Flat	2	Mainline		No		
+I80-E	3	Placer		R55.621	157.106		319443	Carpenter Flat	1	On Ramp		No		
+I80-E	3	Placer		R63.423	164.763		319429	Cisco Grove	1	Off Ramp		No		
+I80-E	3	Placer		R63.51	164.85	5	319427	Cisco Grove	2	Mainline		No		
+I80-E	3	Placer		R63.647	164.987		319428	Cisco Grove	1	On Ramp		No		
+I80-E	3	Nevada		R2.338	173.462		317795	Donner Pass Rd	1	Off Ramp	loops	No		
+I80-E	3	Nevada		R2.534	173.658	3.778	317797	Soda Spring O.C.	3	Mainline	loops	No		
+I80-E	3	Nevada		R2.604	173.728		317792	Soda Spring O.C.	1	On Ramp	others	No		
+I80-E	3	Nevada		R4.958	176.082		317788	Castle Peak Rd	1	Off Ramp	loops	No		
+I80-E	3	Nevada		R5.09	176.214	3.214	317791	Castle Peak Rd	3	Mainline	loops	No		
+I80-E	3	Nevada		R5.189	176.313		317786	Castle Peak Rd	1	On Ramp	others	No		
+I80-E	3	Nevada		R8.963	180.087	3.75	319415	Donner Lake UC	2	Mainline		No		
+I80-E	3	Nevada		R8.979	180.103		319416	Donner Lake UC	1	Off Ramp		No		
+I80-E	3	Nevada		R9.09	180.214		319414	Donner Lake UC	1	On Ramp		No		
+I80-E	3	Nevada	Truckee	13.15	183.715	2.139	319673	Donner Pass Rd	2	Mainline		No		
+I80-E	3	Nevada	Truckee	13.15	183.715		319675	Donner Pass Rd	1	On Ramp		No		
+I80-E	3	Nevada	Truckee	13.22	183.785		319680	Donner Pass Rd	1	Off Ramp		No		
+I80-E	3	Nevada	Truckee	13.8	184.365	2.825	314254	Truckee	2	Mainline	radars	No	R105	
+I80-E	3	Nevada		29.5	200.065	5	314277	Farad	2	Mainline		No	RT121	
+
