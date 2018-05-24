@@ -68,7 +68,7 @@ if (file.exists("conf.R")) source("conf.R")
 # --------------------------------------------------------------------------
 ## Function getStationIDs will fetch page with station ID's for a freeway
 getStationIDs <- function(freeway, direction, search.date.str, 
-                                  s.time.id, curl, base.url, data.folder) {
+                                  s.time.id, curl, base.url, data.folder, abspm_start = -1, abspm_end = 100000000000) {
   # Combine variables into a "lane" string
   lane <- paste('fwy=', freeway, '&dir=', direction, sep='')
   
@@ -109,8 +109,10 @@ getStationIDs <- function(freeway, direction, search.date.str,
     tryCatch({
       # Get TSV file for the detector_health for chosen freeway and date
       r.url <- paste(base.url, '/?', page, '&fwy=', freeway, '&dir=', direction, '&_time_id=', 
-                     s.time.id, '&_time_id_f=', sdate, '&pagenum_all=1', sep='')
-      
+                     s.time.id, '&_time_id_f=', sdate, '&pagenum_all=1', 
+                     '&start_pm=', abspm_start, '&end_pm=', abspm_end, sep='')
+
+
       # Get TSV data file from website and store as a string in memory
       r = dynCurlReader()
       result.string <- getURL(url = r.url, curl = curl)
@@ -125,13 +127,14 @@ getStationIDs <- function(freeway, direction, search.date.str,
       cat("ERROR :",conditionMessage(e), "\n")
       return(data.frame(NULL))
     })
-    return(freeway_data$ID)
+    
+    return(sapply(freeway_data$ID, as.character))
   } else {
     # Read from file
     freeway_data <- read.table(output.filename, sep='\t', header=T, fill=T, 
                          quote='', stringsAsFactors=F)
     # Return ID's
-    return(freeway_data$ID)
+    return(sapply(freeway_data$ID, as.character))
   }
   
   tryCatch({
@@ -144,7 +147,8 @@ getStationIDs <- function(freeway, direction, search.date.str,
   })
 }
   
-getStationValues <- function(station_id, quantity, search.date.str, s.time.id, curl, base.url, data.folder) {
+getStationValues <- function(station_id, quantity, search.date.str, s.time.id, curl, base.url, granularity = 'hour', 
+                             dow = c('on','on','on','on','on','on','on') , data.folder) {
   
   # Parse the search.date.str into a vector
   search.date.v <- unlist(strsplit(search.date.str, '-'))
@@ -189,15 +193,16 @@ getStationValues <- function(station_id, quantity, search.date.str, s.time.id, c
   
   # If the data filehas alread been saved, load the file, or get from web
   cat(freeway, "-", direction, " ")
-  if (! file.exists(output.filename)) {
+  # if (! file.exists(output.filename)) {
     tryCatch({
       # Get TSV file for the detector_health for chosen freeway and date
       r.url <- paste(base.url, '/?', page, '&station_id=', station_id,
                      '&s_time_id=', s.time.id, '&s_time_id_f=', sdate, 
                      '&e_time_id=', e.time.id, '&e_time_id_f=', edate,
                      '&tod=all&tod_from=0&tod_to=0&dow_0=on&dow_1=on&dow_2=on&dow_3=on&dow_4=on&dow_5=on&dow_6=on&holidays=on',
-                     '&q=', quantity, '&q2=&gn=5min&agg=on',
-                     '&lane1=on&lane2=on&lane3=on&lane4=on&lane5=on',
+                     '&q=', quantity, '&q2=&agg=on',
+                     '&gn=', granularity,
+                     # '&lane1=on&lane2=on&lane3=on&lane4=on&lane5=on',
                      '&pagenum_all=1', sep='')
       # Get TSV data file from website and store as a string in memory
       r = dynCurlReader()
@@ -213,13 +218,13 @@ getStationValues <- function(station_id, quantity, search.date.str, s.time.id, c
       cat("ERROR :",conditionMessage(e), "\n")
       return(data.frame(NULL))
     })
-  } else {
-    # Read from file
-    freeway_data <- read.table(output.filename, sep='\t', header=T, fill=T, 
-                               quote='', stringsAsFactors=F)
-    # Return ID's
-    return(freeway_data$ID)
-  }
+    # } else {
+  #   # Read from file
+  #   freeway_data <- read.table(output.filename, sep='\t', header=T, fill=T, 
+  #                              quote='', stringsAsFactors=F)
+  #   # Return ID's
+  #   return(freeway_data$ID)
+  # }
   
   tryCatch({
     # Add variables to make this dataset unique from others and return
@@ -256,6 +261,23 @@ subsetFreeways <- function(freeways, freeways.of.interest.file) {
   return(freeways)
 }
 
+indicatePostmiles <- function(freeways) {
+  pmdf <- read.csv('postmiles.txt', FALSE, col.names = c('freeway','abspm_start','abspm_end'))
+  indicators <- sapply(freeways$freeway, function(x) {
+    a <- pmdf$abspm_start[which(x == pmdf$freeway)]
+    b <- pmdf$abspm_end[which(x == pmdf$freeway)]
+    cbind(c(a,b))
+  })
+  df <- suppressWarnings(cbind(freeways,t(indicators)))
+  names(df)[4] <- 'abspm_start'
+  names(df)[5] <- 'abspm_end'
+  df
+}
+
+
+pmdf <- read.csv('postmiles.txt', FALSE, col.names = c('freeway','abspm_start','abspm_end'))
+pmdf
+  
 ## Function getFreeways() finds "freeway" choices in HTML select option tags.
 # Note: You could also extract available cities and counties with this method.
 getFreeways <- function(doc) {
@@ -302,39 +324,35 @@ write.csv(freeways, paste(data.folder, "freeways.csv", sep="/"), row.names=F)
 
 # Select only those freeways which are of interest to us.
 freeways <- subsetFreeways(freeways, freeways.of.interest.file)
+freeways
+
 
 # Get detector health for each date and freeway and write to a CSV file.
 search.date <- as.character(search.date)
 search.date <- search.date[grep('^\\d{4}-\\d{2}-\\d{2}$', search.date)]
 
 
-### TESTING SECTION 1###
 
-
+##########################
+# Testing getting VDS ids
+##########################
+freeways <- indicatePostmiles(freeways)
 freeway <- freeways$freeway[1]
 direction <- freeways$direction[1]
-s.time.id <- as.character(as.integer(as.POSIXct(search.date,
-                                                origin="1970-01-01",
-                                                tz = "GMT")))
-
-
-getStationIDs(freeway, direction, search.date, s.time.id, curl, base.url, data.folder)
-
-getStationValues('402814','speed',search.date, s.time.id, curl, base.url, data.folder)
-
-### TESTING SECTION 2 ####
-df <- data.frame()
-
-freeway <- freeways$freeway[1]
-direction <- freeways$direction[1]
+start <- freeways$abspm_start[1]
+end <- freeways$abspm_end[1]
 s.time.id <- as.character(as.integer(as.POSIXct(search.date,
                                                 origin="1970-01-01",
                                                 tz = "GMT")))
 stations <- getStationIDs(freeway, direction, search.date, s.time.id, curl, base.url, data.folder)
-stations[1:3]
-sapply(stations[1:3], getStationValues, 
-       station_id = '402814','speed',search.date, s.time.id, curl, base.url, data.folder)
-args(getStationValues)
+want_stations <- getStationIDs(freeway, direction, search.date, s.time.id, curl, base.url, data.folder, abspm_start = start, abspm_end = end)
+want_stations
+##########################
+# Testing getting values
+##########################
+
+
+
 ##########################
 
 
@@ -343,9 +361,6 @@ rm(curl)
 gc()
 
 ##########################################
-
-
-
 
 
 
