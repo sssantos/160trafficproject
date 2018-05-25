@@ -1,0 +1,8 @@
+Fwy	District	County	City	CA PM	Abs PM	Length	ID	Name	Lanes	Type	Sensor Type	HOV	MS ID	IRM
+I980-E	4	Alameda	Oakland	.42	.411	.551	401190	7th St	2	Mainline	loops	No	DT410	L2-E-33-980-00042
+I980-E	4	Alameda	Oakland	.7	.691	.28	401144	14th ST OC	3	Mainline	loops	No	DT411	L3-E-33-980-00070
+I980-E	4	Alameda	Oakland	.98	.971	.305	401615	14th St	3	Mainline	loops	No	DT908	L3-E-33-980-00098
+I980-E	4	Alameda	Oakland	1.31	1.301	.3	401413	23rd St	5	Mainline	loops	No	DT413	L5-E-33-980-00131
+I980-E	4	Alameda	Oakland	1.58	1.571	.26	401896	28th St/Northgate	3	Mainline	loops	No	DT414	L3-E-33-980-00158
+I980-E	4	Alameda	Oakland	1.83	1.821	.331	400642	27TH ST  ON-E-DIAG	3	Mainline	loops	No	DT417	L3-E-33-980-00183
+
