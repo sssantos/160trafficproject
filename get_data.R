@@ -4,6 +4,7 @@
 # * Please configure as needed. See the "Configuration" section for details.
 # 
 # Source Script Copyright Brian High (https://github.com/brianhigh) and Surakshya Dhakal
+# Modified by Colin Santos (https://github.com/sssantos)
 # License: GNU GPL v3 http://www.gnu.org/licenses/gpl.txt
 
 # Close connections and clear objects.
@@ -19,7 +20,7 @@ load.pkgs <- function(pkgs, repos = "http://cran.r-project.org") {
 }
 
 # Install packages and load into memory.
-load.pkgs(c("RCurl", "XML", "plyr"))
+load.pkgs(c("RCurl", "XML", "plyr","data.table"))
 
 # --------------------------------------------------------------------------
 # Configuration
@@ -109,10 +110,10 @@ getStationIDs <- function(freeway, direction, search.date.str,
     tryCatch({
       # Get TSV file for the detector_health for chosen freeway and date
       r.url <- paste(base.url, '/?', page, '&fwy=', freeway, '&dir=', direction, '&_time_id=', 
-                     s.time.id, '&_time_id_f=', sdate, '&pagenum_all=1', 
+                     s.time.id, '&_time_id_f=', sdate, '&pagenum_all=1&st_hv=on&st_ml=on', 
                      '&start_pm=', abspm_start, '&end_pm=', abspm_end, sep='')
 
-
+  
       # Get TSV data file from website and store as a string in memory
       r = dynCurlReader()
       result.string <- getURL(url = r.url, curl = curl)
@@ -148,7 +149,7 @@ getStationIDs <- function(freeway, direction, search.date.str,
 }
   
 getStationValues <- function(station_id, quantity, search.date.str, s.time.id, curl, base.url, granularity = 'hour', 
-                             dow = c('on','on','on','on','on','on','on') , data.folder) {
+                             dow = c('on','on','on','on','on','on','on') , holidays = 'on', data.folder) {
   
   # Parse the search.date.str into a vector
   search.date.v <- unlist(strsplit(search.date.str, '-'))
@@ -199,7 +200,15 @@ getStationValues <- function(station_id, quantity, search.date.str, s.time.id, c
       r.url <- paste(base.url, '/?', page, '&station_id=', station_id,
                      '&s_time_id=', s.time.id, '&s_time_id_f=', sdate, 
                      '&e_time_id=', e.time.id, '&e_time_id_f=', edate,
-                     '&tod=all&tod_from=0&tod_to=0&dow_0=on&dow_1=on&dow_2=on&dow_3=on&dow_4=on&dow_5=on&dow_6=on&holidays=on',
+                     '&tod=all&tod_from=0&tod_to=0',
+                     '&dow_0=', dow[1],
+                     '&dow_1=', dow[2],
+                     '&dow_2=', dow[3],
+                     '&dow_3=', dow[4],
+                     '&dow_4=', dow[5],
+                     '&dow_5=', dow[6],
+                     '&dow_6=', dow[7],
+                     '&holidays=', holidays,
                      '&q=', quantity, '&q2=&agg=on',
                      '&gn=', granularity,
                      # '&lane1=on&lane2=on&lane3=on&lane4=on&lane5=on',
@@ -212,8 +221,10 @@ getStationValues <- function(station_id, quantity, search.date.str, s.time.id, c
       writeLines(result.string, output.filename)
       
       # Read table from string into a dataframe
-      freeway_data <- read.table(text=result.string, sep='\t', header=T, 
+      freeway_data <- read.csv(text=result.string, sep='\t', header=T,
                                  fill=T, quote='', stringsAsFactors=F)
+      
+      
     }, error=function(e) {
       cat("ERROR :",conditionMessage(e), "\n")
       return(data.frame(NULL))
@@ -226,19 +237,17 @@ getStationValues <- function(station_id, quantity, search.date.str, s.time.id, c
   #   return(freeway_data$ID)
   # }
   
-  tryCatch({
-    # Add variables to make this dataset unique from others and return
-    if (nrow(freeway_data) > 0) freeway_data$search.date <- as.Date(search.date.str)
-    return(freeway_data)
-  }, error=function(e) {
-    cat("ERROR :",conditionMessage(e), "\n")
-    return(data.frame(NULL))
-  })
+  # tryCatch({
+  #   # Add variables to make this dataset unique from others and return
+  #   if (nrow(freeway_data) > 0) freeway_data$search.date <- as.Date(search.date.str)
+  #   return(freeway_data)
+  # }, error=function(e) {
+  #   cat("ERROR :",conditionMessage(e), "\n")
+  #   return(data.frame(NULL))
+  # })
+  return(freeway_data)
 }
 
-
-
-  
 
 ## Function subsetFreeways will subset freeways by those of interest
 subsetFreeways <- function(freeways, freeways.of.interest.file) {
@@ -348,9 +357,37 @@ stations <- getStationIDs(freeway, direction, search.date, s.time.id, curl, base
 want_stations <- getStationIDs(freeway, direction, search.date, s.time.id, curl, base.url, data.folder, abspm_start = start, abspm_end = end)
 want_stations
 ##########################
-# Testing getting values
+# Testing getting values (run testing gettings vds ids first)
 ##########################
+#getting one station's values
+# args(getStationValues)
+# station_id <- want_stations[1]
+# res <- getStationValues(station_id, 'speed', search.date, s.time.id, curl, base.url, data.folder = data.folder)
+# res
+# res2<- lapply(c('flow','occ'), function(x) {
+#   getStationValues(station_id, x, search.date, s.time.id, curl, base.url, data.folder = data.folder)
+# })
+# 
+# res[2]
+# Reduce(merge,res2)
 
+getStationMultiValues <- function(station_id, quantities, search.date, s.time.id, curl, base.url, data.folder = data.folder) {
+  Reduce(merge,
+         lapply(quantities, function(x) {
+           getStationValues(station_id, x, search.date, s.time.id, curl, base.url, data.folder = data.folder)
+         })
+         )
+}
+  
+getStationMultiValues(station_id, c('flow','occ'), search.date, s.time.id, curl, base.url, data.folder = data.folder)
+
+getMultiStationMultiValues <- function(station_ids, quantities, search.date, s.time.id, curl, base.url, data.folder = data.folder) {
+  rbindlist(lapply(station_ids, function(x) {
+    getStationMultiValues(x, quantities, search.date, s.time.id, curl, base.url, data.folder = data.folder)
+  }))
+}
+
+getMultiStationMultiValues(want_stations[1:2], c('flow','occ'), search.date, s.time.id, curl, base.url, data.folder = data.folder)
 
 
 ##########################
@@ -361,8 +398,6 @@ rm(curl)
 gc()
 
 ##########################################
-
-
 
 
 
