@@ -193,7 +193,7 @@ getStationValues <- function(station_id, quantity, search.date.str, s.time.id, c
                            '.tsv', sep='')
   
   # If the data filehas alread been saved, load the file, or get from web
-  cat(freeway, "-", direction, " ")
+  # cat(freeway, "-", direction, " ")
   # if (! file.exists(output.filename)) {
     tryCatch({
       # Get TSV file for the detector_health for chosen freeway and date
