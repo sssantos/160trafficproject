@@ -1,2 +1,11 @@
 Fwy	District	County	City	CA PM	Abs PM	Length	ID	Name	Lanes	Type	Sensor Type	HOV	MS ID	IRM
+I580-W	4	Alameda	Oakland	44.07	60.155	.49	401483	Chetwood St & Santa Clara	4	Mainline	loops	No	DT336	L4-W-33-580-04407
+I580-W	4	Alameda	Oakland	44.68	60.765	.365	400606	Kempton St/Fairmont St	4	Mainline	loops	No	DT337	L4-W-33-580-04468
+I580-W	4	Alameda	Oakland	44.8	60.885	.31	401478	Webster St / 36th	6	Mainline	loops	No	DT338	L6-W-33-580-04480
+I580-W	4	Alameda	Oakland	45.3	61.385	.255	401898	MLK Jr. Way	3	Mainline	loops	No	DT340	L3-W-33-580-04530
+I580-W	4	Alameda	Oakland	45.31	61.395	.13	400480	West St / 35th St	4	Mainline	loops	No	DT343	L4-W-33-580-04531
+I580-W	4	Alameda	Oakland	45.56	61.645	.32	400815	West St off ramp	6	Mainline	loops	No	DT342	L6-W-33-580-04556
+I580-W	4	Alameda	Oakland	45.95	62.035	.295	417234	oppo 35th St / Peralta UC	5	Mainline	loops	No	DT1B9	L5-W-33-580-04595
+I580-W	4	Alameda	Oakland	46.15	62.235	.658	420298	Hollis St	5	Mainline	loops	No	DT644	L5-W-33-580-04615
+I580-W	4	Alameda	Oakland	47.49	63.35	1.207	401208	580 EB	2	Mainline	loops	No	DT639	L2-W-33-580-04749
 

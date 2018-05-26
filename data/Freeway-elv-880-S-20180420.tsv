@@ -1,2 +1,16 @@
 Fwy	District	County	City	CA PM	Abs PM	Length	ID	Name	Lanes	Type	Sensor Type	HOV	MS ID	IRM
+I880-S	4	Alameda	Oakland	30.96	41.187	1.105	400835	Oak St rm-s-diag	4	Mainline	loops	No	DT766	L4-S-33-880-03096
+I880-S	4	Alameda	Oakland	31.31	41.537	.47	400609	Broadway  rm-s-diag	5	Mainline	loops	No	DTA31	L5-S-33-880-03131
+I880-S	4	Alameda	Oakland	31.9	42.127	.395	401714	Castro St	4	Mainline	loops	No	DTA75	L4-S-33-880-03190
+I880-S	4	Alameda	Oakland	32.1	42.327	.2	401339	Adeline St rm-s-diag	4	Mainline	loops	No	DT813	L4-S-33-880-03210
+I880-S	4	Alameda	Oakland	32.3	42.527	.105	404761	Adeline St/Magnolia on ramp	4	Mainline	loops	No	DT808	L4-S-33-880-03230
+I880-S	4	Alameda	Oakland	32.31	42.537	.24	401141	MARKET / 5TH ST	4	Mainline	loops	No	DTA48	L4-S-33-880-03231
+I880-S	4	Alameda	Oakland	32.78	43.007	.42	401708	Union Street off Ramp	4	Mainline	loops	No	DTA79	L4-S-33-880-03278
+I880-S	4	Alameda	Oakland	R33.15	43.377	.285	400454	2400' S of 7th St	4	Mainline	loops	No	DT332	L4-S-33-880-03315
+I880-S	4	Alameda	Oakland	R33.35	43.577	.325	400300	7th St rm-s-diag	3	Mainline	loops	No	DT587	L3-S-33-880-R3335
+I880-S	4	Alameda	Oakland	R33.8	44.027	.725	400093	1400' N of 7th St	4	Mainline	loops	No	DT630	L4-S-33-880-03380
+I880-S	4	Alameda	Oakland	R34.8	45.027	.55	400659	oppo W Grand Ave rm-n-diag	2	Mainline	loops	No	DT331	L2-S-33-880-03480
+I880-S	4	Alameda	Oakland	R34.9	45.127	.15	400242	2000' N of W Grand Ave	4	Mainline	loops	No	DT357	L4-S-33-880-03490
+I880-S	4	Alameda	Oakland	35.1	45.327	.15	401156	34th & Wood St	2	Mainline	loops	No	DT081	L2-S-33-880-03510
+I880-S	4	Alameda	Oakland	R35.2	45.427	.323	401562	Maritime on-w-diag	4	Mainline	loops	No	DT623	L4-S-33-880-03520
 

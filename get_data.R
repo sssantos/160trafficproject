@@ -17,7 +17,7 @@ load.pkgs <- function(pkgs, repos = "http://cran.r-project.org") {
 }
 
 # Install packages and load into memory.
-load.pkgs(c("RCurl", "XML", "plyr","data.table"))
+load.pkgs(c("RCurl", "XML", "plyr","data.table","tibble"))
 
 # --------------------------------------------------------------------------
 # Functions
@@ -79,7 +79,7 @@ indicatePostmiles <- function(freeways) {
 
 ## Function getStationIDs will fetch page with station ID's for a freeway
 # If no postmiles explicitly indicated, defaults to entire freeway
-getStationIDs <- function(freeway, direction, search.date.str, 
+getStationIDs <- function(freeway, direction, search.date.str,
                           s.time.id, curl, base.url, data.folder, abspm_start = -1, abspm_end = 100000000000) {
   # Combine variables into a "lane" string
   lane <- paste('fwy=', freeway, '&dir=', direction, sep='')
@@ -117,51 +117,36 @@ getStationIDs <- function(freeway, direction, search.date.str,
   
   # If the data filehas alread been saved, load the file, or get from web
   # if (! file.exists(output.filename)) {
-    tryCatch({
+    # tryCatch({
       # Get TSV file for the detector_health for chosen freeway and date
-      r.url <- paste(base.url, '/?', page, '&fwy=', freeway, '&dir=', direction, '&_time_id=', 
-                     s.time.id, '&_time_id_f=', sdate, '&st_hv=on&st_ml=on', 
-                     '&start_pm=', abspm_start, '&end_pm=', '&pagenum_all=1', abspm_end, sep='')
-      
-      # Get TSV data file from website and store as a string in memory
-      r = dynCurlReader()
-      result.string <- getURL(url = r.url, curl = curl)
-      
-      # Write string to file
-      writeLines(result.string, output.filename)
-      
-      # Read table from string into a dataframe
-      freeway_data <- read.table(text=result.string, sep='\t', header=T, 
-                                 fill=T, quote='', stringsAsFactors=F)
-    }, error=function(e) {
-      cat("ERROR :",conditionMessage(e), "\n")
-      return(data.frame(NULL))
-    })
+    r.url <- paste(base.url, '/?', page, '&fwy=', freeway, '&dir=', direction, '&_time_id=', 
+                   s.time.id, '&_time_id_f=', sdate, '&st_hv=on&st_ml=on', 
+                   '&start_pm=', abspm_start, '&end_pm=', abspm_end, sep='')
+    # Get TSV data file from website and store as a string in memory
+    r = dynCurlReader()
+    result.string <- getURL(url = r.url, curl = curl)
     
-    return(sapply(freeway_data$ID, as.character))
-  # } else {
-  #   # Read from file
-  #   freeway_data <- read.table(output.filename, sep='\t', header=T, fill=T, 
-  #                              quote='', stringsAsFactors=F)
-  #   # Return ID's
-  #   return(sapply(freeway_data$ID, as.character))
-  # }
-  
-  # tryCatch({
-  #   # Add variables to make this dataset unique from others and return
-  #   if (nrow(freeway_data) > 0) freeway_data$search.date <- as.Date(search.date.str)
-  #   return(freeway_data)
-  # }, error=function(e) {
-  #   cat("ERROR :",conditionMessage(e), "\n")
-  #   return(data.frame(NULL))
-  # })
+    # Write string to file
+    writeLines(result.string, output.filename)
+    
+    # Read table from string into a dataframe
+    freeway_data <- read.table(text=result.string, sep='\t', header=T, 
+                               fill=T, quote='', stringsAsFactors=F)
+
+    VDS  <- sapply(freeway_data$ID, as.character)
+    Freeway  <- rep(freeway,   length(VDS))
+    Direction  <- rep(direction, length(VDS))
+    df <- data.frame(VDS,Freeway,Direction, stringsAsFactors = FALSE)
+    list_df <- split(df, seq(nrow(df)))
+    
 }
 
 # Get Station values gets specified quantity, such as 'speed', 'flow', 'occ'
 # Please refer to a corresponding url query on pems for proper quantity names
-getStationValues <- function(station_id, quantity, search.date.str, s.time.id, curl, base.url, granularity = 'hour', 
+getStationValues <- function(station_df, quantity, search.date.str, s.time.id, curl, base.url, granularity = 'hour', 
                              dow = c('on','on','on','on','on','on','on') , holidays = 'on', data.folder) {
   
+  station_id <- station_df[1]
   # Parse the search.date.str into a vector
   search.date.v <- unlist(strsplit(search.date.str, '-'))
   names(search.date.v) <- c("year", "month", "day")
@@ -208,39 +193,42 @@ getStationValues <- function(station_id, quantity, search.date.str, s.time.id, c
   # if (! file.exists(output.filename)) {
   # tryCatch({
     # Get TSV file for the detector_health for chosen freeway and date
-    r.url <- paste(base.url, '/?', page, '&station_id=', station_id,
-                   '&s_time_id=', s.time.id, '&s_time_id_f=', sdate, 
-                   '&e_time_id=', e.time.id, '&e_time_id_f=', edate,
-                   '&tod=all&tod_from=0&tod_to=0',
-                   '&dow_0=', dow[1],
-                   '&dow_1=', dow[2],
-                   '&dow_2=', dow[3],
-                   '&dow_3=', dow[4],
-                   '&dow_4=', dow[5],
-                   '&dow_5=', dow[6],
-                   '&dow_6=', dow[7],
-                   '&holidays=', holidays,
-                   '&q=', quantity, '&q2=&agg=on',
-                   '&gn=', granularity,
-                   # '&lane1=on&lane2=on&lane3=on&lane4=on&lane5=on',
-                   '&pagenum_all=1', sep='')
-    # Get TSV data file from website and store as a string in memory
-    r = dynCurlReader()
-    result.string <- getURL(url = r.url, curl = curl)
+  r.url <- paste(base.url, '/?', page, '&station_id=', station_id,
+                 '&s_time_id=', s.time.id, '&s_time_id_f=', sdate, 
+                 '&e_time_id=', e.time.id, '&e_time_id_f=', edate,
+                 '&tod=all&tod_from=0&tod_to=0',
+                 '&dow_0=', dow[1],
+                 '&dow_1=', dow[2],
+                 '&dow_2=', dow[3],
+                 '&dow_3=', dow[4],
+                 '&dow_4=', dow[5],
+                 '&dow_5=', dow[6],
+                 '&dow_6=', dow[7],
+                 '&holidays=', holidays,
+                 '&q=', quantity, '&q2=&agg=on',
+                 '&gn=', granularity,
+                 # '&lane1=on&lane2=on&lane3=on&lane4=on&lane5=on',
+                 '&pagenum_all=1', sep='')
+  # Get TSV data file from website and store as a string in memory
+  r = dynCurlReader()
+  result.string <- getURL(url = r.url, curl = curl)
+  
+  # Write string to file
+  writeLines(result.string, output.filename)
+  
+  # Read table from string into a dataframe
+  freeway_data <- read.csv(text=result.string, sep='\t', header=T,
+                           fill=T, quote='', stringsAsFactors=F)
     
-    # Write string to file
-    writeLines(result.string, output.filename)
-    
-    # Read table from string into a dataframe
-    freeway_data <- read.csv(text=result.string, sep='\t', header=T,
-                             fill=T, quote='', stringsAsFactors=F)
-    
-    
-  # }, error=function(e) {
-  #   cat("ERROR :",conditionMessage(e), "\n")
-  #   return(data.frame(NULL))
-  # })
-  # }
+  num_rows  <- nrow(freeway_data)
+  Station   <- rep(station_df[1,1], num_rows)
+  Freeway   <- rep(station_df[1,2], num_rows)
+  Direction <- rep(station_df[1,3], num_rows)
+  
+  freeway_data <- add_column(freeway_data, Direction,  .after = 1)
+  freeway_data <- add_column(freeway_data, Freeway,    .after = 1)
+  freeway_data <- add_column(freeway_data, Station,    .after = 1)
+  
   return(freeway_data)
 }
 
@@ -348,30 +336,28 @@ s.time.id <- as.character(as.integer(as.POSIXct(search.date,
 # --------------------------------------------------------------------------
 
 # Getting all sensor IDs
+
 all_sensor_ids <- lapply(data.frame(t(freeways)), function(x) {
   name  <- x[[2]]
   dir   <- x[[3]]
   start <- x[[4]]
   end   <- x[[5]]
-  getStationIDs(name, dir, search.date, s.time.id, curl, base.url, data.folder, abspm_start = start, abspm_end = end)
+  getStationIDs(name, dir, search.date, s.time.id,  curl, base.url, data.folder, abspm_start = start, abspm_end = end)
 })
 
-all_sensor_ids <- unlist(unname(all_sensor_ids))
+length(all_sensor_ids)
+all_sensor_ids <- unlist(all_sensor_ids, recursive = FALSE)
 
-
+# Getting 2 sensors example
 getMultiStationMultiValues(all_sensor_ids[1:2], c('flow','occ','speed'), search.date, s.time.id, curl, base.url, data.folder = data.folder)
 
 
 
-
-
+##########################################
 
 # Clean up. Cookies file will be written to disk. Memory will be freed.
 rm(curl)
 gc()
 
 ##########################################
-
-
-
 
