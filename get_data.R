@@ -281,12 +281,8 @@ freeways.of.interest.file <- "freeways_of_interest.txt"
 # - See: https://en.wikipedia.org/wiki/ISO_8601
 # - Dates much match this "regex": '^\\d{4}-\\d{2}-\\d{2}$'
 # - Where this means: four digits, a dash, two digits, a dash, and two digits
-# Examples:
-# search.date <- c('2016-02-05')
-# search.date <- c('2016-02-05', '2016-02-06', '2016-02-07')
-# search.date <- seq(as.Date("2015-01-01"), as.Date("2015-12-31"), "days")
-search.date <- seq(as.Date("2018-04-20"), as.Date("2018-04-20"), "days")
-
+search.range <- seq(as.Date("2018-04-20"), as.Date("2018-04-21"), "days")
+search.date <- as.Date("2018-04-20")
 # Read in configuration file. This file can contain the settings listed above.
 if (file.exists("conf.R")) source("conf.R")
 
@@ -327,16 +323,21 @@ freeways <- indicatePostmiles(freeways)
 search.date <- as.character(search.date)
 search.date <- search.date[grep('^\\d{4}-\\d{2}-\\d{2}$', search.date)]
 
+
+search.range <- as.character(search.range)
+search.range <- search.range[grep('^\\d{4}-\\d{2}-\\d{2}$', search.range)]
+
+
+
 s.time.id <- as.character(as.integer(as.POSIXct(search.date,
                                                 origin="1970-01-01",
                                                 tz = "GMT")))
 
 # --------------------------------------------------------------------------
-# Example: Getting speed, flow, and occupancy of sensors in Maze
+# Example: Getting speed, flow, and occupancy of sensors in Maze (ONE DAY)
 # --------------------------------------------------------------------------
 
 # Getting all sensor IDs
-
 all_sensor_ids <- lapply(data.frame(t(freeways)), function(x) {
   name  <- x[[2]]
   dir   <- x[[3]]
@@ -345,13 +346,39 @@ all_sensor_ids <- lapply(data.frame(t(freeways)), function(x) {
   getStationIDs(name, dir, search.date, s.time.id,  curl, base.url, data.folder, abspm_start = start, abspm_end = end)
 })
 
-length(all_sensor_ids)
 all_sensor_ids <- unlist(all_sensor_ids, recursive = FALSE)
 
 # Getting 2 sensors example
 getMultiStationMultiValues(all_sensor_ids[1:2], c('flow','occ','speed'), search.date, s.time.id, curl, base.url, data.folder = data.folder)
 
 
+# --------------------------------------------------------------------------
+# Example: Getting speed, flow, and occupancy of sensors in Maze (Multiple days)
+# --------------------------------------------------------------------------
+search.range <- as.character(search.range)
+search.range <- search.range[grep('^\\d{4}-\\d{2}-\\d{2}$', search.range)]
+
+search.range
+
+some_data <- rbindlist(lapply(search.range, function (y) { 
+  search.date <- y
+  s.time.id <- as.character(as.integer(as.POSIXct(search.date,
+                                                  origin="1970-01-01",
+                                                  tz = "GMT")))
+  # Getting all sensor IDs
+  all_sensor_ids <- lapply(data.frame(t(freeways)), function(x) {
+    name  <- x[[2]]
+    dir   <- x[[3]]
+    start <- x[[4]]
+    end   <- x[[5]]
+    getStationIDs(name, dir, search.date, s.time.id,  curl, base.url, data.folder, abspm_start = start, abspm_end = end)
+  })
+  
+  all_sensor_ids <- unlist(all_sensor_ids, recursive = FALSE)
+  
+  # Getting 2 sensors example
+  getMultiStationMultiValues(all_sensor_ids[1:2], c('flow','occ','speed'), search.date, s.time.id, curl, base.url, data.folder = data.folder)
+}))
 
 ##########################################
 
