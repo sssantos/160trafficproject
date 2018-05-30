@@ -1,0 +1,32 @@
+Fwy	District	County	City	CA PM	Abs PM	Length	ID	Name	Lanes	Type	Sensor Type	HOV	MS ID	IRM
+SR24-E	4	Alameda	Oakland	2.1	.253	.313	403280	51st st/MLK2 way off-e-coll	3	Mainline	loops	No	DT089	L3-E-33-024-00210
+SR24-E	4	Alameda	Oakland	2.22	.373	.26	400655	42nd and Dover / 51st Street	4	Mainline	loops	No	DT675	L4-E-33-024-00222
+SR24-E	4	Alameda	Oakland	2.62	.773	.335	401381	47th and Dover / 51st Stree	4	Mainline	loops	No	DT068	L4-E-33-024-00262
+SR24-E	4	Alameda	Oakland	2.89	1.043	.44	400103	Shattuck Ave / 55th St	4	Mainline	loops	No	DT069	L4-E-33-024-00289
+SR24-E	4	Alameda	Oakland	R3.5	1.653	.74	402202	FOREST ST UC	4	Mainline	magnetometers	No	DS106	N4-E-33-024-00350
+SR24-E	4	Alameda	Oakland	R4.37	2.523	.865	402479	BROADWAY	4	Mainline	magnetometers	No	DS104	N4-E-33-024-00437
+SR24-E	4	Alameda	Oakland	5.23	3.383	.55	407990	sr 13 rm-e-diag	4	Mainline	loops	No	DTC82	L4-E-33-024-00523
+SR24-E	4	Alameda	Oakland	5.47	3.623	.2	404381	1800' W of Caldecott Ln	4	Mainline	radars	No	DS511	U4-E-33-024-00547
+SR24-E	4	Alameda	Oakland	5.63	3.783	.697	407992	Broadway rm-e-diag	4	Mainline	loops	No	DTC84	L4-E-33-024-00563
+SR24-E	4	Contra Costa		.43	4.824	.761	407987	Fish Ranch rd rm-e-diag	4	Mainline	loops	No	DTC87	L4-E-28-024-00043
+SR24-E	4	Contra Costa	Orinda	1.15	5.498	.467	400048	Gateway Blvd on-e-diag	4	Mainline	loops	No	DT428	L4-E-28-024-00115
+SR24-E	4	Contra Costa	Orinda	1.41	5.758	.33	401687	Gateway Blvd on-e-diag	4	Mainline	loops	No	DT428	L4-E-28-024-00141
+SR24-E	4	Contra Costa	Orinda	1.81	6.158	.42	400736	1200' W of Orinda exit	4	Mainline	loops	No	DT429	L4-E-28-024-00181
+SR24-E	4	Contra Costa	Orinda	2.25	6.598	.425	400438	Camino Pablo off-e-diag	4	Mainline	loops	No	DTA47	L4-E-28-024-00225
+SR24-E	4	Contra Costa	Orinda	2.66	7.008	.375	400345	Davis St on-e-diag	5	Mainline	loops	No	DT430	L5-E-28-024-00266
+SR24-E	4	Contra Costa	Orinda	3	7.348	.32	400389	1650' W of St Stephens Dr OC	5	Mainline	loops	No	DT434	L5-E-28-024-00300
+SR24-E	4	Contra Costa	Orinda	3.3	7.648	.35	401681	1650' W of St Stephens Dr OC	5	Mainline	loops	No	DT434	L5-E-28-024-00330
+SR24-E	4	Contra Costa	Orinda	R3.7	8.048	.375	401746	HIDDEN VALLEY RD/ ST STEPHENS	4	Mainline	loops	No	DT436	L4-E-28-024-00370
+SR24-E	4	Contra Costa	Orinda	4.05	8.398	.415	400323	1200' W OF ACALANES RD	4	Mainline	loops	No	DT438	L4-E-28-024-00405
+SR24-E	4	Contra Costa	Lafayette	4.53	8.878	.335	400171	Acalanes Rd on-e-diag	4	Mainline	loops	No	DT440	L4-E-28-024-00453
+SR24-E	4	Contra Costa	Lafayette	4.72	9.068	.405	400579	EL NIDO RANCH RD	4	Mainline	loops	No	DT442	L4-E-28-024-00472
+SR24-E	4	Contra Costa	Lafayette	5.34	9.688	.515	400532	RISA RD	4	Mainline	loops	No	DT444	L4-E-28-024-00534
+SR24-E	4	Contra Costa	Lafayette	R5.75	10.098	.39	402476	4A5354 LOC 51	4	Mainline	magnetometers	No	DS235	N4-E-28-024-00575
+SR24-E	4	Contra Costa	Lafayette	6.12	10.468	.49	400251	OAK HILL RD	4	Mainline	loops	No	DT447	L4-E-28-024-00612
+SR24-E	4	Contra Costa	Lafayette	6.73	11.078	.43	400197	FIRST ST	4	Mainline	loops	No	DT449	L4-E-28-024-00673
+SR24-E	4	Contra Costa	Lafayette	6.98	11.328	.39	400494	1400' E OF EBMUD AQUEDUCT UC	5	Mainline	loops	No	DT451	L5-E-28-024-00698
+SR24-E	4	Contra Costa	Lafayette	7.51	11.858	.465	401684	1300' W OF PLEASANT HILL RD  U	4	Mainline	loops	No	DT453	L4-E-28-024-00751
+SR24-E	4	Contra Costa	Lafayette	7.91	12.258	.335	401002	Pleasant Hill Rd on-e-coll	4	Mainline	loops	No	DT455	L4-E-28-024-00780
+SR24-E	4	Contra Costa	Lafayette	8.18	12.528	.285	400946	EL CURTOLA	5	Mainline	loops	No	DT456	L5-E-28-024-00818
+SR24-E	4	Contra Costa		8.48	12.828	1.354	400748	Juanita Dr	6	Mainline	loops	No	DT458	L6-E-28-024-00848
+
