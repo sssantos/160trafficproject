@@ -4,6 +4,11 @@
 # Modified by Colin Santos (https://github.com/sssantos)
 # License: GNU GPL v3 http://www.gnu.org/licenses/gpl.txt
 
+# PLEASE REMEMBER TO SET WORKING DIRECTORY 
+# PLEASE REMEMBER TO CHANGE USERNAME AND PASSWORD
+# REQUIRES A TXT FILE TO INDICATE MAZE POSTMILES AND TXT TO INDICATE FREEWAYS OF INTEREST
+
+
 # Close connections and clear objects.
 closeAllConnections()
 rm(list=ls())
@@ -17,10 +22,18 @@ load.pkgs <- function(pkgs, repos = "http://cran.r-project.org") {
 }
 
 # Install packages and load into memory.
-load.pkgs(c("RCurl", "XML", "plyr","data.table","tibble"))
+load.pkgs(c("RCurl", "XML", "plyr","data.table","tibble","tictoc"))
+
+# Session configuration - variables used to set up the HTTP session
+# You should only need to change the first two (username and password).
+username <- 'sssantos@ucdavis.edu'
+password <- ')cg5Bopd2'
+base.url <- 'http://pems.dot.ca.gov'
+user.agent <- 'Mozilla/5.0'         # https://en.wikipedia.org/wiki/User_agent
+cookies <- 'cookies.txt'            # https://en.wikipedia.org/wiki/HTTP_cookie
 
 # --------------------------------------------------------------------------
-# Functions
+# Functions for getting data at Station Level
 # --------------------------------------------------------------------------
 
 # Function getFreeways receives all listed freeways from PeMS 
@@ -184,9 +197,9 @@ getStationValues <- function(station_df, quantity, search.date.str, s.time.id, c
                 content, '&export=', export.type, sep='')
   
   # Combine variables into a "output filename" (output.filename) string
-  output.filename <- paste(data.folder, '/', node.name, '-', 
-                           content, '-', station_id, '-', fdate, 
-                           '.tsv', sep='')
+  # output.filename <- paste(data.folder, '/', node.name, '-', 
+  #                          content, '-', station_id, '-', fdate, 
+  #                          '.tsv', sep='')
   
   # If the data filehas alread been saved, load the file, or get from web
   # cat(freeway, "-", direction, " ")
@@ -213,8 +226,8 @@ getStationValues <- function(station_df, quantity, search.date.str, s.time.id, c
   r = dynCurlReader()
   result.string <- getURL(url = r.url, curl = curl)
   
-  # Write string to file
-  writeLines(result.string, output.filename)
+  # # Write string to file
+  # writeLines(result.string, output.filename)
   
   # Read table from string into a dataframe
   freeway_data <- read.csv(text=result.string, sep='\t', header=T,
@@ -249,19 +262,33 @@ getMultiStationMultiValues <- function(station_ids, quantities, search.date, s.t
   }))
 }
 
+df_build <- function() {rbindlist(lapply(search.range, function (y) { 
+  search.date <- y
+  s.time.id <- as.character(as.integer(as.POSIXct(search.date,
+                                                  origin="1970-01-01",
+                                                  tz = "GMT")))
+  # Getting all sensor IDs
+  all_sensor_ids <- lapply(data.frame(t(freeways)), function(x) {
+    name  <- x[[2]]
+    dir   <- x[[3]]
+    start <- x[[4]]
+    end   <- x[[5]]
+    getStationIDs(name, dir, search.date, s.time.id,  curl, base.url, data.folder, abspm_start = start, abspm_end = end)
+  })
+  
+  all_sensor_ids <- unlist(all_sensor_ids, recursive = FALSE)
+  
+  # Getting 2 sensors example
+  getMultiStationMultiValues(all_sensor_ids[1:2], c('flow','occ','speed'), search.date, s.time.id, curl, base.url, data.folder = data.folder)
+}))
+}
+
 # --------------------------------------------------------------------------
-# Configuration
+# Configuration (EXAMPLE!!!, DO NOT CHANGE)
 # --------------------------------------------------------------------------
 # Data folder configuration - where the data files are to be stored
-data.folder <- 'data'
-
-# Session configuration - variables used to set up the HTTP session
-# You should only need to change the first two (username and password).
-username <- 'sssantos@ucdavis.edu'
-password <- ')cg5Bopd2'
-base.url <- 'http://pems.dot.ca.gov'
-user.agent <- 'Mozilla/5.0'         # https://en.wikipedia.org/wiki/User_agent
-cookies <- 'cookies.txt'            # https://en.wikipedia.org/wiki/HTTP_cookie
+# 
+data.folder <- '/Users/sssantos/Documents/STA160/160trafficdata/data'
 
 # Lanes configuration - specific freeway and direction to query
 # - Freeway-lane entries must be listed as one entry per line
@@ -282,11 +309,8 @@ freeways.of.interest.file <- "freeways_of_interest.txt"
 # - Dates much match this "regex": '^\\d{4}-\\d{2}-\\d{2}$'
 # - Where this means: four digits, a dash, two digits, a dash, and two digits
 search.range <- seq(as.Date("2018-04-20"), as.Date("2018-04-21"), "days")
-search.date <- as.Date("2018-04-20")
 # Read in configuration file. This file can contain the settings listed above.
 if (file.exists("conf.R")) source("conf.R")
-
-
 
 # Create the data folder if needed.
 dir.create(file.path(data.folder), showWarnings = FALSE, recursive = TRUE)
@@ -319,67 +343,21 @@ freeways <- subsetFreeways(freeways, freeways.of.interest.file)
 # Since we are intersted in a specific postmile range
 freeways <- indicatePostmiles(freeways)
 
-# Get detector health for each date and freeway and write to a CSV file.
-search.date <- as.character(search.date)
-search.date <- search.date[grep('^\\d{4}-\\d{2}-\\d{2}$', search.date)]
-
+# search.date <- as.character(search.date)
+# search.date <- search.date[grep('^\\d{4}-\\d{2}-\\d{2}$', search.date)]
 
 search.range <- as.character(search.range)
 search.range <- search.range[grep('^\\d{4}-\\d{2}-\\d{2}$', search.range)]
 
 
-
-s.time.id <- as.character(as.integer(as.POSIXct(search.date,
-                                                origin="1970-01-01",
-                                                tz = "GMT")))
-
-# --------------------------------------------------------------------------
-# Example: Getting speed, flow, and occupancy of sensors in Maze (ONE DAY)
-# --------------------------------------------------------------------------
-
-# Getting all sensor IDs
-all_sensor_ids <- lapply(data.frame(t(freeways)), function(x) {
-  name  <- x[[2]]
-  dir   <- x[[3]]
-  start <- x[[4]]
-  end   <- x[[5]]
-  getStationIDs(name, dir, search.date, s.time.id,  curl, base.url, data.folder, abspm_start = start, abspm_end = end)
-})
-
-all_sensor_ids <- unlist(all_sensor_ids, recursive = FALSE)
-
-# Getting 2 sensors example
-getMultiStationMultiValues(all_sensor_ids[1:2], c('flow','occ','speed'), search.date, s.time.id, curl, base.url, data.folder = data.folder)
-
-
-# --------------------------------------------------------------------------
-# Example: Getting speed, flow, and occupancy of sensors in Maze (Multiple days)
-# --------------------------------------------------------------------------
-search.range <- as.character(search.range)
-search.range <- search.range[grep('^\\d{4}-\\d{2}-\\d{2}$', search.range)]
-
-search.range
-
-some_data <- rbindlist(lapply(search.range, function (y) { 
-  search.date <- y
-  s.time.id <- as.character(as.integer(as.POSIXct(search.date,
-                                                  origin="1970-01-01",
-                                                  tz = "GMT")))
-  # Getting all sensor IDs
-  all_sensor_ids <- lapply(data.frame(t(freeways)), function(x) {
-    name  <- x[[2]]
-    dir   <- x[[3]]
-    start <- x[[4]]
-    end   <- x[[5]]
-    getStationIDs(name, dir, search.date, s.time.id,  curl, base.url, data.folder, abspm_start = start, abspm_end = end)
-  })
-  
-  all_sensor_ids <- unlist(all_sensor_ids, recursive = FALSE)
-  
-  # Getting 2 sensors example
-  getMultiStationMultiValues(all_sensor_ids[1:2], c('flow','occ','speed'), search.date, s.time.id, curl, base.url, data.folder = data.folder)
-}))
-
+tic()
+example_df <- df_build()
+toc()
+write.csv(example_df, "/Users/sssantos/Documents/STA160/160trafficdata/data/example_df")
+#########################################
+# Functions for getting Data at Freeway Level
+#########################################
+### TO WORK ON
 ##########################################
 
 # Clean up. Cookies file will be written to disk. Memory will be freed.

@@ -1,0 +1,484 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html style="height: 100%">
+<head>
+<!-- public -->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="Caltrans, Performance Measurement System, PeMS, Archived Data User Service, ADUS, performance measurement, Intelligent Transportation Systems, ITS, berkeley transportation systems, BTS, traffic data, traffic, california traffic data, california traffic, san francisco traffic, los angeles traffic"/>
+    <title>Caltrans PeMS</title>
+
+        <!-- YUI Styles -->
+    <link rel="stylesheet" type="text/css" href="/Shared/yui/fonts/fonts-min.css?version=17.1" /> 
+    <link rel="stylesheet" type="text/css" href="/Shared/yui/grids/grids-min.css?version=17.1" /> 
+
+    <link rel="stylesheet" type="text/css" href="/Shared/yui/menu/assets/skins/sam/menu.css?version=17.1" /> 
+    <link rel="stylesheet" type="text/css" href="/Shared/yui/datatable/assets/skins/sam/datatable.css?version=17.1" /> 
+    <link rel="stylesheet" type="text/css" href="/Shared/yui/paginator/assets/skins/sam/paginator.css?version=17.1" /> 
+    <link rel="stylesheet" type="text/css" href="/Shared/yui/carousel/assets/skins/sam/carousel.css?version=17.1" /> 
+    <link rel="stylesheet" type="text/css" href="/Shared/yui/button/assets/skins/sam/button.css?version=17.1" /> 
+    <link rel="stylesheet" type="text/css" href="/Shared/yui/container/assets/skins/sam/container.css?version=17.1" /> 
+    <link rel="stylesheet" type="text/css" href="/Shared/yui/menu/assets/skins/sam/menu.css?version=17.1" />
+    <link rel="stylesheet" type="text/css" href="/Shared/yui/calendar/assets/skins/sam/calendar.css?version=17.1" />
+    <link rel="stylesheet" type="text/css" href="/Shared/yui/tabview/assets/skins/sam/tabview.css?version=17.1" />
+    <link rel="stylesheet" type="text/css" href="/Shared/yui/assets/skins/sam/logger.css?version=17.1"/>
+    <link rel="stylesheet" type="text/css" href="/Shared/yui/assets/skins/sam/autocomplete.css?version=17.1"/>
+
+    <!-- Custom styles on top of YUI -->
+    <link rel="stylesheet" type="text/css" href="/Shared/styles/yui.css?version=17.1" /> 
+
+    <!-- Style used for Modal Display boxes -->    
+    <link rel="stylesheet" type="text/css" href="/Shared/styles/modal.css?version=17.1" />      
+
+    <!-- Styles used for vms signs -->
+    <link rel="stylesheet" type="text/css" href="/Shared/styles/vms-styles.css?version=17.1" />
+
+    <!-- Styles used for home page -->
+    <link rel="stylesheet" type="text/css" href="/Shared/styles/home.css?version=17.1" />  
+
+    <!-- Styles used for home page -->
+    <link rel="stylesheet" type="text/css" href="/Shared/styles/rpt_finder.css?version=17.1" />    
+
+    <!-- YUI Scripts -->
+        	    
+    <script language="JavaScript" type="text/javascript" src="/Shared/yui/utilities/utilities.js?version=17.1"></script> 
+    <script language="JavaScript" type="text/javascript" src="/Shared/yui/logger/logger-min.js?version=17.1"></script>
+    <script language="JavaScript" type="text/javascript" src="/Shared/yui/json/json-min.js?version=17.1"></script> 
+    <script language="JavaScript" type="text/javascript" src="/Shared/yui/calendar/calendar-min.js?version=17.1"></script> 
+    <script language="JavaScript" type="text/javascript" src="/Shared/yui/carousel/carousel-min.js?version=17.1"></script> 
+    <script language="JavaScript" type="text/javascript" src="/Shared/yui/container/container-min.js?version=17.1"></script>
+    <script language="JavaScript" type="text/javascript" src="/Shared/yui/paginator/paginator-min.js?version=17.1"></script> 
+    <script language="JavaScript" type="text/javascript" src="/Shared/yui/datasource/datasource-min.js?version=17.1"></script> 
+    <script language="JavaScript" type="text/javascript" src="/Shared/yui/datatable/datatable-min.js?version=17.1"></script>
+    <script language="JavaScript" type="text/javascript" src="/Shared/yui/menu/menu-min.js?version=17.1"></script>
+    <script language="JavaScript" type="text/javascript" src="/Shared/yui/tabview/tabview-min.js?version=17.1"></script>
+    <script language="JavaScript" type="text/javascript" src="/Shared/yui/button/button-min.js?version=17.1"></script>
+    <script language="JavaScript" type="text/javascript" src="/Shared/yui/animation/animation-min.js?version=17.1"></script>
+    <script language="JavaScript" type="text/javascript" src="/Shared/yui/autocomplete/autocomplete-min.js?version=17.1"></script>
+    <script language="JavaScript" type="text/javascript" src="/Shared/yui/dragdrop/dragdrop-min.js?version=17.1"></script>
+    <script language="JavaScript" type="text/javascript" src="/Shared/yui/menu/menu-min.js?version=17.1"></script>
+    <script language="JavaScript" type="text/javascript" src="/Shared/yui/event-mouseenter/event-mouseenter-min.js?version=17.1"></script>
+    <script language="JavaScript" type="text/javascript" src="/Shared/yui/selector/selector-min.js?version=17.1"></script>    
+    <script language="JavaScript" type="text/javascript" src="/Shared/yui/yahoo-dom-event/yahoo-dom-event.js?version=17.1"></script>
+    <script language="JavaScript" type="text/javascript" src="/Shared/yui/slider/slider-min.js?version=17.1"></script>
+
+    <!-- Custom YUI Widgets -->
+    <script language="JavaScript" type="text/javascript" src="/Shared/scripts/yui.js?version=17.1"></script>        <link rel="stylesheet" type="text/css" href="/Shared/styles/jquery.qtip.css" />
+    <link rel="stylesheet" type="text/css" href="/Shared/styles/tooltip.css" />
+    <link rel="stylesheet" type="text/css" href="/Shared/styles/jquery-ui.css?version=17.1" />
+    <link rel="stylesheet" type="text/css" href="/Shared/styles/chosen.css?version=17.1"/>
+    <script language="JavaScript" type="text/javascript" src="/Shared/scripts/jquery.js?version=17.1"></script>
+    <script language="JavaScript" type="text/javascript" src="/Shared/scripts/jquery-ui.js?version=17.1"></script> 
+    <script language="JavaScript" type="text/javascript" src="/Shared/scripts/jquery.slimscroll.js?version=17.1"></script>
+    <script language="JavaScript" type="text/javascript" src="/Shared/scripts/chosen.jquery.js?version=17.1"></script>
+    <script language="JavaScript" type="text/javascript" src="/Shared/scripts/jquery.qtip.js"></script>
+    <script language="JavaScript" type="text/javascript" src="/Shared/scripts/tooltip.js"></script>
+
+         
+    <script>
+        var jquery = jQuery = $;//jQuery.noConflict();
+    </script>
+    	<script>L_PREFER_CANVAS = true;</script>
+	    <link rel="stylesheet" type="text/css" href="/Shared/styles/leaflet.css?version=17.1"/>
+    <!--[if lte IE 8]>
+        <link rel="stylesheet" type="text/css" href="/Shared/styles/leaflet.ie.css?version=17.1"/>
+    <![endif]-->
+    <link rel="stylesheet" type="text/css" href="/Shared/styles/leaflet.awesome-markers.css?version=17.1"/>
+    <link rel="stylesheet" type="text/css" href="/Shared/styles/font-awesome/css/font-awesome.min.css?version=17.1"/>
+    <link rel="stylesheet" type="text/css" href="/Shared/styles/font-awesome/css/font-awesome-ie7.css?version=17.1"/>
+    <link rel="stylesheet" type="text/css" href="/Shared/styles/MarkerCluster.css?version=17.1" />
+    <link rel="stylesheet" type="text/css" href="/Shared/styles/MarkerCluster.thirdparty.css?version=17.1" />
+
+       
+	
+    <script language="JavaScript" type="text/javascript" src="/Shared/scripts/leaflet.js?version=17.1"></script>
+    <script language="JavaScript" type="text/javascript" src="/Shared/scripts/leaflet_extensions.js?version=17.1"></script>
+    <script language="JavaScript" type="text/javascript" src="/Shared/scripts/leaflet_custom_popup.js?version=17.1"></script>
+    <script language="JavaScript" type="text/javascript" src="/Shared/scripts/leaflet.awesome-markers.js?version=17.1"></script>
+    <script language="JavaScript" type="text/javascript" src="/Shared/scripts/leaflet.markercluster-src.js?version=17.1"></script>
+    <script language="JavaScript" type="text/javascript" src="/Shared/scripts/leaflet.polylineDecorator.min.js?version=17.1"></script>
+    <script language="JavaScript" type="text/javascript" src="/Shared/scripts/leaflet_TileLayer.WMS.js?version=17.1"></script>
+    <script language="JavaScript" type="text/javascript" src="/Shared/scripts/spin.min.js?version=17.1"></script>
+    <script language="JavaScript" type="text/javascript" src="/Shared/scripts/leaflet.spin.js?version=17.1"></script>
+    <script language="JavaScript" type="text/javascript" src="/Shared/scripts/leaflet-providers.js?version=17.1"></script>
+
+	<script language="JavaScript" type="text/javascript" src="/Shared/scripts/leaflet-tilelayer-vector/communist.min.js?version=17.1"></script>
+	<script language="JavaScript" type="text/javascript" src="/Shared/scripts/leaflet-tilelayer-vector/TileCache.js?version=17.1"></script>
+	<script language="JavaScript" type="text/javascript" src="/Shared/scripts/leaflet-tilelayer-vector/TileQueue.js?version=17.1"></script>
+	<script language="JavaScript" type="text/javascript" src="/Shared/scripts/leaflet-tilelayer-vector/AbstractWorker.js?version=17.1"></script>
+	<script language="JavaScript" type="text/javascript" src="/Shared/scripts/leaflet-tilelayer-vector/CatilineWorker.js?version=17.1"></script>
+	<script language="JavaScript" type="text/javascript" src="/Shared/scripts/leaflet-tilelayer-vector/CommunistWorker.js?version=17.1"></script>
+	<script language="JavaScript" type="text/javascript" src="/Shared/scripts/leaflet-tilelayer-vector/TileLayer.GeoJSON.js?version=17.1"></script>
+	<script language="JavaScript" type="text/javascript" src="/Shared/scripts/leaflet-tilelayer-vector/TileLayer.Vector.Unclipped.js?version=17.1"></script>
+	<script language="JavaScript" type="text/javascript" src="/Shared/scripts/leaflet-tilelayer-vector/TileLayer.Vector.Debug.js?version=17.1"></script>
+	<script language="JavaScript" type="text/javascript" src="/Shared/scripts/leaflet-tilelayer-vector/TileLayer.Div.js?version=17.1"></script>
+	<script language="JavaScript" type="text/javascript" src="/Shared/scripts/leaflet-tilelayer-vector/TileLayer.Progress.js?version=17.1"></script>
+	<script language="JavaScript" type="text/javascript" src="/Shared/scripts/leaflet-tilelayer-vector/TileLayer.Overzoom.js?version=17.1"></script>
+	<script language="JavaScript" type="text/javascript" src="/Shared/scripts/leaflet-tilelayer-vector/Leaflet.label-patch.js?version=17.1"></script>
+	
+
+
+    <script type="text/javascript">
+
+  var baselayer = {
+    layerProvider: 'Nokia.baseTile',
+    layerAttributes: {
+          attribution: '&copy; HERE',
+          zIndex: 0,
+          appCode:'VBZyS8fI3w9rSOEzuG4M-Q',	 
+          appID:'J66tb7SzTgOol6wrHaru'
+      }
+  };
+  
+  var labelLayer = {
+    layerProvider: 'Nokia.labelTile',
+    layerAttributes: {
+          attribution: '&copy; HERE',
+          zIndex: 99,
+          appCode:'VBZyS8fI3w9rSOEzuG4M-Q',	 
+          appID:'J66tb7SzTgOol6wrHaru'
+      }
+  };
+
+</script> 
+
+    <script language="JavaScript" type="text/javascript" src="/Shared/scripts/leaflet.resetcontrol.js?version=17.1"></script>
+    <script language="JavaScript" type="text/javascript" src="/Shared/scripts/Polyline.encoded.js?version=17.1"></script>
+
+    <script language="JavaScript" type="text/javascript" src="/Shared/scripts/PEMSSlippyMapManager.js?rnd=051b1a9b94d19e0c8c377c46b4804245"></script>
+    <script language="JavaScript" type="text/javascript" src="/Shared/scripts/simpleheat.js?version=17.1"></script>
+    <script language="JavaScript" type="text/javascript" src="/Shared/scripts/Leaflet.heat.js?version=17.1"></script>
+    <script language="JavaScript" type="text/javascript" src="/Shared/scripts/leaflet-hash.js?version=17.1"></script>         <script language="JavaScript" type="text/javascript" src="/Shared/scripts/moment-with-locales.min.js?version=17.1"></script>
+    <script language="JavaScript" type="text/javascript" src="/Shared/scripts/moment-timezone-with-data-2010-2020.min.js?version=17.1"></script>    
+
+    <link rel="stylesheet" type="text/css" href="/Shared/styles/public.css?rnd=051b1a9b94d19e0c8c377c46b4804245"/>
+    <link rel="stylesheet" type="text/css" href="/Shared/styles/infowin.css?version=17.1"/>
+        <link rel="stylesheet" type="text/css" href="/styles/ctpems.css"/>
+    
+    <script type="text/javascript" src="/Shared/scripts/srch_core.js?rnd=051b1a9b94d19e0c8c377c46b4804245"></script>
+    <script type="text/javascript" src="/Shared/scripts/srch_rt.js?rnd=051b1a9b94d19e0c8c377c46b4804245"></script>
+    <script type="text/javascript" src="/Shared/scripts/srch_explore.js?rnd=051b1a9b94d19e0c8c377c46b4804245"></script>
+
+    <script type="text/javascript">
+
+    var myVars = {"centerLat":32.95065585,"centerLng":-117.12164835,"defaultZoom":10,"minMapScale":7,"maxMapScale":18,"minTileScale":7,"maxTileScale":18,"tilebase":"http:\/\/svgcpemsdb6.dot.ca.gov\/tiles\/","viewClass":"YAHOO.bts.search.RealTimeView","features":["animation","clearinghouse","solr_search","corridors","detector_notes","dss","freeways","lane_closures","managed_facilities","routes","safety","tagreaders","traffic_counters","transit","truck_volume_estimation","add_sta_attr","use_speed","variable_message_signs","conventional_hwy","third_party_data","gn_speed","gn_speed_tmc","gn_anomalies_tmc","gn_quality"],"explorer":{"hideRoadway":true}};
+
+    
+    jQuery(document).ready(function() {
+      YAHOO.bts.search.Controller.bootstrap(myVars);
+    });
+    
+
+    </script>
+
+  </head>
+
+  <body class="yui-skin-sam public">
+
+    <div id="maincontainer" style="height: 100%">
+
+      
+
+
+<script type="text/javascript">
+
+YAHOO.util.Event.onDOMReady(function() {
+
+    YAHOO.util.Event.addListener('username', 'focus', function() {
+        if (this.value == 'Username') {
+            YAHOO.util.Dom.setStyle(this, 'color', '#000000');
+            this.value = '';
+        }
+        return true;
+    });
+
+    YAHOO.util.Event.addListener('username', 'blur', function() {
+        if (this.value.length == 0) {
+            YAHOO.util.Dom.setStyle(this, 'color', '#d0d0d0');
+            this.value = 'Username';
+        }
+        return true;
+    });
+});
+
+</script>
+
+
+
+<div id="top_banner" class="public_banner">
+  <a id="heading"></a>
+  <table style="width: 100%">
+    <tr>
+      <td style="width: 420px; vertical-align: middle">
+        <a href="/">
+<img src="/Images/ct_logo.gif" alt="Caltrans" style="border: none"/>
+<img src="/Images/caltrans.gif" alt="DoT" style="border: none"/>
+</a>      </td>
+      <td style="vertical-align: bottom">
+        <form class="login_form" name="ua" action="/" method="post">
+          <input type="hidden" name="redirect" value="%2F%3Freport_form%3D1%26dnode%3DFreeway%26content%3Dspatial%26tab%3Dmst%26export%3Dxls%26fwy%3D880%26dir%3DS%26s_time_id%3D1527033600%26s_time_id_f%3D05%252F23%252F2018%26e_time_id%3D1527724740%26e_time_id_f%3D05%252F30%252F2018%26start_pm%3D.03%26end_pm%3D45.45%26gn%3Dhour%26q%3Dflow%26ihv%3Don"/>
+          <fieldset>
+
+                          <span style="display: none; color: #BC3E06; padding: none">
+              Incorrect username or password.
+              </span>            
+            
+            <div class="row">
+              <input id="username" name="username" type="text" maxlength="128" value="Username" style="color: #d0d0d0; width: 150px"/>
+            </div>
+
+            <div class="row">
+              <input id="password" name="password" type="password" maxlength="64" value="" style="width: 150px"/>
+            </div>
+
+            <div class="row" style="margin-left: 2px">
+              <input name="login" type="submit" value="Login"/>
+            </div>
+
+            <div style="clear: both;"></div>
+
+            <p style="padding: 0 0 0 160px; margin: 0; font-size: 8pt;">
+              <a href="/?dnode=pass">Forgot your password?</a>
+            </p>
+          </fieldset>
+        </form>
+      </td>
+    </tr>
+  </table>
+</div>
+      <div id="mapcontainer">
+        <div id="map">
+          <noscript>
+          <div style="margin: 10px 10px">
+          <b>JavaScript must be enabled in order for you to view this page.</b> 
+          However, it seems JavaScript is either disabled or not supported by 
+          your browser. Please enable JavaScript by changing your browser 
+          options, and then try again.
+          </div>
+          </noscript>
+        </div>
+      </div>
+
+      <div id="panel">
+        <div class="innertube">
+          
+
+<h2>Welcome to PeMS</h2>
+
+<p>
+Welcome to the Caltrans Performance Measurement System (PeMS).
+The traffic data displayed on the map is collected in real-time
+from over 39,000 individual detectors. These sensors span the freeway 
+system across all major metropolitan areas of the State of California.
+</p>
+      
+<p>
+PeMS is also an Archived Data User Service (ADUS) that provides over
+ten years of data for historical analysis.  It integrates 
+a wide variety of information from Caltrans and other local
+agency systems including:
+</p>
+
+<table style="margin: 0 auto;">
+  <tr style="vertical-align: top">
+    <td style="white-space: nowrap"> 
+      <ul class="featurelist">
+        <li>Traffic Detectors</li>
+        <li>Incidents</li>
+        <li>Lane Closures</li>
+        <li>Toll Tags</li>
+      </ul>
+    </td>
+    <td style="white-space: nowrap; padding-left: 20px"> 
+      <ul class="featurelist">
+        <li>Census Traffic Counts</li>
+        <li>Vehicle Classification</li>
+        <li>Weight-In-Motion</li>
+        <li>Roadway Inventory</li>
+      </ul>
+    </td>
+  </tr>
+</table>
+
+<p>
+To use this site, you must 
+<a href="/?dnode=apply">apply for an account</a>.
+Registering only takes a few minutes. Accounts are typically approved 
+within one to two business days.
+</p>
+
+<p>
+This web site has been tested with Internet Explorer 7+, Mozilla 
+Firefox 3+ and Chrome. Your browser security settings must 
+allow cookies and JavaScript for this site to work correctly. 
+</p>        </div>
+      </div>
+
+      <div class="public_footer">
+
+  <div class="public_footer_top">
+    <a href="#heading">Back to Top</a>&nbsp;|&nbsp;
+    <a href="mailto:timothy.hart@dot.ca.gov">Contact Us</a>&nbsp;|&nbsp;
+    <a href="http://www.dot.ca.gov">Caltrans Home</a>
+  </div>
+
+  <p style="color: #000000">
+    <a href="/?view=tou">Conditions of Use</a>&nbsp;|&nbsp;
+    <a href="/?view=privacy">Privacy Policy</a>
+    <br/>
+    Copyright &copy; 2018 State of California
+  </p>
+
+</div>
+
+
+<script type="text/javascript">
+    jQuery(document).ready(function() {        
+        var currentTime = moment().tz("America/Los_Angeles");
+        var currentDay = currentTime.day();
+        var currentHour = currentTime.hour();
+        
+        if (currentDay === 0 && currentHour <= 19) {
+            alert('Every Sunday from 9 a.m. - 7 p.m., maintenance activities are performed that can impact PeMS. Please be aware that these activities can sometimes prevent users from logging in, and sometimes interfere with report generation, causes reports to be slow or time out. We apologize for any inconvenience.');
+        }
+    });
+</script>
+
+      <div id="wait" style="position: absolute; display: none">
+        <img src="/Shared/Images/loader.gif" alt="Loading..."/>
+      </div>
+
+      <div id="speed_legend_freeway" class="srch_block_legend_group" style="display:none;">
+        <table class="srch_block_legend"  >
+    <tr>
+    <td style="background: #009900" title="60 and over">&nbsp;60+</td><td class="spacer">&nbsp;</td><td style="background: #89c700" title="55 - 59">55-59</td><td class="spacer">&nbsp;</td><td style="background: #ffff00" title="50 - 54">50-54</td><td class="spacer">&nbsp;</td><td style="background: #ffcc00" title="45 - 49">45-49</td><td class="spacer">&nbsp;</td><td style="background: #ff9900" title="40 - 44">40-44</td><td class="spacer">&nbsp;</td><td style="background: #ff6600" title="35 - 39">35-39</td><td class="spacer">&nbsp;</td><td style="background: #ff0000; color:#ffffff;" title="35 and under">&le;&nbsp;35</td>
+  </tr>
+  </table>        <div style="font-weight: bold; font-size: 8pt">
+        Speed (mph) as of <span id="fwy_timestamp">-</span>
+        </div>
+      </div>
+
+      <div id="speed_legend_arterial" class="srch_block_legend_group" style="display:none;">
+        <table class="srch_block_legend"  >
+    <tr>
+    <td style="background: #ff0000" title="90 and over">&nbsp;90+</td><td class="spacer">&nbsp;</td><td style="background: #ff9900" title="89 - 80">89-80</td><td class="spacer">&nbsp;</td><td style="background: #ffcc00" title="79 - 70">79-70</td><td class="spacer">&nbsp;</td><td style="background: #ffff00" title="69 - 60">69-60</td><td class="spacer">&nbsp;</td><td style="background: #89c700" title="59 - 51">59-51</td><td class="spacer">&nbsp;</td><td style="background: #009900; color:#ffffff;" title="50 and under">&le;&nbsp;50</td>
+  </tr>
+  </table>        <div style="font-weight: bold; font-size: 8pt">
+        Occ (%) as of <span id="art_timestamp">-</span>
+        </div>
+      </div>
+
+      
+<div style="display: none">
+
+  <div id="srch_iw_default" class="infoWindow">
+    <div class="hd">
+    </div>
+    <div class="bd">
+    </div>
+    <div class="ft">
+    </div>
+  </div>
+
+  <div id="srch_iw_vms_active" class="infoWindow">
+    <div class="hd">
+      <a class="title">Changeable Message Sign<br/><span>&nbsp;</span></a>
+    </div>
+    <div class="bd">
+      <div class="srch_vms_page">
+      &nbsp;<br/>&nbsp;<br/>&nbsp;<br/>
+      </div>
+      <div class="srch_vms_page"></div>
+      <div class="srch_vms_page"></div>
+      <div class="srch_vms_page"></div>
+
+        <img src="/Shared/Images/clear.gif" alt="" class="bitmap">
+    </div>
+    
+    <div class="ft">
+    Last Update: <span>&nbsp;</span>
+    </div>
+  </div>
+
+  <div id="srch_iw_vms_inactive" class="infoWindow">
+    <div class="hd">
+      <a class="title">Changeable Message Sign<br/><span>&nbsp;</span></a>
+    </div>
+    <div class="bd">
+    Sign is not currently active.
+    </div>
+    <div class="ft">
+    Last Update: <span>&nbsp;</span>
+    </div>
+  </div> 
+
+  <div id="srch_iw_transit_arrival" class="infoWindow">
+
+    <div class="hd">
+      <a class="title" id="iw_transit_arrival_title">Route</a>
+    </div>
+
+    <div class="bd">
+
+      <table class="blue_outline_table">
+        <tr class="oddrow">
+          <td>Agency</td><td class="iw_transit_agency"></td>
+        </tr>
+        <tr class="evenrow">
+          <td>Patterns</td><td class="iw_transit_patterns"></td>
+        </tr>
+        <tr class="oddrow">
+          <td>Stops</td><td class="iw_transit_stops"></td>
+        </tr>
+      </table>
+        <br>
+      <table class="blue_outline_table">
+        <tr class="oddrow">
+          <td>Location</td><td class="iw_transit_nextloc"></td>
+        </tr>
+        <tr class="evenrow">
+          <td>Estimated</td><td class="iw_transit_est"></td>
+        </tr>
+        <tr class="oddrow">
+          <td>Scheduled</td><td class="iw_transit_sched"></td>
+        </tr>
+        <tr class="evenrow">
+          <td>Schedule Deviation</td><td class="iw_transit_dev"></td>
+        </tr>
+        <tr class="oddrow">
+          <td>Off Route</td><td class="iw_transit_offrte"></td>
+        </tr>
+        <tr class="evenrow" style="display: none">
+          <td>Vehicle ID</td><td class="iw_transit_vehicle"></td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="ft">
+    Last Update: <span id="iw_transit_timestamp">&nbsp;</span>
+    </div>
+  </div>
+</div>      <!-- Google Analytics Active: UA-5425852-2 -->
+<script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-5425852-2']);
+_gaq.push(['_setCustomVar',1,'directory','',3]);
+_gaq.push(['_setCustomVar',2,'content','',3]);
+_gaq.push(['_setCustomVar',3,'tab','',3]);
+_gaq.push(['_trackPageview']);
+ 
+(function() {
+var ga = document.createElement('script');
+ga.src = ('https:' == document.location.protocol ?
+    'https://ssl' : 'http://www') +
+    '.google-analytics.com/ga.js';
+ga.setAttribute('async', 'true');
+document.documentElement.firstChild.appendChild(ga);
+})();
+</script>
+
+
+    </div>
+
+  </body>
+</html>

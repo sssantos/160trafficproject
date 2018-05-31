@@ -185,8 +185,8 @@ I80-E	3	Yolo	West Sacramento	R11	83.187	1.063	317884	Reed Ave	3	Mainline	loops	N
 I80-E	3	Sacramento		M.4	84.305	.751	315804	Bryte Bend Bridge	3	Mainline	loops	No		
 I80-E	3	Sacramento		M1.291	85.196	.522	320442	SB W. El Camino Ave	4	Mainline		No		
 I80-E	3	Sacramento		M1.445	85.35	.19	320457	NB W. El Camino Ave	4	Mainline		No		
-I80-E	3	Sacramento		M1.671	85.576	.678	320628	E of West El Camino	4	Mainline		No		
 I80-E	3	Sacramento		M1.671	85.576	2.2	320629	E of West El Camino	1	HOV		24H		
+I80-E	3	Sacramento		M1.671	85.576	.678	320628	E of West El Camino	4	Mainline		No		
 I80-E	3	Sacramento	Sacramento	M2.8	86.705	.954	316140	San Juan Rd OC	2	Mainline	loops	No		
 I80-E	3	Sacramento	Sacramento	M2.918	86.823	.954	320612	San Juan OC	1	HOV		24H		
 I80-E	3	Sacramento	Sacramento	M3.58	87.485	.431	320501	SB Truxel Rd.	1	HOV		24H	TA-252	
@@ -212,38 +212,38 @@ I80-E	3	Sacramento	Sacramento	M7.755	91.66	.326	320660	NB Raleys Blvd	1	HOV		24H
 I80-E	3	Sacramento	Sacramento	M8.175	92.08	.542	316018	Pinell Street OC	3	Mainline	loops	No		
 I80-E	3	Sacramento	Sacramento	M8.234	92.139	.867	320592	Pinell Street OC	1	HOV		24H		
 I80-E	3	Sacramento	Sacramento	M8.752	92.657	.656	316045	Winter St to 80EB	3	Mainline	loops	No		
-I80-E	3	Sacramento	Sacramento	M9.489	93.394	.874	316063	Longview Dr	4	Mainline	loops	No		
 I80-E	3	Sacramento	Sacramento	M9.489	93.394	1.133	316064	Longview Dr	1	HOV	loops	24H		
+I80-E	3	Sacramento	Sacramento	M9.489	93.394	.874	316063	Longview Dr	4	Mainline	loops	No		
 I80-E	3	Sacramento		R10.78	94.405	.756	314514	Watt Ave	3	Mainline	radars	No		
 I80-E	3	Sacramento		R10.78	94.405	.756	315862	Watt Ave	1	HOV	radars	24H		
-I80-E	3	Sacramento		R11.281	94.906	.493	316387	Rte 244 to 80EB	5	Mainline	loops	No		
 I80-E	3	Sacramento		R11.281	94.906	.493	316388	Rte 244 to 80EB	1	HOV	loops	24H		
-I80-E	3	Sacramento		11.892	95.392	.508	315863	Myrtle Ave.	1	HOV	radars	24H	R108	
+I80-E	3	Sacramento		R11.281	94.906	.493	316387	Rte 244 to 80EB	5	Mainline	loops	No		
 I80-E	3	Sacramento		11.892	95.392	.508	313376	Myrtle Ave.	6	Mainline	radars	No	R108	
-I80-E	3	Sacramento		12.422	95.922	.358	316328	EB Madison Ave	5	Mainline	loops	No		
+I80-E	3	Sacramento		11.892	95.392	.508	315863	Myrtle Ave.	1	HOV	radars	24H	R108	
 I80-E	3	Sacramento		12.422	95.922	.358	317168	EB Madison Ave	1	HOV	loops	24H		
-I80-E	3	Sacramento		12.608	96.108	.289	317171	WB Madison Ave	1	HOV	loops	24H		
+I80-E	3	Sacramento		12.422	95.922	.358	316328	EB Madison Ave	5	Mainline	loops	No		
 I80-E	3	Sacramento		12.608	96.108	.289	316314	WB Madison Ave	5	Mainline	loops	No		
+I80-E	3	Sacramento		12.608	96.108	.289	317171	WB Madison Ave	1	HOV	loops	24H		
 I80-E	3	Sacramento		13	96.5	.546	315864	E of Madison Ave	1	HOV	radars	24H	R110	
 I80-E	3	Sacramento		13	96.5	.546	313393	E of Madison Ave	5	Mainline	radars	No	R110	
-I80-E	3	Sacramento		13.7	97.2	.705	313406	Foothills Farm	5	Mainline	radars	No	R112	
 I80-E	3	Sacramento		13.7	97.2	.705	315865	Foothill Farm POC	1	HOV	radars	24H	R112	
-I80-E	3	Sacramento		14.41	97.91	.45	315866	EB Greenback Lane	1	HOV	loops	24H		
+I80-E	3	Sacramento		13.7	97.2	.705	313406	Foothills Farm	5	Mainline	radars	No	R112	
 I80-E	3	Sacramento		14.41	97.91	.45	314460	EB Greenback Lane	4	Mainline	loops	No		
+I80-E	3	Sacramento		14.41	97.91	.45	315866	EB Greenback Lane	1	HOV	loops	24H		
 I80-E	3	Sacramento		14.599	98.099	.245	315867	WB Greenback Lane	1	HOV	loops	24H		
 I80-E	3	Sacramento		14.599	98.099	.245	314446	WB Greenback Lane	4	Mainline	loops	No		
 I80-E	3	Sacramento		14.9	98.4	.4	315868	Springwood Dr.	1	HOV	radars	24H	R114	
 I80-E	3	Sacramento		14.9	98.4	.4	313420	Springwood Dr.	4	Mainline	radars	No	R114	
-I80-E	3	Sacramento		15.4	98.9	.5	313432	Flaming Arrow Dr.	4	Mainline	radars	No	R116	
 I80-E	3	Sacramento		15.4	98.9	.5	315869	Flaming Arrow Dr.	1	HOV	radars	24H	R116	
+I80-E	3	Sacramento		15.4	98.9	.5	313432	Flaming Arrow Dr.	4	Mainline	radars	No	R116	
 I80-E	3	Sacramento		15.9	99.4	.55	315870	Weigh Station	1	HOV	radars	24H	R118	
 I80-E	3	Sacramento		15.9	99.4	.55	313567	Weigh Station	4	Mainline	radars	No	R118	
-I80-E	3	Sacramento		16.5	100	.4	313444	Antelope Rd. Off	4	Mainline	radars	No	R120	
 I80-E	3	Sacramento		16.5	100	.4	315871	Antelope Rd. Off	1	HOV	radars	24H	R120	
-I80-E	3	Sacramento		16.7	100.2	.35	313456	JEO Antelope Rd	4	Mainline	radars	No	R122	
+I80-E	3	Sacramento		16.5	100	.4	313444	Antelope Rd. Off	4	Mainline	radars	No	R120	
 I80-E	3	Sacramento		16.7	100.2	.35	315876	JEO Antelope Rd	1	HOV		24H	R122	
-I80-E	3	Sacramento		17.2	100.7	.5	313469	Westwood Park	4	Mainline	radars	No	R124	
+I80-E	3	Sacramento		16.7	100.2	.35	313456	JEO Antelope Rd	4	Mainline	radars	No	R122	
 I80-E	3	Sacramento		17.2	100.7	.5	315877	Westwood Park	1	HOV	radars	24H	R124	
+I80-E	3	Sacramento		17.2	100.7	.5	313469	Westwood Park	4	Mainline	radars	No	R124	
 I80-E	3	Sacramento		17.7	101.2	.65	315878	Auburn Oaks Ct.	1	HOV	radars	24H	R126	
 I80-E	3	Sacramento		17.7	101.2	.65	313482	Auburn Oaks Ct.	4	Mainline	radars	No	R126	
 I80-E	3	Placer	Roseville	.253	101.753	.176	319351	NB Auburn Blvd	4	Mainline		No		
@@ -252,18 +252,18 @@ I80-E	3	Placer	Roseville	.299	101.799	.209	316414	Auburn Blvd	4	Mainline	loops	N
 I80-E	3	Placer	Roseville	.316	101.816	.209	319355	NB Auburn Blvd	1	HOV		24H		
 I80-E	3	Placer	Roseville	.671	102.171	.49	318620	Cirby Way	4	Mainline	loops	No		
 I80-E	3	Placer	Roseville	.671	102.171	.481	318619	Cirby Way	1	HOV		24H		
-I80-E	3	Placer	Roseville	1.279	102.779	.592	318926	Darling Way	1	HOV		24H		
 I80-E	3	Placer	Roseville	1.279	102.779	.592	318927	Darling Way	4	Mainline		No		
+I80-E	3	Placer	Roseville	1.279	102.779	.592	318926	Darling Way	1	HOV		24H		
 I80-E	3	Placer	Roseville	1.855	103.355	.419	318665	EB Douglas Ave	1	HOV	loops	24H		
 I80-E	3	Placer	Roseville	1.855	103.355	.419	318666	EB Douglas Ave	4	Mainline	loops	No		
 I80-E	3	Placer	Roseville	2.117	103.617	.342	318649	WB Douglas Blvd	1	HOV	loops	24H		
 I80-E	3	Placer	Roseville	2.117	103.617	.342	318650	WB Douglas Blvd	4	Mainline	loops	No		
-I80-E	3	Placer	Roseville	2.538	104.038	.428	318941	Lead Hills Dr.	1	HOV		24H		
 I80-E	3	Placer	Roseville	2.538	104.038	.428	318942	Lead Hills Dr.	4	Mainline		No		
+I80-E	3	Placer	Roseville	2.538	104.038	.428	318941	Lead Hills Dr.	1	HOV		24H		
 I80-E	3	Placer	Roseville	2.974	104.474	.316	318800	Atlantic St	1	HOV	loops	24H		
 I80-E	3	Placer	Roseville	2.974	104.474	.316	318801	Atlantic St	4	Mainline	loops	No		
-I80-E	3	Placer	Roseville	3.17	104.67	.191	318832	Eureka Rd	1	HOV	loops	24H		
 I80-E	3	Placer	Roseville	3.17	104.67	.191	318844	Eureka Rd	4	Mainline	loops	No		
+I80-E	3	Placer	Roseville	3.17	104.67	.191	318832	Eureka Rd	1	HOV	loops	24H		
 I80-E	3	Placer	Roseville	3.356	104.856	1.065	318764	Roseville Pkwy	5	Mainline	loops	No		
 I80-E	3	Placer	Roseville	3.356	104.856	1.065	318775	Roseville Pkwy	1	HOV	loops	24H		
 I80-E	3	Placer	Roseville	5.3	106.8	1.622	317002	W. of Rocklin Rd	2	Mainline	magnetometers	No		
