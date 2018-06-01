@@ -4,15 +4,6 @@
 # Modified by Colin Santos (https://github.com/sssantos)
 # License: GNU GPL v3 http://www.gnu.org/licenses/gpl.txt
 
-# NOTE FROM COLIN
-# PLEASE REMEMBER TO SET WORKING DIRECTORY 
-# PLEASE REMEMBER TO CHANGE USERNAME AND PASSWORD
-# REQUIRES A TXT FILE TO INDICATE MAZE POSTMILES AND TXT TO INDICATE FREEWAYS OF INTEREST
-#      A default (all) maze postmiles indicated in postmiles.txt
-#      A default (all) all freeways indicated in freeways_of_interst.txt
-# PLEASE SAVE DATA IN /160trafficdata and not in /160trafficproject
-
-
 # Close connections and clear objects.
 closeAllConnections()
 rm(list=ls())
@@ -28,17 +19,27 @@ load.pkgs <- function(pkgs, repos = "http://cran.r-project.org") {
 # Install packages and load into memory.
 load.pkgs(c("RCurl", "XML", "plyr","data.table","tibble","tictoc","xlsx"))
 
-# Session configuration - variables used to set up the HTTP session
-# You should only need to change the first two (username and password).
+
+# NOTE FROM COLIN
+# PLEASE REMEMBER TO SET WORKING DIRECTORY 
+# PLEASE REMEMBER TO INDICATE DATA DIRECTORY, '/data' is for downloaded files, '/df' is for data frames we saved
+data.folder <- '/Users/sssantos/Documents/STA160/160trafficdata/data'
+dataframe_folder <- '/Users/sssantos/Documents/STA160/160trafficdata/df'
+# PLEASE REMEMBER TO CHANGE USERNAME AND PASSWORD
 username <- 'sssantos@ucdavis.edu'
 password <- ')cg5Bopd2'
 base.url <- 'http://pems.dot.ca.gov'
 user.agent <- 'Mozilla/5.0'         # https://en.wikipedia.org/wiki/User_agent
 cookies <- 'cookies.txt'            # https://en.wikipedia.org/wiki/HTTP_cookie
+# REQUIRES A TXT FILE TO INDICATE MAZE POSTMILES AND TXT TO INDICATE FREEWAYS OF INTEREST
+#      A default (all) maze postmiles indicated in postmiles.txt
+#      A default (all) all freeways indicated in freeways_of_interst.txt
+# PLEASE SAVE DATA IN /160trafficdata folder and not in /160trafficproject
 
-# --------------------------------------------------------------------------
-# Functions for getting data at Station Level
-# --------------------------------------------------------------------------
+
+############################################################################################
+# Functions For Creating Freeway DF limited to MAZE
+############################################################################################
 
 # Function getFreeways receives all listed freeways from PeMS 
 # input: html
@@ -93,7 +94,9 @@ indicatePostmiles <- function(freeways) {
   df
 }
 
-
+############################################################################################
+# Functions for gathering data at Station node level (NOT RECOMMENDED FOR LARGE AMOUNTS OF DAYS/STATIONS)
+############################################################################################
 ## Function getStationIDs will fetch page with station ID's for a freeway
 # If no postmiles explicitly indicated, defaults to entire freeway
 getStationIDs <- function(freeway, direction, search.date.str,
@@ -287,12 +290,139 @@ df_build <- function() {rbindlist(lapply(search.dates, function (y) {
 }))
 }
 
-# --------------------------------------------------------------------------
-# Configuration (EXAMPLE!!!, DO NOT CHANGE)
-# --------------------------------------------------------------------------
-# Data folder configuration - where the data files are to be stored
-# 
-data.folder <- '/Users/sssantos/Documents/STA160/160trafficdata/data'
+
+# Example Usage with timing
+# tic()
+# example_df <- df_build() 
+# toc()
+# write.csv(example_df, "/Users/sssantos/Documents/STA160/160trafficdata/data/example_df")
+############################################################################################
+# Functions for getting Data at Freeway Level
+############################################################################################
+getSpatial <- function(freeway, direction, abspm_start, abspm_end, quantity = 'flow', 
+                            start_search.date.str = start, end_search.date.str = end,
+                            curl, base.url, granularity = 'hour', data.folder) {
+  
+  s.time.id <- as.character(as.integer(as.POSIXct(start_search.date.str,
+                                                  origin="1970-01-01",
+                                                  tz = "GMT")))
+  e.time.id <- as.character(as.integer(as.POSIXct(end_search.date.str,
+                                                  origin="1970-01-01",
+                                                  tz = "GMT")))
+  
+  
+  # Parse the search.date.str into a vector
+  start_search.date.v <- unlist(strsplit(start_search.date.str, '-'))
+  names(start_search.date.v) <- c("year", "month", "day")
+  
+  # Combine variables into a "start date" (sdate) string
+  sdate <- paste(paste(start_search.date.v[['month']], 
+                       start_search.date.v[['day']], 
+                       start_search.date.v[['year']], 
+                       sep='%2F'), 
+                 '+00%3A00', sep = '')
+  
+  # Parse the search.date.str into a vector
+  end_search.date.v <- unlist(strsplit(end_search.date.str, '-'))
+  names(end_search.date.v) <- c("year", "month", "day")
+  
+  # Combine variables into a "start date" (sdate) string
+  edate <- paste(paste(end_search.date.v[['month']], 
+                       end_search.date.v[['day']], 
+                       end_search.date.v[['year']], 
+                       sep='%2F'), 
+                 '+00%3A00', sep = '')
+  
+  
+  
+  # Combine variables into a "file date" (fdate) string
+  fdate <- paste(start_search.date.v[['year']], 
+                 start_search.date.v[['month']], 
+                 start_search.date.v[['day']], 
+                 sep='')
+  
+  # Page configuration - query specification for type of report page
+  form.num <- '1'
+  node.name <- 'Freeway'
+  content <- '&content=spatial&tab=mst'
+  export.type <- 'xls'
+  
+  # Combine variables into a "page" (page) string
+  page <- paste('report_form=', form.num, '&dnode=', node.name, '&content=', 
+                content, '&export=', export.type, sep='')
+ 
+  r.url <- paste(base.url, '/?', page, '&fwy=', freeway, '&dir=', direction,
+                 '&s_time_id=', s.time.id, '&s_time_id_f=', sdate, 
+                 '&e_time_id=', e.time.id, '&e_time_id_f=', edate,
+                 '&q=', quantity, '&q2=&agg=on',
+                 '&start_pm=', abspm_start, '&end_pm=', abspm_end,
+                 '&gn=', granularity, '&ihv=on&html.x=50&html.y=12',
+                 sep='')
+
+  output.filename <- paste(data.folder, '/', node.name, '_',
+                           quantity, '_', freeway, direction, '_', fdate,
+                           '.xls', sep='')
+  # Get TSV data file from website and store as a string in memory
+  if(!file.exists(output.filename)) {
+    
+    r = dynCurlReader()
+    z <- getURLContent(url = r.url, curl = curl, binary = TRUE)
+  
+
+ 
+    con = file(output.filename, "wb")
+    .Internal(writeBin(z, con, 1, FALSE, TRUE))
+    close(con)
+  }
+
+
+  freeway_data <- suppressWarnings(read.xlsx2(output.filename,1))
+  
+  #Formatting data frame
+  fd <- sapply(freeway_data, as.character)
+  x <- ncol(fd)
+  c <- fd[,-c(1,x-1,x)]
+  c <- sapply(data.frame(c, stringsAsFactors = FALSE), as.numeric)
+  avg_col <- round((rowSums(c)) / (x-3))
+  df <- data.frame(fd[,1],avg_col,as.numeric(fd[,x-1]), as.numeric(fd[,x]))
+  frwy_col <- rep(freeway,   nrow(df))
+  dir_col  <- rep(direction, nrow(df))
+  df <- add_column(df, dir_col, .after = 1 )
+  df <- add_column(df, frwy_col,.after = 1 )
+  averaged_value <- paste("Average ", quantity, sep = "")
+  names(df) <- c("TimeStamp", "Freeway", "Direction", averaged_value,"Lane Points","Percent Observed")
+  df
+}
+
+
+getSpatialMulti <- function(freeway, direction, abspm_start, abspm_end, quantities = c('flow','occ','speed'), 
+                                  start_search.date.str = start, end_search.date.str = end,
+                                  curl, base.url, granularity = 'hour', data.folder) {
+
+  Reduce(merge,
+         lapply(quantities, function(x) {
+           burl = base.url
+           getSpatial(freeway, direction, quantity = x, abspm_start = abspm_start, abspm_end = abspm_end, 
+                      start_search.date.str = start, end_search.date.str = end,
+                      curl, base.url, granularity = 'hour', data.folder)
+         })
+  )
+}
+
+build_spatial_multistation_df <- function(freeways_df, start, end, quantities, base.url) {rbindlist(lapply(data.frame(t(freeways)), function(x) {
+  name  <- x[[2]]
+  dir   <- x[[3]]
+  s_pm  <- x[[4]]
+  e_pm  <- x[[5]]
+  getSpatialMulti(name,dir, abspm_start = s_pm, abspm_end = e_pm, quantities, start_search.date.str = start, end_search.date.str = end,
+             curl = curl, base.url = base.url, data.folder = data.folder)
+}))
+}
+
+##############################################
+# STARTING ROUTINE AND CONFIGURATION
+#       This section gets you set up, please configure any parts you find necessary
+##############################################
 
 # Lanes configuration - specific freeway and direction to query
 # - Freeway-lane entries must be listed as one entry per line
@@ -352,129 +482,41 @@ freeways <- indicatePostmiles(freeways)
 # search.date <- as.character(search.date)
 # search.date <- search.date[grep('^\\d{4}-\\d{2}-\\d{2}$', search.date)]
 
-
-
-
-tic()
-example_df <- df_build()
-toc()
-write.csv(example_df, "/Users/sssantos/Documents/STA160/160trafficdata/data/example_df")
 ##############################################
-# Functions for getting Data at Freeway Level
+# Example Usage of getting Freeway > Spatial > Multistation Data
 ##############################################
-search.range <- c("2018-04-20", "2018-04-22")
-search.range <- as.character(search.range)
-search.range <- search.range[grep('^\\d{4}-\\d{2}-\\d{2}$', search.range)]
+# Example usage on one freeway
 
-s.time.id <- as.character(as.integer(as.POSIXct("2018-04-20",
-                                                origin="1970-01-01",
-                                                tz = "GMT")))
-e.time.id <- as.character(as.integer(as.POSIXct("2018-04-22",
-                                                origin="1970-01-01",
-                                                tz = "GMT")))
+# Dates need to be formatted as such:
+start <- "2018-04-20"
+end   <- "2018-04-22"
+start <- as.character(start)
+end   <- as.character(end)
 
+# Using the main function to build the df
+# NOTE: base.url always = base.url (issues when using as default)
+# To see the list of maze freeways, uncomment and run the following line
+# freeways
+# EX: Want just the first two freeways?
+#     Use this as your function argument: freeways[c(1,2),]
+# Other than that just change the start and end dates above ^^^^ and the list of desired quantities
 
-getSpatialMulti <- function(freeway, direction, quantity = 'flow', 
-                            start_search.date.str, start_s.time.id, end_search.date.str, end_s.time.id,
-                            curl, base.url, granularity = 'hour', data.folder) {
-  
-  # Parse the search.date.str into a vector
-  start_search.date.v <- unlist(strsplit(start_search.date.str, '-'))
-  names(start_search.date.v) <- c("year", "month", "day")
-  
-  # Combine variables into a "start date" (sdate) string
-  sdate <- paste(paste(start_search.date.v[['month']], 
-                       start_search.date.v[['day']], 
-                       start_search.date.v[['year']], 
-                       sep='%2F'), 
-                 '+00%3A00', sep = '')
-  
-  # Parse the search.date.str into a vector
-  end_search.date.v <- unlist(strsplit(end_search.date.str, '-'))
-  names(end_search.date.v) <- c("year", "month", "day")
-  
-  # Combine variables into a "start date" (sdate) string
-  edate <- paste(paste(end_search.date.v[['month']], 
-                       end_search.date.v[['day']], 
-                       end_search.date.v[['year']], 
-                       sep='%2F'), 
-                 '+00%3A00', sep = '')
-  
-  
-  
-  # Combine variables into a "file date" (fdate) string
-  fdate <- paste(start_search.date.v[['year']], 
-                 start_search.date.v[['month']], 
-                 start_search.date.v[['day']], 
-                 sep='')
-  
-  # Page configuration - query specification for type of report page
-  form.num <- '1'
-  node.name <- 'Freeway'
-  content <- '&content=spatial&tab=mst'
-  export.type <- 'xls'
-  
-  # Combine variables into a "page" (page) string
-  page <- paste('report_form=', form.num, '&dnode=', node.name, '&content=', 
-                content, '&export=', export.type, sep='')
- 
-  r.url <- paste(base.url, '/?', page, '&fwy=', freeway, '&dir=', direction,
-                 '&s_time_id=', s.time.id, '&s_time_id_f=', sdate, 
-                 '&e_time_id=', e.time.id, '&e_time_id_f=', edate,
-                 '&q=', quantity, '&q2=&agg=on',
-                 '&gn=', granularity, '&ihv=on&html.x=50&html.y=12',
-                 sep='')
+example_df <- build_spatial_multistation_df(freeways, start, end, c("flow","occ","speed"), base.url = base.url)
+# Write the csv so that we can all access it 
+write.csv(example_df, paste(dataframe_folder, '/', 'example.csv', sep=''))
 
-  # Get TSV data file from website and store as a string in memory
-  r = dynCurlReader()
-  z <- getURLContent(url = r.url, curl = curl, binary = TRUE)
-
-  output.filename <- paste(data.folder, '/', node.name, '-',
-                           content, '-', freeway, '-', direction, '-', fdate,
-                           '.tsv', sep='')
-
-  con = file(output.filename, "wb")
-  .Internal(writeBin(z, con, 1, FALSE, TRUE))
-  close(con)
-
-  # # Read table from string into a dataframe
-  freeway_data <- suppressWarnings(read.xlsx2(output.filename,1))
-  
-  return(freeway_data)
-}
-
-# "2018-04-20", "2018-04-22"
-getSpatialMulti("880","S", start_search.date.str = search.range[1],
-                start_s.time.id = s.time.id,
-                end_search.date.str = search.range[1],
-                end_s.time.id = e.time.id,
-                curl = curl, base.url = base.url, data.folder = 'data'
-                )
-args(getSpatialMulti)
-
-
-
-
-
-u2 = "http://pems.dot.ca.gov/?report_form=1&dnode=Freeway&content=spatial&tab=mst&export=xls&fwy=880&dir=N&s_time_id=1177718400&s_time_id_f=04/28/2007&e_time_id=1180137540&e_time_id_f=05/25/2007&start_pm=.15&end_pm=45.44&gn=hour&q=flow&ihv=on&html.x=50&html.y=12"
-z = getURLContent(u2, curl = curl , binary = TRUE)
-con = file("mom.xls", "wb")
-.Internal(writeBin(z, con, 1, FALSE, TRUE))
-close(con)
-
-library(xlsx)
-suppressWarnings(read.xlsx2("mom.xls",1))
-
-
-
-
-
-
-
-#########################################
-### TO WORK ON
+##########################################
+# New Section
 ##########################################
 
+
+
+
+
+
+
+
+##########################################
 # Clean up. Cookies file will be written to disk. Memory will be freed.
 rm(curl)
 gc()
