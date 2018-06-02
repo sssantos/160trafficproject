@@ -1,7 +1,7 @@
 # Retrieve freeway detector data from the State of California PeMS website.
 # 
 # Source Script Copyright Brian High (https://github.com/brianhigh) and Surakshya Dhakal
-# Modified by Colin Santos (https://github.com/sssantos)
+# Modified to obtain station level data and freeway level data by Colin Santos (https://github.com/sssantos)
 # License: GNU GPL v3 http://www.gnu.org/licenses/gpl.txt
 
 # Close connections and clear objects.
@@ -22,7 +22,7 @@ load.pkgs(c("RCurl", "XML", "plyr","data.table","tibble","tictoc","xlsx"))
 
 # NOTE FROM COLIN
 # PLEASE REMEMBER TO SET WORKING DIRECTORY 
-# PLEASE REMEMBER TO INDICATE DATA DIRECTORY, '/data' is for downloaded files, '/df' is for data frames we saved
+# PLEASE REMEMBER TO INDICATE DATA DIRECTORIES, '/data' is for helper data and downloaded data, '/df' is for constructe data frames
 data.folder <- '/Users/sssantos/Documents/STA160/160trafficdata/data'
 dataframe_folder <- '/Users/sssantos/Documents/STA160/160trafficdata/df'
 # PLEASE REMEMBER TO CHANGE USERNAME AND PASSWORD
@@ -292,10 +292,12 @@ df_build <- function() {rbindlist(lapply(search.dates, function (y) {
 
 
 # Example Usage with timing
-# tic()
-# example_df <- df_build() 
-# toc()
-# write.csv(example_df, "/Users/sssantos/Documents/STA160/160trafficdata/data/example_df")
+if(FALSE) {
+  tic()
+  example_df <- df_build()
+  toc()
+  write.csv(example_df, "/Users/sssantos/Documents/STA160/160trafficdata/data/example_df")
+}
 ############################################################################################
 # Functions for getting Data at Freeway Level
 ############################################################################################
@@ -486,36 +488,82 @@ freeways <- indicatePostmiles(freeways)
 # Example Usage of getting Freeway > Spatial > Multistation Data
 ##############################################
 # Example usage on one freeway
+if(FALSE) {
+  # MAX RANGE IS 1 MONTH
+  # Dates need to be formatted as such:
+  start <- "2018-04-20"
+  end   <- "2018-04-22"
+  start <- as.character(start)
+  end   <- as.character(end)
+  
+  # Using the main function to build the df
+  # NOTE: base.url always = base.url (issues when using as default)
+  # To see the list of maze freeways, uncomment and run the following line
+  # freeways
+  # EX: Want just the first two freeways?
+  #     Use this as your function argument: freeways[c(1,2),]
+  # Other than that just change the start and end dates above ^^^^ and the list of desired quantities
+  
+  example_df <- build_spatial_multistation_df(freeways, start, end, c("flow","occ","speed"), base.url = base.url)
+  # Write the csv so that we can all access it 
+  write.csv(example_df, paste(dataframe_folder, '/', 'example.csv', sep=''))
+}
 
-# Dates need to be formatted as such:
-start <- "2018-04-20"
-end   <- "2018-04-22"
-start <- as.character(start)
-end   <- as.character(end)
-
-# Using the main function to build the df
-# NOTE: base.url always = base.url (issues when using as default)
-# To see the list of maze freeways, uncomment and run the following line
-# freeways
-# EX: Want just the first two freeways?
-#     Use this as your function argument: freeways[c(1,2),]
-# Other than that just change the start and end dates above ^^^^ and the list of desired quantities
-
-example_df <- build_spatial_multistation_df(freeways, start, end, c("flow","occ","speed"), base.url = base.url)
-# Write the csv so that we can all access it 
-write.csv(example_df, paste(dataframe_folder, '/', 'example.csv', sep=''))
 
 ##########################################
-# New Section
+# Data Collection
 ##########################################
+if(!FALSE){
+  # 2007 Collapse Data
+  start <- as.character("2007-03-25")
+  end   <- as.character("2007-04-29")
+  half_1 <- build_spatial_multistation_df(freeways, start, end, c("flow","occ","speed"), base.url = base.url)
+  
+  start <- as.character("2007-04-30")
+  end   <- as.character("2007-05-28")
+  half_2 <- build_spatial_multistation_df(freeways, start, end, c("flow","occ","speed"), base.url = base.url)
+  
+  write.csv(rbind(half_1, half_2), paste(dataframe_folder, '/', '2007.csv', sep=''))
+  
+  #2006 For Comparison
+  start <- as.character("2006-03-25")
+  end   <- as.character("2006-04-29")
+  half_1 <- build_spatial_multistation_df(freeways, start, end, c("flow","occ","speed"), base.url = base.url)
+  
+  start <- as.character("2006-04-30")
+  end   <- as.character("2006-05-28")
+  half_2 <- build_spatial_multistation_df(freeways, start, end, c("flow","occ","speed"), base.url = base.url)
+  
+  write.csv(rbind(half_1, half_2), paste(dataframe_folder, '/', '2006.csv', sep=''))
+  
+  #2009 Emergency Bridge Closure
+  start <- as.character("2009-10-13")
+  end   <- as.character("2009-11-10")
+  whole <- build_spatial_multistation_df(freeways, start, end, c("flow","occ","speed"), base.url = base.url)
+  
+  write.csv(whole, paste(dataframe_folder, '/', '2009.csv', sep=''))
 
-
-
-
-
-
-
-
+  #2008 Comparison 
+  start <- as.character("2008-10-13")
+  end   <- as.character("2008-11-10")
+  whole <- build_spatial_multistation_df(freeways, start, end, c("flow","occ","speed"), base.url = base.url)
+  
+  write.csv(whole, paste(dataframe_folder, '/', '2008.csv', sep=''))
+  
+  #2013 Labor Day Bridge Closure
+  start <- as.character("2013-8-17")
+  end   <- as.character("2013-9-14")
+  whole <- build_spatial_multistation_df(freeways, start, end, c("flow","occ","speed"), base.url = base.url)
+  
+  write.csv(whole, paste(dataframe_folder, '/', '2013.csv', sep=''))
+  
+  #2012 
+  start <- as.character("2012-8-17")
+  end   <- as.character("2012-9-14")
+  whole <- build_spatial_multistation_df(freeways, start, end, c("flow","occ","speed"), base.url = base.url)
+  
+  write.csv(whole, paste(dataframe_folder, '/', '2012.csv', sep=''))
+}
 ##########################################
 # Clean up. Cookies file will be written to disk. Memory will be freed.
 rm(curl)
