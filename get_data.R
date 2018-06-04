@@ -17,7 +17,7 @@ load.pkgs <- function(pkgs, repos = "http://cran.r-project.org") {
 }
 
 # Install packages and load into memory.
-load.pkgs(c("RCurl", "XML", "plyr","data.table","tibble","tictoc","xlsx"))
+load.pkgs(c("RCurl", "XML", "plyr","data.table","tibble","tictoc","xlsx","stringr"))
 
 
 # NOTE FROM COLIN
@@ -346,7 +346,7 @@ getSpatial <- function(freeway, direction, abspm_start, abspm_end, quantity = 'f
   # Page configuration - query specification for type of report page
   form.num <- '1'
   node.name <- 'Freeway'
-  content <- '&content=spatial&tab=mst'
+  content <- 'spatial&tab=mst'
   export.type <- 'xls'
   
   # Combine variables into a "page" (page) string
@@ -360,11 +360,13 @@ getSpatial <- function(freeway, direction, abspm_start, abspm_end, quantity = 'f
                  '&start_pm=', abspm_start, '&end_pm=', abspm_end,
                  '&gn=', granularity, '&ihv=on&html.x=50&html.y=12',
                  sep='')
-
+  r.url <- str_replace_all(string=r.url, pattern=" ", repl="")
+  # Checking url
+  # print(r.url)
   output.filename <- paste(data.folder, '/', node.name, '_',
                            quantity, '_', freeway, direction, '_', fdate,
                            '.xls', sep='')
-  # Get TSV data file from website and store as a string in memory
+  # Skip getting downloading file if already have
   if(!file.exists(output.filename)) {
     
     r = dynCurlReader()
@@ -378,7 +380,7 @@ getSpatial <- function(freeway, direction, abspm_start, abspm_end, quantity = 'f
   }
 
 
-  freeway_data <- suppressWarnings(read.xlsx2(output.filename,1))
+  freeway_data <- read.xlsx2(output.filename,1)
   
   #Formatting data frame
   fd <- sapply(freeway_data, as.character)
@@ -425,7 +427,7 @@ build_spatial_multistation_df <- function(freeways_df, start, end, quantities, b
 # STARTING ROUTINE AND CONFIGURATION
 #       This section gets you set up, please configure any parts you find necessary
 ##############################################
-
+if(!FALSE){
 # Lanes configuration - specific freeway and direction to query
 # - Freeway-lane entries must be listed as one entry per line
 # - Entries much match this "regex": ^(?:I|SR|US)\\d+[NSEW]?-[NSEW]{1}$
@@ -444,6 +446,7 @@ freeways.of.interest.file <- "freeways_of_interest.txt"
 # - See: https://en.wikipedia.org/wiki/ISO_8601
 # - Dates much match this "regex": '^\\d{4}-\\d{2}-\\d{2}$'
 # - Where this means: four digits, a dash, two digits, a dash, and two digits
+# NOTE: These dates only matter for acquiring data at the Station Node
 search.dates <- seq(as.Date("2018-04-20"), as.Date("2018-04-22"), "days")
 search.dates <- as.character(search.dates)
 search.dates <- search.dates[grep('^\\d{4}-\\d{2}-\\d{2}$', search.dates)]
@@ -483,7 +486,7 @@ freeways <- indicatePostmiles(freeways)
 
 # search.date <- as.character(search.date)
 # search.date <- search.date[grep('^\\d{4}-\\d{2}-\\d{2}$', search.date)]
-
+}
 ##############################################
 # Example Usage of getting Freeway > Spatial > Multistation Data
 ##############################################
@@ -513,55 +516,56 @@ if(FALSE) {
 ##########################################
 # Data Collection
 ##########################################
+# Getting Group's Requested Data
 if(!FALSE){
   # 2007 Collapse Data
-  start <- as.character("2007-03-25")
-  end   <- as.character("2007-04-29")
-  half_1 <- build_spatial_multistation_df(freeways, start, end, c("flow","occ","speed"), base.url = base.url)
+  start <- as.character("2007-04-01")
+  end   <- as.character("2007-04-30")
+  half_1 <- build_spatial_multistation_df(freeways, start, end, c("flow","occ","speed","del_60"), base.url = base.url)
   
-  start <- as.character("2007-04-30")
-  end   <- as.character("2007-05-28")
-  half_2 <- build_spatial_multistation_df(freeways, start, end, c("flow","occ","speed"), base.url = base.url)
-  
+  start <- as.character("2007-05-01")
+  end   <- as.character("2007-05-31")
+  half_2 <- build_spatial_multistation_df(freeways, start, end, c("flow","occ","speed","del_60"), base.url = base.url)
+
   write.csv(rbind(half_1, half_2), paste(dataframe_folder, '/', '2007.csv', sep=''))
   
   #2006 For Comparison
-  start <- as.character("2006-03-25")
-  end   <- as.character("2006-04-29")
-  half_1 <- build_spatial_multistation_df(freeways, start, end, c("flow","occ","speed"), base.url = base.url)
-  
-  start <- as.character("2006-04-30")
-  end   <- as.character("2006-05-28")
-  half_2 <- build_spatial_multistation_df(freeways, start, end, c("flow","occ","speed"), base.url = base.url)
-  
+  start <- as.character("2006-04-01")
+  end   <- as.character("2006-04-30")
+  half_1 <- build_spatial_multistation_df(freeways, start, end, c("flow","occ","speed","del_60"), base.url = base.url)
+
+  start <- as.character("2006-05-01")
+  end   <- as.character("2006-05-31")
+  half_2 <- build_spatial_multistation_df(freeways, start, end, c("flow","occ","speed","del_60"), base.url = base.url)
+
   write.csv(rbind(half_1, half_2), paste(dataframe_folder, '/', '2006.csv', sep=''))
-  
+
   #2009 Emergency Bridge Closure
   start <- as.character("2009-10-13")
   end   <- as.character("2009-11-10")
-  whole <- build_spatial_multistation_df(freeways, start, end, c("flow","occ","speed"), base.url = base.url)
-  
+  whole <- build_spatial_multistation_df(freeways, start, end, c("flow","occ","speed","del_60"), base.url = base.url)
+
   write.csv(whole, paste(dataframe_folder, '/', '2009.csv', sep=''))
 
-  #2008 Comparison 
+  #2008 Comparison
   start <- as.character("2008-10-13")
   end   <- as.character("2008-11-10")
-  whole <- build_spatial_multistation_df(freeways, start, end, c("flow","occ","speed"), base.url = base.url)
-  
+  whole <- build_spatial_multistation_df(freeways, start, end, c("flow","occ","speed","del_60"), base.url = base.url)
+
   write.csv(whole, paste(dataframe_folder, '/', '2008.csv', sep=''))
-  
+
   #2013 Labor Day Bridge Closure
   start <- as.character("2013-8-17")
   end   <- as.character("2013-9-14")
-  whole <- build_spatial_multistation_df(freeways, start, end, c("flow","occ","speed"), base.url = base.url)
-  
+  whole <- build_spatial_multistation_df(freeways, start, end, c("flow","occ","speed","del_60"), base.url = base.url)
+
   write.csv(whole, paste(dataframe_folder, '/', '2013.csv', sep=''))
-  
-  #2012 
+
+  #2012
   start <- as.character("2012-8-17")
   end   <- as.character("2012-9-14")
-  whole <- build_spatial_multistation_df(freeways, start, end, c("flow","occ","speed"), base.url = base.url)
-  
+  whole <- build_spatial_multistation_df(freeways, start, end, c("flow","occ","speed","del_60"), base.url = base.url)
+
   write.csv(whole, paste(dataframe_folder, '/', '2012.csv', sep=''))
 }
 ##########################################
@@ -570,4 +574,31 @@ rm(curl)
 gc()
 
 ##########################################
+if(!FALSE){
+r = dynCurlReader()
+z <- getURLContent(url = "http://pems.dot.ca.gov/?report_form=1&dnode=Freeway&content=&content=spatial&tab=mst&export=xls&fwy=24&dir=E&s_time_id=1175385600&s_time_id_f=04%2F01%2F2007+00%3A00&e_time_id=1177891200&e_time_id_f=04%2F30%2F2007+00%3A00&q=flow&q2=&agg=on&start_pm=0.20&end_pm=1.05&gn=hour&ihv=on&html.x=50&html.y=12"
+, curl = curl, binary = TRUE)
+con = file("potato.xls", "wb")
+.Internal(writeBin(z, con, 1, FALSE, TRUE))
+close(con)
+}
 
+
+start
+end
+s.time.id <- as.character(as.integer(as.POSIXct(start,
+                                                origin="1970-01-01",
+                                                tz = "UTC")))
+e.time.id <- as.character(as.integer(as.POSIXct(end,
+                                                origin="1970-01-01",
+                                                tz = "GMT")))
+
+
+###################################
+
+
+###################################
+install.packages("rjson")
+library(rjson)
+le <- fromJSON(file = "lejson.txt")
+str(le)
