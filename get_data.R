@@ -597,18 +597,16 @@ e.time.id <- as.character(as.integer(as.POSIXct(end,
 ###################################
 # Getting Weather Data
 ###################################
-apikey <- efc346c79f8866f224d7c423edf7ec93
+mykey <- "efc346c79f8866f224d7c423edf7ec93"
 oakland_lat <- '37.8044' 
 oakland_lon <- '-122.2711' 
-misc <- "?exclude=currently,flags,minutely,daily"
+exclude <- "?exclude=currently,flags,minutely,daily"
 "https://api.darksky.net/forecast/efc346c79f8866f224d7c423edf7ec93/37.8044,-122.2711,255657600?exclude=currently,flags,minutely,daily"
 
 getDarkSky <- function(lat = oakland_lat, lon = oakland_lat,query_type = 'forecast',
-                       time, misc = "", apikey = apikey) {
+                       date, misc = "", apikey = mykey) {
   
-  time.id <- as.character(as.integer(as.POSIXct(start_search.date.str,
-                                                  origin="1970-01-01",
-                                                  tz = "GMT")))
+  time.id <- as.character(as.integer(as.POSIXct(date, origin="1970-01-01", tz = "GMT")))
   
   r.url <- paste("https://api.darksky.net/", query_type, "/", apikey, "/", lat, ",", lon, ",", time.id, misc, sep = "")
   r.url <- str_replace_all(string=r.url, pattern=" ", repl="")
@@ -619,14 +617,19 @@ getDarkSky <- function(lat = oakland_lat, lon = oakland_lat,query_type = 'foreca
   rbindlist(lapply(z$hourly$data, data.frame), fill = TRUE)
 }
 
-getDarkSkyRange <- function(lat = oakland_lat, lon = oakland_lat, query_type = 'forecast',
-                            start_date, end_date, misc = "", apikey = apikey) {
+getDarkSkyRange <- function(latr = oakland_lat, lonr = oakland_lat, query_typer = 'forecast',
+                            start_date, end_date, miscr = "", apikeyr = mykey) {
   time_range <- seq(as.Date(start_date), as.Date(end_date), "days")
-  rbindlist(lapply(time_range, getDarkSkyRange))
+  rbindlist(lapply(time_range, function (x) {
+    getDarkSky(lat =latr,lon=lonr,date=x,misc=miscr,apikey=apikeyr) 
+  } ), fill = TRUE)
 }
 
+a <- getDarkSkyRange(lat = oakland_lat, start_date = "2007-04-01", end_date = "2007-04-30", misc = misc)
+write.csv(a,"testforecast")
 
 
+View(a)
 
 
 
