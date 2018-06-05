@@ -17,7 +17,7 @@ load.pkgs <- function(pkgs, repos = "http://cran.r-project.org") {
 }
 
 # Install packages and load into memory.
-load.pkgs(c("RCurl", "XML", "plyr","data.table","tibble","tictoc","xlsx","stringr"))
+load.pkgs(c("RCurl", "XML", "plyr","data.table","tibble","tictoc","xlsx","stringr","rjson"))
 
 
 # NOTE FROM COLIN
@@ -362,7 +362,7 @@ getSpatial <- function(freeway, direction, abspm_start, abspm_end, quantity = 'f
                  sep='')
   r.url <- str_replace_all(string=r.url, pattern=" ", repl="")
   # Checking url
-  # print(r.url)
+  print(r.url)
   output.filename <- paste(data.folder, '/', node.name, '_',
                            quantity, '_', freeway, direction, '_', fdate,
                            '.xls', sep='')
@@ -522,13 +522,13 @@ if(!FALSE){
   start <- as.character("2007-04-01")
   end   <- as.character("2007-04-30")
   half_1 <- build_spatial_multistation_df(freeways, start, end, c("flow","occ","speed","del_60"), base.url = base.url)
-  
+
   start <- as.character("2007-05-01")
   end   <- as.character("2007-05-31")
   half_2 <- build_spatial_multistation_df(freeways, start, end, c("flow","occ","speed","del_60"), base.url = base.url)
 
   write.csv(rbind(half_1, half_2), paste(dataframe_folder, '/', '2007.csv', sep=''))
-  
+
   #2006 For Comparison
   start <- as.character("2006-04-01")
   end   <- as.character("2006-04-30")
@@ -595,10 +595,47 @@ e.time.id <- as.character(as.integer(as.POSIXct(end,
 
 
 ###################################
-
-
+# Getting Weather Data
 ###################################
-install.packages("rjson")
-library(rjson)
-le <- fromJSON(file = "lejson.txt")
-str(le)
+apikey <- efc346c79f8866f224d7c423edf7ec93
+oakland_lat <- '37.8044' 
+oakland_lon <- '-122.2711' 
+misc <- "?exclude=currently,flags,minutely,daily"
+"https://api.darksky.net/forecast/efc346c79f8866f224d7c423edf7ec93/37.8044,-122.2711,255657600?exclude=currently,flags,minutely,daily"
+
+getDarkSky <- function(lat = oakland_lat, lon = oakland_lat,query_type = 'forecast',
+                       time, misc = "", apikey = apikey) {
+  
+  time.id <- as.character(as.integer(as.POSIXct(start_search.date.str,
+                                                  origin="1970-01-01",
+                                                  tz = "GMT")))
+  
+  r.url <- paste("https://api.darksky.net/", query_type, "/", apikey, "/", lat, ",", lon, ",", time.id, misc, sep = "")
+  r.url <- str_replace_all(string=r.url, pattern=" ", repl="")
+  # Checking url
+  # print(r.url)
+
+  z <- fromJSON(getURLContent(url = r.url))
+  rbindlist(lapply(z$hourly$data, data.frame), fill = TRUE)
+}
+
+getDarkSkyRange <- function(lat = oakland_lat, lon = oakland_lat, query_type = 'forecast',
+                            start_date, end_date, misc = "", apikey = apikey) {
+  time_range <- seq(as.Date(start_date), as.Date(end_date), "days")
+  rbindlist(lapply(time_range, getDarkSkyRange))
+}
+
+
+
+
+
+
+
+# https://api.darksky.net/forecast/efc346c79f8866f224d7c423edf7ec93/37.8044,-122.2711,255657600?exclude=currently,flags,minutely,daily
+
+
+r.url <- 'https://api.darksky.net/forecast/efc346c79f8866f224d7c423edf7ec93/37.8044,-122.2711,255657600?exclude=currently,flags,minutely,daily'
+z <- fromJSON(getURLContent(url = r.url))
+df <- rbindlist(lapply(z$hourly$data, data.frame), fill = TRUE)
+
+
