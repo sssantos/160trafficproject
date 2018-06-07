@@ -1,9 +1,14 @@
 # Retrieve freeway detector data from the State of California PeMS website.
 # Retrieve weather data from Dark Sky API
 
-# PeMS data collection based off of /get_pms.r by Brian High (https://github.com/brianhigh) and Surakshya Dhakal
+# PeMS data collection based off of /get-pms.r by Brian High (https://github.com/brianhigh) and Surakshya Dhakal
 # Modified to obtain station level data and freeway level data by Colin Santos (https://github.com/sssantos)
 # License: GNU GPL v3 http://www.gnu.org/licenses/gpl.txt
+
+# REQUIRES A TXT FILE TO INDICATE MAZE POSTMILES AND TXT TO INDICATE FREEWAYS OF INTEREST
+#      A default (all) maze postmiles indicated in postmiles.txt
+#      A default (all) all freeways indicated in freeways_of_interst.txt
+# PLEASE SAVE DATA IN /160trafficdata folder and not in /160trafficproject
 
 # Close connections and clear objects.
 closeAllConnections()
@@ -27,15 +32,28 @@ load.pkgs(c("RCurl", "XML", "plyr","data.table","tibble","tictoc","xlsx","string
 data.folder <- '/Users/sssantos/Documents/STA160/160trafficdata/data'
 dataframe_folder <- '/Users/sssantos/Documents/STA160/160trafficdata/df'
 # PLEASE REMEMBER TO CHANGE USERNAME AND PASSWORD
-username <- 'sssantos@ucdavis.edu'
-password <- ')cg5Bopd2'
+
 base.url <- 'http://pems.dot.ca.gov'
 user.agent <- 'Mozilla/5.0'         # https://en.wikipedia.org/wiki/User_agent
 cookies <- 'cookies.txt'            # https://en.wikipedia.org/wiki/HTTP_cookie
-# REQUIRES A TXT FILE TO INDICATE MAZE POSTMILES AND TXT TO INDICATE FREEWAYS OF INTEREST
-#      A default (all) maze postmiles indicated in postmiles.txt
-#      A default (all) all freeways indicated in freeways_of_interst.txt
-# PLEASE SAVE DATA IN /160trafficdata folder and not in /160trafficproject
+
+login_file <- '/Users/sssantos/Documents/STA160/credentials.txt'
+
+if(file.exists(login_file)) {
+  info <- read.csv(login_file, FALSE, stringsAsFactors = FALSE)
+  username <- info[1,1]
+  password <- info[2,1]
+  mykey    <- info[3,1]
+}
+
+# PeMS Login
+# username <-
+# password <-
+
+#Dark Sky API Key
+# mykey <-
+
+
 
 
 ############################################################################################
@@ -599,7 +617,6 @@ e.time.id <- as.character(as.integer(as.POSIXct(end,
 # Functions for getting weather data
 ###################################
 # Defaults for Maze / Oakland, just change date(s)
-mykey <- "efc346c79f8866f224d7c423edf7ec93"
 oakland_lat <- '37.8044' 
 oakland_lon <- '-122.2711' 
 
