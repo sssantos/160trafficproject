@@ -1,6 +1,7 @@
 # Retrieve freeway detector data from the State of California PeMS website.
-# 
-# Source Script Copyright Brian High (https://github.com/brianhigh) and Surakshya Dhakal
+# Retrieve weather data from Dark Sky API
+
+# PeMS data collection based off of /get_pms.r by Brian High (https://github.com/brianhigh) and Surakshya Dhakal
 # Modified to obtain station level data and freeway level data by Colin Santos (https://github.com/sssantos)
 # License: GNU GPL v3 http://www.gnu.org/licenses/gpl.txt
 
@@ -595,50 +596,67 @@ e.time.id <- as.character(as.integer(as.POSIXct(end,
 
 
 ###################################
-# Getting Weather Data
+# Functions for getting weather data
 ###################################
+# Defaults for Maze / Oakland, just change date(s)
 mykey <- "efc346c79f8866f224d7c423edf7ec93"
 oakland_lat <- '37.8044' 
 oakland_lon <- '-122.2711' 
-exclude <- "?exclude=currently,flags,minutely,daily"
-"https://api.darksky.net/forecast/efc346c79f8866f224d7c423edf7ec93/37.8044,-122.2711,255657600?exclude=currently,flags,minutely,daily"
 
-getDarkSky <- function(lat = oakland_lat, lon = oakland_lat,query_type = 'forecast',
-                       date, misc = "", apikey = mykey) {
+# Gets data from DarkSky api and builds data frame for single date
+getDarkSky <- function(lat = oakland_lat, lon = oakland_lon,query_type = 'forecast',
+                       date, misc = "?exclude=currently,flags,minutely,daily", apikey = mykey) {
   
   time.id <- as.character(as.integer(as.POSIXct(date, origin="1970-01-01", tz = "GMT")))
   
   r.url <- paste("https://api.darksky.net/", query_type, "/", apikey, "/", lat, ",", lon, ",", time.id, misc, sep = "")
   r.url <- str_replace_all(string=r.url, pattern=" ", repl="")
   # Checking url
-  # print(r.url)
+  # return(r.url)
 
   z <- fromJSON(getURLContent(url = r.url))
   rbindlist(lapply(z$hourly$data, data.frame), fill = TRUE)
 }
 
-getDarkSkyRange <- function(latr = oakland_lat, lonr = oakland_lat, query_typer = 'forecast',
-                            start_date, end_date, miscr = "", apikeyr = mykey) {
+# Gets data from DarkSky api and builds data frame for range of dates
+getDarkSkyRange <- function(lat = oakland_lat, lon = oakland_lon,query_type = 'forecast',
+                            start_date, end_date, misc = "?exclude=currently,flags,minutely,daily", apikey = mykey) {
   time_range <- seq(as.Date(start_date), as.Date(end_date), "days")
   rbindlist(lapply(time_range, function (x) {
-    getDarkSky(lat =latr,lon=lonr,date=x,misc=miscr,apikey=apikeyr) 
+    getDarkSky(lat = lat, lon = lon,query_type = query_type,
+               x, misc = misc, apikey = apikey) 
   } ), fill = TRUE)
 }
 
-a <- getDarkSkyRange(lat = oakland_lat, start_date = "2007-04-01", end_date = "2007-04-30", misc = misc)
-write.csv(a,"testforecast")
+##########################################
+# Collecting Weather Data
+##########################################
+if(!FALSE){
+  # 2007 Collapse Data
+  # forecastdf <- getDarkSkyRange(start_date = "2007-04-01", end_date = "2007-05-31")
+  # write.csv(forecastdf, paste(dataframe_folder, '/', 'forecast2007.csv', sep=''))
+
+  #2006 For Comparison
+  forecastdf <- getDarkSkyRange(start_date = "2006-04-01", end_date = "2006-05-31")
+  write.csv(forecastdf, paste(dataframe_folder, '/', 'forecast2006.csv', sep=''))
+
+  #2009 Emergency Bridge Closure
+  forecastdf <- getDarkSkyRange(start_date = "2009-10-13", end_date = "2009-11-10")
+  write.csv(forecastdf, paste(dataframe_folder, '/', 'forecast2009.csv', sep=''))
+
+  #2008 Comparison
+  forecastdf <- getDarkSkyRange(start_date = "2008-10-13", end_date = "2008-11-10")
+  write.csv(forecastdf, paste(dataframe_folder, '/', 'forecast2008.csv', sep=''))
+
+  #2013 Labor Day Bridge Closure
+  forecastdf <- getDarkSkyRange(start_date = "2013-08-13", end_date = "2013-09-14")
+  write.csv(forecastdf, paste(dataframe_folder, '/', 'forecast2013.csv', sep=''))
+
+  #2012
+  forecastdf <- getDarkSkyRange(start_date = "2012-10-13", end_date = "2012-11-10")
+  write.csv(forecastdf, paste(dataframe_folder, '/', 'forecast2008.csv', sep=''))
+}
 
 
-View(a)
 
-
-
-
-# https://api.darksky.net/forecast/efc346c79f8866f224d7c423edf7ec93/37.8044,-122.2711,255657600?exclude=currently,flags,minutely,daily
-
-
-r.url <- 'https://api.darksky.net/forecast/efc346c79f8866f224d7c423edf7ec93/37.8044,-122.2711,255657600?exclude=currently,flags,minutely,daily'
-z <- fromJSON(getURLContent(url = r.url))
-df <- rbindlist(lapply(z$hourly$data, data.frame), fill = TRUE)
-
-
+##########################################
