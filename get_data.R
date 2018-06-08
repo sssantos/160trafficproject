@@ -1,8 +1,10 @@
+# Script Purpose:
 # Retrieve freeway detector data from the State of California PeMS website.
 # Retrieve weather data from Dark Sky API
+# Retrieve Bart Ridership Data
 
-# PeMS data collection based off of /get-pms.r by Brian High (https://github.com/brianhigh) and Surakshya Dhakal
-# Modified to obtain station level data and freeway level data by Colin Santos (https://github.com/sssantos)
+# PeMS data collection based off script for obtaining detector health data by Brian High (https://github.com/brianhigh) and Surakshya Dhakal
+# Modified to obtain station level data and freeway level data (https://github.com/sssantos)
 # License: GNU GPL v3 http://www.gnu.org/licenses/gpl.txt
 
 # REQUIRES A TXT FILE TO INDICATE MAZE POSTMILES AND TXT TO INDICATE FREEWAYS OF INTEREST
@@ -28,14 +30,14 @@ load.pkgs(c("RCurl", "XML", "plyr","data.table","tibble","tictoc","xlsx","string
 
 # NOTE FROM COLIN
 # PLEASE REMEMBER TO SET WORKING DIRECTORY 
-# PLEASE REMEMBER TO INDICATE DATA DIRECTORIES, '/data' is for helper data and downloaded data, '/df' is for constructe data frames
-data.folder <- '/Users/sssantos/Documents/STA160/160trafficdata/data'
+# PLEASE REMEMBER TO INDICATE DATA DIRECTORIES, '/data' is for helper data and downloaded data, '/df' is for constructed data frames
+data.folder      <- '/Users/sssantos/Documents/STA160/160trafficdata/data'
 dataframe_folder <- '/Users/sssantos/Documents/STA160/160trafficdata/df'
 # PLEASE REMEMBER TO CHANGE USERNAME AND PASSWORD
 
-base.url <- 'http://pems.dot.ca.gov'
+base.url   <- 'http://pems.dot.ca.gov'
 user.agent <- 'Mozilla/5.0'         # https://en.wikipedia.org/wiki/User_agent
-cookies <- 'cookies.txt'            # https://en.wikipedia.org/wiki/HTTP_cookie
+cookies    <- 'cookies.txt'            # https://en.wikipedia.org/wiki/HTTP_cookie
 
 login_file <- '/Users/sssantos/Documents/STA160/credentials.txt'
 
@@ -587,30 +589,6 @@ if(!FALSE){
 
   write.csv(whole, paste(dataframe_folder, '/', '2012.csv', sep=''))
 }
-##########################################
-# Clean up. Cookies file will be written to disk. Memory will be freed.
-rm(curl)
-gc()
-
-##########################################
-if(!FALSE){
-r = dynCurlReader()
-z <- getURLContent(url = "http://pems.dot.ca.gov/?report_form=1&dnode=Freeway&content=&content=spatial&tab=mst&export=xls&fwy=24&dir=E&s_time_id=1175385600&s_time_id_f=04%2F01%2F2007+00%3A00&e_time_id=1177891200&e_time_id_f=04%2F30%2F2007+00%3A00&q=flow&q2=&agg=on&start_pm=0.20&end_pm=1.05&gn=hour&ihv=on&html.x=50&html.y=12"
-, curl = curl, binary = TRUE)
-con = file("potato.xls", "wb")
-.Internal(writeBin(z, con, 1, FALSE, TRUE))
-close(con)
-}
-
-
-start
-end
-s.time.id <- as.character(as.integer(as.POSIXct(start,
-                                                origin="1970-01-01",
-                                                tz = "UTC")))
-e.time.id <- as.character(as.integer(as.POSIXct(end,
-                                                origin="1970-01-01",
-                                                tz = "GMT")))
 
 
 ###################################
@@ -650,8 +628,8 @@ getDarkSkyRange <- function(lat = oakland_lat, lon = oakland_lon,query_type = 'f
 ##########################################
 if(!FALSE){
   # 2007 Collapse Data
-  # forecastdf <- getDarkSkyRange(start_date = "2007-04-01", end_date = "2007-05-31")
-  # write.csv(forecastdf, paste(dataframe_folder, '/', 'forecast2007.csv', sep=''))
+  forecastdf <- getDarkSkyRange(start_date = "2007-04-01", end_date = "2007-05-31")
+  write.csv(forecastdf, paste(dataframe_folder, '/', 'forecast2007.csv', sep=''))
 
   #2006 For Comparison
   forecastdf <- getDarkSkyRange(start_date = "2006-04-01", end_date = "2006-05-31")
@@ -674,6 +652,85 @@ if(!FALSE){
   write.csv(forecastdf, paste(dataframe_folder, '/', 'forecast2008.csv', sep=''))
 }
 
+##########################################
 
 
 ##########################################
+# Functions for Getting Bart Data
+#########################################
+years_of_interest <- c("2006","2007","2008","2009","2012","2013")
+
+# Collecting and unzipping rider ship zip data
+for(i in years_of_interest){
+  file_name <- paste("ridership", i,".zip",  sep = "")
+  full_dest <- paste(data.folder, file_name, sep ="/")
+  if(!file.exists(full_dest)) {
+    url <- paste('https://www.bart.gov/sites/default/files/docs/ridership_',i,'.zip', sep = "")
+    z = getURLContent(url, binary = TRUE)
+    con = file(full_dest, "wb")
+    .Internal(writeBin(z, con, 1, FALSE, TRUE))
+    close(con)
+  }
+  folder_name <- paste("ridership", i,  sep = "")
+  folder_dest <- paste(data.folder, folder_name, sep ="/")
+  unzip(full_dest, exdir = folder_dest)
+}
+
+# Extracts just bart line ridership data, mainly for sheet 1, probably 2 and 3
+formBartLines <- function(file,sheet) {
+  a <- (read.xlsx(file,sheet))
+  values <- (data.frame(a[11:18,(ncol(a) - 7):ncol(a)]))
+  rownames(values)  <- a[11:18,(ncol(a) - 8)]
+  colnames(values)  <- t(a[10,(ncol(a) - 7):ncol(a)])
+  values
+}
+
+getBartLines <- function(year, month, sheet = 1) {
+  main_dir  <- paste(data.folder, paste('ridership', year,sep = ""),sep = "/")
+  listed    <- list.dirs(main_dir)
+  file_name <- grep(month,list.files(listed[length(listed)]), value = TRUE)
+  file_dest <- paste(listed[length(listed)], file_name, sep = "/")
+  df <- formBartLines(file_dest,sheet = sheet)
+  day <- "Wkdy"
+  if(sheet == 2) {
+    day <- "Sat"
+  }
+  if(sheet == 3) {
+    day <- "Sun"
+  }
+  df_name <- paste('ridership',month,year,day, sep = "")
+  write.csv(df, paste(dataframe_folder, '/', df_name, ".csv", sep=''))
+  df
+} 
+
+##########################################
+# Getting Entry-Exit Bart Line Data
+#########################################
+for(i in 1:3) {
+  getBartLines("2009", "October", sheet = i)
+  getBartLines("2009", "November",sheet = i)
+  getBartLines("2008", "October", sheet = i)
+  getBartLines("2008", "November",sheet = i)
+  
+  getBartLines("2013", "August",   sheet = i)
+  getBartLines("2013", "September",sheet = i)
+  getBartLines("2012", "August",   sheet = i)
+  getBartLines("2012", "September",sheet = i)
+  
+  # 2007 DOES NOT COME WITH LINE DATA!!!
+  # getBartLines("2007", "April",sheet = i)
+  # getBartLines("2007", "May",  sheet = i)
+  getBartLines("2006", "April",sheet = i)
+  getBartLines("2006", "May",  sheet = i)
+}
+
+
+  
+##########################################
+# Clean up. Cookies file will be written to disk. Memory will be freed.
+rm(curl)
+gc()
+##########################################
+
+
+
