@@ -2,6 +2,7 @@
 # Retrieve freeway detector data from the State of California PeMS website.
 # Retrieve weather data from Dark Sky API
 # Retrieve Bart Ridership Data
+# Retrieve On-Ramp Flow data from the State of California PeMS website.
 
 # PeMS data collection based off script for obtaining detector health data by Brian High (https://github.com/brianhigh) and Surakshya Dhakal
 # Modified to obtain station level data and freeway level data (https://github.com/sssantos)
@@ -48,23 +49,20 @@ if(file.exists(login_file)) {
   mykey    <- info[3,1]
 }
 
-# PeMS Login
+# If not using a login info file
+## PeMS Login
 # username <-
 # password <-
 
-#Dark Sky API Key
+## Dark Sky API Key
 # mykey <-
-
-
 
 
 ############################################################################################
 # Functions For Creating Freeway DF limited to MAZE
 ############################################################################################
 
-# Function getFreeways receives all listed freeways from PeMS 
-# input: html
-# returns: dataframe which ids freeway direction and name
+# Function getFreeways receives all listed freeways from PeMS html
 getFreeways <- function(doc) {
   optValues <- xpathSApply(htmlParse(doc), 
                            '//form[@class="crossNav"]/select[@name="url"]/option', 
@@ -156,34 +154,33 @@ getStationIDs <- function(freeway, direction, search.date.str,
                            content, '-', freeway, '-', direction, '-', fdate, 
                            '.tsv', sep='')
   
-  # If the data filehas alread been saved, load the file, or get from web
-  # if (! file.exists(output.filename)) {
-    # tryCatch({
-      # Get TSV file for the detector_health for chosen freeway and date
-    r.url <- paste(base.url, '/?', page, '&fwy=', freeway, '&dir=', direction, '&_time_id=', 
-                   s.time.id, '&_time_id_f=', sdate, '&st_hv=on&st_ml=on', 
-                   '&start_pm=', abspm_start, '&end_pm=', abspm_end, sep='')
-    # Get TSV data file from website and store as a string in memory
-    r = dynCurlReader()
-    result.string <- getURL(url = r.url, curl = curl)
-    
-    # Write string to file
-    writeLines(result.string, output.filename)
-    
-    # Read table from string into a dataframe
-    freeway_data <- read.table(text=result.string, sep='\t', header=T, 
-                               fill=T, quote='', stringsAsFactors=F)
-
-    VDS  <- sapply(freeway_data$ID, as.character)
-    Freeway  <- rep(freeway,   length(VDS))
-    Direction  <- rep(direction, length(VDS))
-    df <- data.frame(VDS,Freeway,Direction, stringsAsFactors = FALSE)
-    list_df <- split(df, seq(nrow(df)))
-    
+  # Form URL
+  r.url <- paste(base.url, '/?', page, '&fwy=', freeway, '&dir=', direction, '&_time_id=', 
+                 s.time.id, '&_time_id_f=', sdate, '&st_hv=on&st_ml=on', 
+                 '&start_pm=', abspm_start, '&end_pm=', abspm_end, sep='')
+  
+  r = dynCurlReader()
+  result.string <- getURL(url = r.url, curl = curl)
+  
+  # Write string to file
+  writeLines(result.string, output.filename)
+  
+  # Read table from string into a dataframe
+  freeway_data <- read.table(text=result.string, sep='\t', header=T, 
+                             fill=T, quote='', stringsAsFactors=F)
+  
+  # Construct fuller data frame
+  VDS  <- sapply(freeway_data$ID, as.character)
+  Freeway  <- rep(freeway,   length(VDS))
+  Direction  <- rep(direction, length(VDS))
+  df <- data.frame(VDS,Freeway,Direction, stringsAsFactors = FALSE)
+  list_df <- split(df, seq(nrow(df)))
+  
 }
 
 # Get Station values gets specified quantity, such as 'speed', 'flow', 'occ'
 # Please refer to a corresponding url query on pems for proper quantity names
+# dow refers to day of week, from Sunday to Saturday
 getStationValues <- function(station_df, quantity, search.date.str, s.time.id, curl, base.url, granularity = 'hour', 
                              dow = c('on','on','on','on','on','on','on') , holidays = 'on', data.folder) {
   
@@ -224,16 +221,7 @@ getStationValues <- function(station_df, quantity, search.date.str, s.time.id, c
   page <- paste('report_form=', form.num, '&dnode=', node.name, '&content=', 
                 content, '&export=', export.type, sep='')
   
-  # Combine variables into a "output filename" (output.filename) string
-  # output.filename <- paste(data.folder, '/', node.name, '-', 
-  #                          content, '-', station_id, '-', fdate, 
-  #                          '.tsv', sep='')
-  
-  # If the data filehas alread been saved, load the file, or get from web
-  # cat(freeway, "-", direction, " ")
-  # if (! file.exists(output.filename)) {
-  # tryCatch({
-    # Get TSV file for the detector_health for chosen freeway and date
+  # Form URL
   r.url <- paste(base.url, '/?', page, '&station_id=', station_id,
                  '&s_time_id=', s.time.id, '&s_time_id_f=', sdate, 
                  '&e_time_id=', e.time.id, '&e_time_id_f=', edate,
@@ -250,22 +238,23 @@ getStationValues <- function(station_df, quantity, search.date.str, s.time.id, c
                  '&gn=', granularity,
                  # '&lane1=on&lane2=on&lane3=on&lane4=on&lane5=on',
                  '&pagenum_all=1', sep='')
-  # Get TSV data file from website and store as a string in memory
+
+  
   r = dynCurlReader()
   result.string <- getURL(url = r.url, curl = curl)
   
-  # # Write string to file
-  # writeLines(result.string, output.filename)
   
   # Read table from string into a dataframe
   freeway_data <- read.csv(text=result.string, sep='\t', header=T,
                            fill=T, quote='', stringsAsFactors=F)
     
+  # Form columns
   num_rows  <- nrow(freeway_data)
   Station   <- rep(station_df[1,1], num_rows)
   Freeway   <- rep(station_df[1,2], num_rows)
   Direction <- rep(station_df[1,3], num_rows)
   
+  # Adding columns to data frame
   freeway_data <- add_column(freeway_data, Direction,  .after = 1)
   freeway_data <- add_column(freeway_data, Freeway,    .after = 1)
   freeway_data <- add_column(freeway_data, Station,    .after = 1)
@@ -290,6 +279,7 @@ getMultiStationMultiValues <- function(station_ids, quantities, search.date, s.t
   }))
 }
 
+# Build data frame of data from multiple stations, at station level
 df_build <- function() {rbindlist(lapply(search.dates, function (y) { 
   search.date <- y
   s.time.id <- as.character(as.integer(as.POSIXct(search.date,
@@ -306,11 +296,9 @@ df_build <- function() {rbindlist(lapply(search.dates, function (y) {
   
   all_sensor_ids <- unlist(all_sensor_ids, recursive = FALSE)
   
-  # Getting 2 sensors example
-  getMultiStationMultiValues(all_sensor_ids[1:2], c('flow','occ','speed'), search.date, s.time.id, curl, base.url, data.folder = data.folder)
+  getMultiStationMultiValues(all_sensor_ids, c('flow','occ','speed'), search.date, s.time.id, curl, base.url, data.folder = data.folder)
 }))
 }
-
 
 # Example Usage with timing
 if(FALSE) {
@@ -322,6 +310,8 @@ if(FALSE) {
 ############################################################################################
 # Functions for getting Data at Freeway Level
 ############################################################################################
+# Get multistation data at Freeway level from spatial data option
+# The data for each station of a freeway is averaged
 getSpatial <- function(freeway, direction, abspm_start, abspm_end, quantity = 'flow', 
                             start_search.date.str = start, end_search.date.str = end,
                             curl, base.url, granularity = 'hour', data.folder) {
@@ -382,11 +372,12 @@ getSpatial <- function(freeway, direction, abspm_start, abspm_end, quantity = 'f
                  '&gn=', granularity, '&ihv=on&html.x=50&html.y=12',
                  sep='')
   r.url <- str_replace_all(string=r.url, pattern=" ", repl="")
-  # Checking url
-  print(r.url)
+  ## Checking url
+  # print(r.url)
   output.filename <- paste(data.folder, '/', node.name, '_',
                            quantity, '_', freeway, direction, '_', fdate,
                            '.xls', sep='')
+  
   # Skip getting downloading file if already have
   if(!file.exists(output.filename)) {
     
@@ -419,7 +410,7 @@ getSpatial <- function(freeway, direction, abspm_start, abspm_end, quantity = 'f
   df
 }
 
-
+# Same as getSpatial but for multiple values ex: 'flow','occ', and 'speed'
 getSpatialMulti <- function(freeway, direction, abspm_start, abspm_end, quantities = c('flow','occ','speed'), 
                                   start_search.date.str = start, end_search.date.str = end,
                                   curl, base.url, granularity = 'hour', data.folder) {
@@ -434,6 +425,7 @@ getSpatialMulti <- function(freeway, direction, abspm_start, abspm_end, quantiti
   )
 }
 
+# Builds data frames of station data for multiple values on multiple freeways using the freeways_df
 build_spatial_multistation_df <- function(freeways_df, start, end, quantities, base.url) {rbindlist(lapply(data.frame(t(freeways)), function(x) {
   name  <- x[[2]]
   dir   <- x[[3]]
@@ -502,11 +494,9 @@ write.csv(freeways, paste(data.folder, "freeways.csv", sep="/"), row.names=F)
 # Select only those freeways which are of interest to us.
 freeways <- subsetFreeways(freeways, freeways.of.interest.file)
 
-# Since we are intersted in a specific postmile range
+# Since we are intersted in a specific postmile range limited to the Maze
 freeways <- indicatePostmiles(freeways)
 
-# search.date <- as.character(search.date)
-# search.date <- search.date[grep('^\\d{4}-\\d{2}-\\d{2}$', search.date)]
 }
 ##############################################
 # Example Usage of getting Freeway > Spatial > Multistation Data
@@ -538,6 +528,7 @@ if(FALSE) {
 # Data Collection
 ##########################################
 # Getting Group's Requested Data
+# NOTE: Max query time frame is 1 month
 if(!FALSE){
   # 2007 Collapse Data
   start <- as.character("2007-04-01")
@@ -549,7 +540,23 @@ if(!FALSE){
   half_2 <- build_spatial_multistation_df(freeways, start, end, c("flow","occ","speed","del_60"), base.url = base.url)
 
   write.csv(rbind(half_1, half_2), paste(dataframe_folder, '/', '2007.csv', sep=''))
-
+  
+  # Extending 2007 data
+  start <- as.character("2007-03-01")
+  end   <- as.character("2007-03-30")
+  ant1 <- build_spatial_multistation_df(freeways, start, end, c("flow","occ","speed","del_60"), base.url = base.url)
+  
+  start <- as.character("2007-06-01")
+  end   <- as.character("2007-06-29")
+  pos1  <- build_spatial_multistation_df(freeways, start, end, c("flow","occ","speed","del_60"), base.url = base.url)
+  
+  start <- as.character("2007-07-01")
+  end   <- as.character("2007-07-31")
+  pos2 <- build_spatial_multistation_df(freeways, start, end, c("flow","occ","speed","del_60"), base.url = base.url)
+  
+  write.csv(rbind(ant1, half_1, half_2, pos1, pos2), paste(dataframe_folder, '/', '2007extended.csv', sep=''))
+  
+  
   #2006 For Comparison
   start <- as.character("2006-04-01")
   end   <- as.character("2006-04-30")
@@ -561,6 +568,22 @@ if(!FALSE){
 
   write.csv(rbind(half_1, half_2), paste(dataframe_folder, '/', '2006.csv', sep=''))
 
+  # Extending 2006 data
+  start <- as.character("2006-03-01")
+  end   <- as.character("2006-03-31")
+  ant1 <- build_spatial_multistation_df(freeways, start, end, c("flow","occ","speed","del_60"), base.url = base.url)
+  
+  start <- as.character("2006-06-01")
+  end   <- as.character("2006-06-30")
+  pos1  <- build_spatial_multistation_df(freeways, start, end, c("flow","occ","speed","del_60"), base.url = base.url)
+  
+  start <- as.character("2006-07-01")
+  end   <- as.character("2006-07-31")
+  pos2 <- build_spatial_multistation_df(freeways, start, end, c("flow","occ","speed","del_60"), base.url = base.url)
+  
+  write.csv(rbind(ant1, half_1, half_2, pos1, pos2), paste(dataframe_folder, '/', '2006extended.csv', sep=''))
+  
+  
   #2009 Emergency Bridge Closure
   start <- as.character("2009-10-13")
   end   <- as.character("2009-11-10")
@@ -590,11 +613,10 @@ if(!FALSE){
   write.csv(whole, paste(dataframe_folder, '/', '2012.csv', sep=''))
 }
 
-
 ###################################
 # Functions for getting weather data
 ###################################
-# Defaults for Maze / Oakland, just change date(s)
+# Oakland used for weather data since Maze is primarily within Oakland
 oakland_lat <- '37.8044' 
 oakland_lon <- '-122.2711' 
 
@@ -649,34 +671,16 @@ if(!FALSE){
 
   #2012
   forecastdf <- getDarkSkyRange(start_date = "2012-10-13", end_date = "2012-11-10")
-  write.csv(forecastdf, paste(dataframe_folder, '/', 'forecast2008.csv', sep=''))
+  write.csv(forecastdf, paste(dataframe_folder, '/', 'forecast2012.csv', sep=''))
 }
 
 ##########################################
 
 
-##########################################
+#########################################
 # Functions for Getting Bart Data
 #########################################
-years_of_interest <- c("2006","2007","2008","2009","2012","2013")
-
-# Collecting and unzipping rider ship zip data
-for(i in years_of_interest){
-  file_name <- paste("ridership", i,".zip",  sep = "")
-  full_dest <- paste(data.folder, file_name, sep ="/")
-  if(!file.exists(full_dest)) {
-    url <- paste('https://www.bart.gov/sites/default/files/docs/ridership_',i,'.zip', sep = "")
-    z = getURLContent(url, binary = TRUE)
-    con = file(full_dest, "wb")
-    .Internal(writeBin(z, con, 1, FALSE, TRUE))
-    close(con)
-  }
-  folder_name <- paste("ridership", i,  sep = "")
-  folder_dest <- paste(data.folder, folder_name, sep ="/")
-  unzip(full_dest, exdir = folder_dest)
-}
-
-# Extracts just bart line ridership data, mainly for sheet 1, probably 2 and 3
+# Extracts just bart line ridership data from an xlsx, mainly for sheet 1, probably 2 and 3
 formBartLines <- function(file,sheet) {
   a <- (read.xlsx(file,sheet))
   values <- (data.frame(a[11:18,(ncol(a) - 7):ncol(a)]))
@@ -684,6 +688,7 @@ formBartLines <- function(file,sheet) {
   colnames(values)  <- t(a[10,(ncol(a) - 7):ncol(a)])
   values
 }
+
 
 getBartLines <- function(year, month, sheet = 1) {
   main_dir  <- paste(data.folder, paste('ridership', year,sep = ""),sep = "/")
@@ -703,34 +708,162 @@ getBartLines <- function(year, month, sheet = 1) {
   df
 } 
 
+getTotalEE <- function(year, month, sheet) {
+  main_dir  <- paste(data.folder, paste('ridership', year,sep = ""),sep = "/")
+  listed    <- list.dirs(main_dir)
+  file_name <- grep(month,list.files(listed[length(listed)]), value = TRUE)
+  file_dest <- paste(listed[length(listed)], file_name, sep = "/")
+  a <- read.xlsx(file_dest, sheetIndex = sheet) 
+  if(year == "2012" || year == "2013") {
+    return(as.numeric(as.character(a[46,46])))  
+  } else if(year == "2011" && month != "January") {
+    return(as.numeric(as.character(a[46,46]))) 
+  } 
+  else {
+    return(as.numeric(as.character(a[45,45]))) 
+  }
+}
+
 ##########################################
 # Getting Entry-Exit Bart Line Data
 #########################################
-for(i in 1:3) {
-  getBartLines("2009", "October", sheet = i)
-  getBartLines("2009", "November",sheet = i)
-  getBartLines("2008", "October", sheet = i)
-  getBartLines("2008", "November",sheet = i)
-  
-  getBartLines("2013", "August",   sheet = i)
-  getBartLines("2013", "September",sheet = i)
-  getBartLines("2012", "August",   sheet = i)
-  getBartLines("2012", "September",sheet = i)
-  
-  # 2007 DOES NOT COME WITH LINE DATA!!!
-  # getBartLines("2007", "April",sheet = i)
-  # getBartLines("2007", "May",  sheet = i)
-  getBartLines("2006", "April",sheet = i)
-  getBartLines("2006", "May",  sheet = i)
+years_of_interest <- seq("2004", "2013")
+
+# Collecting and unzipping rider ship zip data
+for(i in years_of_interest){
+  file_name <- paste("ridership", i,".zip",  sep = "")
+  full_dest <- paste(data.folder, file_name, sep ="/")
+  # if(!file.exists(full_dest)) {
+    url <- paste('https://www.bart.gov/sites/default/files/docs/ridership_',i,'.zip', sep = "")
+    z = getURLContent(url, binary = TRUE)
+    con = file(full_dest, "wb")
+    .Internal(writeBin(z, con, 1, FALSE, TRUE))
+    close(con)
+  # }
+  folder_name <- paste("ridership", i,  sep = "")
+  folder_dest <- paste(data.folder, folder_name, sep ="/")
+  unzip(full_dest, exdir = folder_dest)
 }
 
+# Getting line usage
+# for(i in 1:3) {
+#   getBartLines("2009", "October", sheet = i)
+#   getBartLines("2009", "November",sheet = i)
+#   getBartLines("2008", "October", sheet = i)
+#   getBartLines("2008", "November",sheet = i)
+#   
+#   getBartLines("2013", "August",   sheet = i)
+#   getBartLines("2013", "September",sheet = i)
+#   getBartLines("2012", "August",   sheet = i)
+#   getBartLines("2012", "September",sheet = i)
+#   
+#   # 2007 DOES NOT COME WITH LINE DATA!!!
+#   # getBartLines("2007", "April",sheet = i)
+#   # getBartLines("2007", "May",  sheet = i)
+#   getBartLines("2006", "April",sheet = i)
+#   getBartLines("2006", "May",  sheet = i)
+# }
 
-  
+# November 2013 has issues, but we don't expect to use it for now anyways
+month_names <- c("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December")
+
+total_ridership <- lapply(month_names, function(x) {
+  sapply(years_of_interest, getTotalEE, month = x, sheet = 1)
+})
+total_ridership <- as.data.frame(rbindlist(lapply((lapply(total_ridership, data.frame, stringsAsFactors = FALSE )),transpose)))
+rownames(total_ridership) <- month_names
+colnames(total_ridership) <- years_of_interest
+total_ridership <- round(total_ridership)
+write.csv(total_ridership, paste(dataframe_folder, '/', "yearly_ridership", ".csv", sep=''))
+
+
+
 ##########################################
 # Clean up. Cookies file will be written to disk. Memory will be freed.
 rm(curl)
 gc()
 ##########################################
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# ###########################################################################
+# # Functions To Collect On-Ramp Data (UNUSED BECAUSE ON-RAMP DATA DOESN'T EXIST FOR MAZE TILL LATE 2011)
+# ###########################################################################
+# ## Function getOnRampIDs will fetch page with station ID's for a freeway's on-ramps
+# # If no postmiles explicitly indicated, defaults to entire freeway
+# getOnRampIDs <- function(freeway, direction, search.date.str,
+#                           s.time.id, curl, base.url, data.folder, abspm_start = -1, abspm_end = 100000000000) {
+#   # Combine variables into a "lane" string
+#   lane <- paste('fwy=', freeway, '&dir=', direction, sep='')
+#   
+#   # Parse the search.date.str into a vector
+#   search.date.v <- unlist(strsplit(search.date.str, '-'))
+#   names(search.date.v) <- c("year", "month", "day")
+#   
+#   # Combine variables into a "start date" (sdate) string
+#   sdate <- paste(search.date.v[['month']], 
+#                  search.date.v[['day']], 
+#                  search.date.v[['year']], 
+#                  sep='%2F')
+#   
+#   # Combine variables into a "file date" (fdate) string
+#   fdate <- paste(search.date.v[['year']], 
+#                  search.date.v[['month']], 
+#                  search.date.v[['day']], 
+#                  sep='')
+#   
+#   # Page configuration - query specification for type of report page
+#   form.num <- '1'
+#   node.name <- 'Freeway'
+#   content <- 'elv'
+#   export.type <- 'text'
+#   
+#   # Combine variables into a "page" (page) string
+#   page <- paste('report_form=', form.num, '&dnode=', node.name, '&content=', 
+#                 content, '&export=', export.type, sep='')
+#   
+#   # Combine variables into a "output filename" (output.filename) string
+#   output.filename <- paste(data.folder, '/', node.name, '-', 
+#                            content, '-', freeway, '-', direction, '-', fdate, 
+#                            '.tsv', sep='')
+#   
+#   # Form URL
+#   r.url <- paste(base.url, '/?', page, '&fwy=', freeway, '&dir=', direction, '&_time_id=', 
+#                  s.time.id, '&_time_id_f=', sdate, '&st_or=on', 
+#                  '&start_pm=', abspm_start, '&end_pm=', abspm_end, sep='')
+#   
+#   r = dynCurlReader()
+#   result.string <- getURL(url = r.url, curl = curl)
+#   
+#   # Write string to file
+#   writeLines(result.string, output.filename)
+#   
+#   # Read table from string into a dataframe
+#   freeway_data <- read.table(text=result.string, sep='\t', header=T, 
+#                              fill=T, quote='', stringsAsFactors=F)
+#   
+#   # Construct fuller data frame
+#   VDS  <- sapply(freeway_data$ID, as.character)
+#   Freeway  <- rep(freeway,   length(VDS))
+#   Direction  <- rep(direction, length(VDS))
+#   df <- data.frame(VDS,Freeway,Direction, stringsAsFactors = FALSE)
+#   list_df <- split(df, seq(nrow(df)))
+# }
 
 
