@@ -45,9 +45,11 @@ axis(1, at = 1:12 ,  x, las = 2)
 legend("topleft", legend=c("2008", "2009"),
        col=c("red", "blue"), lty=2, cex=0.8,
        text.font=4, bg='transparent')
-# abline(v = 8 + 28/31)
-# abline(v = 9 + 3/30)
-# mtext("Vertical lines indicate start and end of closure", 3, cex = 0.74)
+abline(v = 9 + 6/30)
+abline(v = 9 + 8/30)
+abline(v = 10 + 27/31)
+abline(v = 11 + 8/30)
+mtext("Vertical lines indicate start and end of closure", 3, cex = 0.74)
 
 
 
