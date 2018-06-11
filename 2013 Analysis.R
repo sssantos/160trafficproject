@@ -139,15 +139,15 @@ ggplot(weeks13, aes(TimeStamp, daily_flow, color=Direction, linetype=Direction))
 ##Descriptive statistics 2013
 combine13 <- as.data.frame(rbind(before13, after13))
 new13<- ddply(combine13, .(TimeStamp,Freeway, Direction), summarize, daily_flow = mean(Average.flow))
-new13<-subset(new13, Freeway== 24 & Direction== 'E')
+new13<-subset(new13, Freeway== 880 & Direction== 'S')
 
 close13<- ddply(labor13, .(TimeStamp,Freeway, Direction), summarize, daily_flow = mean(Average.flow))
-close13<- subset(close13, Freeway== 24 & Direction== 'E')
+close13<- subset(close13, Freeway== 880 & Direction== 'S')
 
 stat.desc(new13)
 stat.desc(close13)
 
-hist(close13$daily_flow)
+hist(new13$daily_flow)
 
 ##Descriptive statistics 2012
 before12 <- subset(raw12, TimeStamp >= as.POSIXct('2012-08-22 00:00:00') &
@@ -157,13 +157,13 @@ after12 <- subset(raw12, TimeStamp >= as.POSIXct('2012-09-05 00:00:00') &
                     TimeStamp <= as.POSIXct('2012-09-11 23:00:00'))
 combine12 <- as.data.frame(rbind(before12, after12))
 new12<- ddply(combine12, .(TimeStamp,Freeway, Direction), summarize, daily_flow = mean(Average.flow))
-new12<-subset(new12, Freeway== 24 & Direction== 'E')
+new12<-subset(new12, Freeway== 880 & Direction== 'S')
 
 close12<- ddply(labor12, .(TimeStamp,Freeway, Direction), summarize, daily_flow = mean(Average.flow))
-close12<- subset(close12, Freeway== 24 & Direction== 'E')
+close12<- subset(close12, Freeway== 880 & Direction== 'S')
 
 stat.desc(new12)
 stat.desc(close12)
 
-hist(new12$daily_flow)
+hist(close12$daily_flow)
 
