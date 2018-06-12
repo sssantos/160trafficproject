@@ -5,7 +5,7 @@
 # Retrieve On-Ramp Flow data from the State of California PeMS website.
 
 # PeMS data collection based off script for obtaining detector health data by Brian High (https://github.com/brianhigh) and Surakshya Dhakal
-# Modified to obtain station level data and freeway level data (https://github.com/sssantos)
+# ^^^ Modified to obtain station level data and freeway level data by Colin Santos (https://github.com/sssantos)
 # License: GNU GPL v3 http://www.gnu.org/licenses/gpl.txt
 
 # REQUIRES A TXT FILE TO INDICATE MAZE POSTMILES AND TXT TO INDICATE FREEWAYS OF INTEREST
@@ -530,88 +530,88 @@ if(FALSE) {
 # Getting Group's Requested Data
 # NOTE: Max query time frame is 1 month
 if(!FALSE){
-  # # 2007 Collapse Data
-  # start <- as.character("2007-04-01")
-  # end   <- as.character("2007-04-30")
-  # half_1 <- build_spatial_multistation_df(freeways, start, end, c("flow","occ","speed","del_60"), base.url = base.url)
-  # 
-  # start <- as.character("2007-05-01")
-  # end   <- as.character("2007-05-31")
-  # half_2 <- build_spatial_multistation_df(freeways, start, end, c("flow","occ","speed","del_60"), base.url = base.url)
-  # 
-  # write.csv(rbind(half_1, half_2), paste(dataframe_folder, '/', '2007.csv', sep=''))
-  # 
-  # # Extending 2007 data
-  # start <- as.character("2007-03-01")
-  # end   <- as.character("2007-03-30")
-  # ant1 <- build_spatial_multistation_df(freeways, start, end, c("flow","occ","speed","del_60"), base.url = base.url)
-  # 
-  # start <- as.character("2007-06-01")
-  # end   <- as.character("2007-06-29")
-  # pos1  <- build_spatial_multistation_df(freeways, start, end, c("flow","occ","speed","del_60"), base.url = base.url)
-  # 
-  # start <- as.character("2007-07-01")
-  # end   <- as.character("2007-07-31")
-  # pos2 <- build_spatial_multistation_df(freeways, start, end, c("flow","occ","speed","del_60"), base.url = base.url)
-  # 
-  # write.csv(rbind(ant1, half_1, half_2, pos1, pos2), paste(dataframe_folder, '/', '2007extended.csv', sep=''))
-  # 
-  # 
-  # #2006 For Comparison
-  # start <- as.character("2006-04-01")
-  # end   <- as.character("2006-04-30")
-  # half_1 <- build_spatial_multistation_df(freeways, start, end, c("flow","occ","speed","del_60"), base.url = base.url)
-  # 
-  # start <- as.character("2006-05-01")
-  # end   <- as.character("2006-05-31")
-  # half_2 <- build_spatial_multistation_df(freeways, start, end, c("flow","occ","speed","del_60"), base.url = base.url)
-  # 
-  # write.csv(rbind(half_1, half_2), paste(dataframe_folder, '/', '2006.csv', sep=''))
-  # 
-  # # Extending 2006 data
-  # start <- as.character("2006-03-01")
-  # end   <- as.character("2006-03-31")
-  # ant1 <- build_spatial_multistation_df(freeways, start, end, c("flow","occ","speed","del_60"), base.url = base.url)
-  # 
-  # start <- as.character("2006-06-01")
-  # end   <- as.character("2006-06-30")
-  # pos1  <- build_spatial_multistation_df(freeways, start, end, c("flow","occ","speed","del_60"), base.url = base.url)
-  # 
-  # start <- as.character("2006-07-01")
-  # end   <- as.character("2006-07-31")
-  # pos2 <- build_spatial_multistation_df(freeways, start, end, c("flow","occ","speed","del_60"), base.url = base.url)
-  # 
-  # write.csv(rbind(ant1, half_1, half_2, pos1, pos2), paste(dataframe_folder, '/', '2006extended.csv', sep=''))
-  # 
-  # 
-  # #2009 Emergency Bridge Closure
-  # start <- as.character("2009-10-13")
-  # end   <- as.character("2009-11-10")
-  # whole <- build_spatial_multistation_df(freeways, start, end, c("flow","occ","speed","del_60"), base.url = base.url)
-  # 
-  # write.csv(whole, paste(dataframe_folder, '/', '2009.csv', sep=''))
-  # 
-  # #2008 Comparison
-  # start <- as.character("2008-10-13")
-  # end   <- as.character("2008-11-10")
-  # whole <- build_spatial_multistation_df(freeways, start, end, c("flow","occ","speed","del_60"), base.url = base.url)
-  # 
-  # write.csv(whole, paste(dataframe_folder, '/', '2008.csv', sep=''))
-  # 
-  # #2013 Labor Day Bridge Closure
-  # start <- as.character("2013-8-17")
-  # end   <- as.character("2013-9-14")
-  # whole <- build_spatial_multistation_df(freeways, start, end, c("flow","occ","speed","del_60"), base.url = base.url)
-  # 
-  # write.csv(whole, paste(dataframe_folder, '/', '2013.csv', sep=''))
-  # 
-  # #2012
-  # start <- as.character("2012-8-17")
-  # end   <- as.character("2012-9-14")
-  # whole <- build_spatial_multistation_df(freeways, start, end, c("flow","occ","speed","del_60"), base.url = base.url)
-  # 
-  # write.csv(whole, paste(dataframe_folder, '/', '2012.csv', sep=''))
-  # 
+  # 2007 Collapse Data
+  start <- as.character("2007-04-01")
+  end   <- as.character("2007-04-30")
+  half_1 <- build_spatial_multistation_df(freeways, start, end, c("flow","occ","speed","del_60"), base.url = base.url)
+
+  start <- as.character("2007-05-01")
+  end   <- as.character("2007-05-31")
+  half_2 <- build_spatial_multistation_df(freeways, start, end, c("flow","occ","speed","del_60"), base.url = base.url)
+
+  write.csv(rbind(half_1, half_2), paste(dataframe_folder, '/', '2007.csv', sep=''))
+
+  # Extending 2007 data
+  start <- as.character("2007-03-01")
+  end   <- as.character("2007-03-30")
+  ant1 <- build_spatial_multistation_df(freeways, start, end, c("flow","occ","speed","del_60"), base.url = base.url)
+
+  start <- as.character("2007-06-01")
+  end   <- as.character("2007-06-29")
+  pos1  <- build_spatial_multistation_df(freeways, start, end, c("flow","occ","speed","del_60"), base.url = base.url)
+
+  start <- as.character("2007-07-01")
+  end   <- as.character("2007-07-31")
+  pos2 <- build_spatial_multistation_df(freeways, start, end, c("flow","occ","speed","del_60"), base.url = base.url)
+
+  write.csv(rbind(ant1, half_1, half_2, pos1, pos2), paste(dataframe_folder, '/', '2007extended.csv', sep=''))
+
+
+  #2006 For Comparison
+  start <- as.character("2006-04-01")
+  end   <- as.character("2006-04-30")
+  half_1 <- build_spatial_multistation_df(freeways, start, end, c("flow","occ","speed","del_60"), base.url = base.url)
+
+  start <- as.character("2006-05-01")
+  end   <- as.character("2006-05-31")
+  half_2 <- build_spatial_multistation_df(freeways, start, end, c("flow","occ","speed","del_60"), base.url = base.url)
+
+  write.csv(rbind(half_1, half_2), paste(dataframe_folder, '/', '2006.csv', sep=''))
+
+  # Extending 2006 data
+  start <- as.character("2006-03-01")
+  end   <- as.character("2006-03-31")
+  ant1 <- build_spatial_multistation_df(freeways, start, end, c("flow","occ","speed","del_60"), base.url = base.url)
+
+  start <- as.character("2006-06-01")
+  end   <- as.character("2006-06-30")
+  pos1  <- build_spatial_multistation_df(freeways, start, end, c("flow","occ","speed","del_60"), base.url = base.url)
+
+  start <- as.character("2006-07-01")
+  end   <- as.character("2006-07-31")
+  pos2 <- build_spatial_multistation_df(freeways, start, end, c("flow","occ","speed","del_60"), base.url = base.url)
+
+  write.csv(rbind(ant1, half_1, half_2, pos1, pos2), paste(dataframe_folder, '/', '2006extended.csv', sep=''))
+
+
+  #2009 Emergency Bridge Closure
+  start <- as.character("2009-10-13")
+  end   <- as.character("2009-11-10")
+  whole <- build_spatial_multistation_df(freeways, start, end, c("flow","occ","speed","del_60"), base.url = base.url)
+
+  write.csv(whole, paste(dataframe_folder, '/', '2009.csv', sep=''))
+
+  #2008 Comparison
+  start <- as.character("2008-10-13")
+  end   <- as.character("2008-11-10")
+  whole <- build_spatial_multistation_df(freeways, start, end, c("flow","occ","speed","del_60"), base.url = base.url)
+
+  write.csv(whole, paste(dataframe_folder, '/', '2008.csv', sep=''))
+
+  #2013 Labor Day Bridge Closure
+  start <- as.character("2013-8-17")
+  end   <- as.character("2013-9-14")
+  whole <- build_spatial_multistation_df(freeways, start, end, c("flow","occ","speed","del_60"), base.url = base.url)
+
+  write.csv(whole, paste(dataframe_folder, '/', '2013.csv', sep=''))
+
+  #2012
+  start <- as.character("2012-8-17")
+  end   <- as.character("2012-9-14")
+  whole <- build_spatial_multistation_df(freeways, start, end, c("flow","occ","speed","del_60"), base.url = base.url)
+
+  write.csv(whole, paste(dataframe_folder, '/', '2012.csv', sep=''))
+
   #2009 Earlier Closure
   start <- as.character("2009-08-24")
   end   <- as.character("2009-09-21")

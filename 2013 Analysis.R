@@ -48,7 +48,7 @@ labor12_580E <- NULL
 labor13_580E <- NULL
 strt12 <- as.POSIXct('2012-08-31 00:00:00')
 end12 <- as.POSIXct('2012-08-31 23:00:00')
-labor12_580E <- subset(labor12, Freeway == 580 & Direction == 'W')
+labor12_580E <- subset(labor12, Freeway == 580 & Direction == 'W',
                          TimeStamp >= strt12 & TimeStamp <= end12)
 labor12_580E <- labor12_580E[order(labor12_580E$TimeStamp),]
 
@@ -56,7 +56,7 @@ summary(labor12_580E)
 strt13 <- as.POSIXct('2013-08-30 00:00:00')
 end13 <- as.POSIXct('2013-08-30 23:00:00')
 labor13_580E <- subset(labor13, Freeway == 580 & Direction == 'W')
-labor13_580E<- subset(labor13_580E, !((TimeStamp >=bad13 & TimeStamp <=bad23)))
+labor13_580E<- subset(labor13_580E, !((TimeStamp >=bad13 & TimeStamp <=bad23)),
 
                          TimeStamp >= strt13 & TimeStamp <= end13)
 labor13_580E <- labor13_580E[order(labor13_580E$TimeStamp),]
