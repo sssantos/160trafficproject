@@ -792,6 +792,12 @@ colnames(total_ridership) <- years_of_interest
 total_ridership <- round(total_ridership)
 write.csv(total_ridership, paste(dataframe_folder, '/', "yearly_ridership", ".csv", sep=''))
 
+#####################################################
+# Other Requested Data
+#####################################################
+
+
+###http://pems.dot.ca.gov/?report_form=1&dnode=VDS&content=loops&tab=det_timeseries&export=&station_id=400317&s_time_id=1250985600&s_time_id_f=08%2F23%2F2009+00%3A00&e_time_id=1253750340&e_time_id_f=09%2F23%2F2009+23%3A59&tod=all&tod_from=0&tod_to=0&dow_0=on&dow_1=on&dow_2=on&dow_3=on&dow_4=on&dow_5=on&dow_6=on&holidays=on&q=flow&q2=del_60&gn=hour&agg=on&html.x=43&html.y=7
 
 
 ##########################################
@@ -799,18 +805,45 @@ write.csv(total_ridership, paste(dataframe_folder, '/', "yearly_ridership", ".cs
 rm(curl)
 gc()
 ##########################################
+station <- as.character(c(400738,400639,401819,401820,400071,400683,400164,400317))
+freeway <- rep(c("580","101","92","84"), each = 2)
+direction <- c("W","E", "N","S","W","E","W","E")
+vds_info <- data.frame(t(data.frame(station,freeway,direction)))
+
+pre <- "http://pems.dot.ca.gov/?report_form=1&dnode=VDS&content=loops&tab=det_timeseries&export=text&station_id=" 
+pos <- "&s_time_id=1250985600&s_time_id_f=08%2F23%2F2009+00%3A00&e_time_id=1253750340&e_time_id_f=09%2F23%2F2009+23%3A59&tod=all&tod_from=0&tod_to=0&dow_0=on&dow_1=on&dow_2=on&dow_3=on&dow_4=on&dow_5=on&dow_6=on&holidays=on&q=flow&q2=del_60&gn=hour&agg=on&html.x=43&html.y=7"
+
+getSpecific <- function(station_df, urlpre = pre, urlpos = pos) {
+  
+  station_id <- station_df[1]
+  
+  r.url = paste(urlpre, station_id, urlpos, sep = "")
+  # return(r.url)
+  r = dynCurlReader()
+  result.string <- getURL(url = r.url, curl = curl)
+  
+  
+  # Read table from string into a dataframe
+  freeway_data <- read.csv(text=result.string, sep='\t', header=T,
+                           fill=T, quote='', stringsAsFactors=F)
+  
+  # Form columns
+  num_rows  <- nrow(freeway_data)
+  Station   <- rep(station_df[1], num_rows)
+  Freeway   <- rep(station_df[2], num_rows)
+  Direction <- rep(station_df[3], num_rows)
+  
+  # Adding columns to data frame
+  freeway_data <- add_column(freeway_data, Direction,  .after = 1)
+  freeway_data <- add_column(freeway_data, Freeway,    .after = 1)
+  freeway_data <- add_column(freeway_data, Station,    .after = 1)
+  
+  return(freeway_data)
+}
 
 
-
-
-
-
-
-
-
-
-
-
+bridge <- rbindlist(lapply(vds_info, getSpecific))
+write.csv(bridge, paste(data.folder,"bridge.csv", sep = "/"))
 
 
 

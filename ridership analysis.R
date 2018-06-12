@@ -10,10 +10,8 @@ ridership_df <- read.csv("~/Documents/STA160/160trafficdata/df/yearly_ridership.
 colnames(ridership_df) <- gsub("X", x = colnames(ridership_df), replacement = "" ) 
 x <- rownames(ridership_df) 
 
-
-
 # Comparing 2013 and 2012 Ridership
-plot(ridership_df$`2013`, type = 'b', pch = 19, col = 'red', xlab = "Month", ylab = 'Ridership', las = 3, xaxt='n')
+plot(ridership_df$`2013`, type = 'b', pch = 19, col = 'red', xlab = "Month", ylab = 'Ridership', las = 3, xaxt='n', xpd = FALSE)
 lines(ridership_df$`2012`, type = 'b', pch = 19, col = 'blue')
 title(main="Comparing 2013 and 2012 Ridership")
 axis(1, at = 1:12 ,  x, las = 2)
